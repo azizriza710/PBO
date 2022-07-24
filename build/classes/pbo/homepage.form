@@ -45,9 +45,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
                   <Component id="text_ubah" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="274" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="259" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -55,7 +55,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanel2" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
                   <Component id="text_ubah" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -154,11 +154,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="icon" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -167,7 +167,7 @@
                 <Component class="javax.swing.JLabel" name="icon">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\SaIN\AppData\Local\Temp\icons8_team_20px.png"/>
+                      <Image iconType="3" name="/pbo/picture/people_20px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -232,7 +232,7 @@
                 <Component class="javax.swing.JLabel" name="icon1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\SaIN\AppData\Local\Temp\icons8_student_male_20px_2.png"/>
+                      <Image iconType="3" name="/pbo/picture/student_male_20px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -297,7 +297,7 @@
                 <Component class="javax.swing.JLabel" name="icon2">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\SaIN\AppData\Local\Temp\icons8_open_book_20px.png"/>
+                      <Image iconType="3" name="/pbo/picture/open_book_20px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -383,7 +383,7 @@
                 <Component class="javax.swing.JLabel" name="icon3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\SaIN\AppData\Local\Temp\icons8_clipboard_list_20px.png"/>
+                      <Image iconType="3" name="/pbo/picture/clipboard_list_20px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -448,7 +448,7 @@
                 <Component class="javax.swing.JLabel" name="icon4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\SaIN\AppData\Local\Temp\icons8_todo_list_20px.png"/>
+                      <Image iconType="3" name="/pbo/picture/todo_list_20px.png"/>
                     </Property>
                   </Properties>
                 </Component>

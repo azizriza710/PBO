@@ -63,7 +63,7 @@ public class homepage extends javax.swing.JFrame {
             }
         });
 
-        icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\SaIN\\AppData\\Local\\Temp\\icons8_team_20px.png")); // NOI18N
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/people_20px.png"))); // NOI18N
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -85,10 +85,10 @@ public class homepage extends javax.swing.JFrame {
             tentang_pembuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tentang_pembuatLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(tentang_pembuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tentang_pembuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(icon)
                     .addComponent(jLabel3))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         data_mahasiswa.setBackground(new java.awt.Color(65, 83, 128));
@@ -100,7 +100,7 @@ public class homepage extends javax.swing.JFrame {
             }
         });
 
-        icon1.setIcon(new javax.swing.ImageIcon("C:\\Users\\SaIN\\AppData\\Local\\Temp\\icons8_student_male_20px_2.png")); // NOI18N
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/student_male_20px.png"))); // NOI18N
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -137,7 +137,7 @@ public class homepage extends javax.swing.JFrame {
             }
         });
 
-        icon2.setIcon(new javax.swing.ImageIcon("C:\\Users\\SaIN\\AppData\\Local\\Temp\\icons8_open_book_20px.png")); // NOI18N
+        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/open_book_20px.png"))); // NOI18N
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -181,7 +181,7 @@ public class homepage extends javax.swing.JFrame {
             }
         });
 
-        icon3.setIcon(new javax.swing.ImageIcon("C:\\Users\\SaIN\\AppData\\Local\\Temp\\icons8_clipboard_list_20px.png")); // NOI18N
+        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/clipboard_list_20px.png"))); // NOI18N
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -218,7 +218,7 @@ public class homepage extends javax.swing.JFrame {
             }
         });
 
-        icon4.setIcon(new javax.swing.ImageIcon("C:\\Users\\SaIN\\AppData\\Local\\Temp\\icons8_todo_list_20px.png")); // NOI18N
+        icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/todo_list_20px.png"))); // NOI18N
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -297,15 +297,15 @@ public class homepage extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(215, 215, 215)
+                .addGap(230, 230, 230)
                 .addComponent(text_ubah)
-                .addGap(0, 274, Short.MAX_VALUE))
+                .addGap(0, 259, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(198, 198, 198)
+                .addGap(206, 206, 206)
                 .addComponent(text_ubah)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

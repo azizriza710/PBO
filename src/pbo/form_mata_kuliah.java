@@ -8,6 +8,14 @@ package pbo;
 import javax.swing.*;
 //Fungsi import yang digunakan untuk SQL 
 import java.sql.*;
+
+import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 /**
  *
  * @author SaIN
@@ -98,8 +106,8 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         row = tabel_mata_kuliah.getSelectedRow();
         nomor_mk.setText(tableModel.getValueAt(row, 0).toString());
         nama_mk.setText(tableModel.getValueAt(row, 1).toString());
+        btn_ubah.setEnabled(false);
         btn_simpan.setEnabled(false);
-        btn_ubah.setEnabled(true);
         btn_hapus.setEnabled(true);
         btn_keluar.setEnabled(false);
         aktif_teks();
@@ -154,10 +162,10 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         btn_hapus = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        btn_ubah = new javax.swing.JPanel();
+        btn_simpan = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        btn_simpan = new javax.swing.JPanel();
+        btn_ubah = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         btn_keluar = new javax.swing.JPanel();
@@ -477,7 +485,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         panel_content.add(input_cari_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 66, 279, -1));
 
         nomor_mk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
-        panel_content.add(nomor_mk, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 153, 230, -1));
+        panel_content.add(nomor_mk, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 230, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setText("Nomor M.K");
@@ -488,7 +496,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         panel_content.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 147, -1, -1));
 
         nama_mk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
-        panel_content.add(nama_mk, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 153, 207, -1));
+        panel_content.add(nama_mk, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, 207, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("Masukan Data");
@@ -520,7 +528,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabel_mata_kuliah);
 
-        panel_content.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 204, 765, 135));
+        panel_content.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 204, 765, 180));
 
         jSeparator3.setForeground(new java.awt.Color(65, 83, 128));
         panel_content.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 111, 951, -1));
@@ -528,6 +536,11 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         btn_batal.setBackground(new java.awt.Color(255, 255, 255));
         btn_batal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_batal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_batal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_batalMouseClicked(evt);
+            }
+        });
         btn_batal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -558,25 +571,6 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
         panel_content.add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 422, 87, 36));
 
-        btn_ubah.setBackground(new java.awt.Color(255, 255, 255));
-        btn_ubah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_ubah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_ubah.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_ubahMouseClicked(evt);
-            }
-        });
-        btn_ubah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel24.setText("Simpan");
-        btn_ubah.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
-
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/add_file_20px.png"))); // NOI18N
-        btn_ubah.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        panel_content.add(btn_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 422, 94, 36));
-
         btn_simpan.setBackground(new java.awt.Color(255, 255, 255));
         btn_simpan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_simpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -587,18 +581,42 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         });
         btn_simpan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel24.setText("Simpan");
+        btn_simpan.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/add_file_20px.png"))); // NOI18N
+        btn_simpan.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        panel_content.add(btn_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 422, 94, 36));
+
+        btn_ubah.setBackground(new java.awt.Color(255, 255, 255));
+        btn_ubah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_ubah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_ubah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ubahMouseClicked(evt);
+            }
+        });
+        btn_ubah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel27.setText("Ubah");
-        btn_simpan.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        btn_ubah.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/edit_20px.png"))); // NOI18N
-        btn_simpan.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        btn_ubah.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 422, 82, 36));
+        panel_content.add(btn_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 422, 82, 36));
 
         btn_keluar.setBackground(new java.awt.Color(255, 255, 255));
         btn_keluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_keluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_keluarMouseClicked(evt);
+            }
+        });
         btn_keluar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -728,7 +746,10 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
     private void tentang_pembuat1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tentang_pembuat1MouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Tentang Pembuat");
+        homepage utama = new homepage();
+        utama.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_tentang_pembuat1MouseClicked
 
     private void data_mahasiswa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mahasiswa1MouseClicked
@@ -743,7 +764,10 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
     private void data_nilai1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_nilai1MouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Nilai");
+        form_data_nilai nilai = new form_data_nilai();
+        nilai.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_nilai1MouseClicked
 
     private void Simulasi_nilai_akhir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Simulasi_nilai_akhir2MouseClicked
@@ -759,14 +783,20 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         // TODO add your handling code here:
         membersihkan_teks();
         nomor_mk.requestFocus();
-        btn_simpan.setEnabled(true);
-        btn_ubah.setEnabled(false);
+        
+        btn_ubah.setBackground(Color.gray);
+        btn_hapus.setBackground(Color.gray);
+        btn_keluar.setBackground(Color.gray);
+        btn_simpan.setBackground(Color.white);
+        
+        btn_ubah.setEnabled(true);
+        btn_simpan.setEnabled(false);
         btn_hapus.setEnabled(false);
         btn_keluar.setEnabled(false);
         aktif_teks();
     }//GEN-LAST:event_btn_tambahMouseClicked
 
-    private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
+    private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
         // TODO add your handling code here:
         String nomor = nomor_mk.getText();
         String nama = nama_mk.getText();
@@ -795,13 +825,14 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 stt.close();
                 kon.close();
                 membersihkan_teks();
-                btn_simpan.setEnabled(false);
+                btn_ubah.setEnabled(false);
+                btn_ubah.setBackground(Color.gray);
                 nonaktif_teks();
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
         }
-    }//GEN-LAST:event_btn_simpanMouseClicked
+    }//GEN-LAST:event_btn_ubahMouseClicked
 
     private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
         // TODO add your handling code here:
@@ -825,7 +856,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btn_hapusMouseClicked
 
-    private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
+    private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
         // TODO add your handling code here:
         String data[] = new String[5];
         
@@ -844,7 +875,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 String SQL = "INSERT INTO mata_kuliah(nomor_mk, nama_mk)"
                         + "VALUES "
                         + "( '"+nomor_mk.getText()+"',"
-                        + " ' "+nama_mk.getText()+"')";
+                        + " '"+nama_mk.getText()+"')";
                 stt.executeUpdate(SQL);
                 data[0] = nomor_mk.getText();
                 data[1] = nama_mk.getText();
@@ -852,17 +883,24 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 stt.close();
                 kon.close();
                 membersihkan_teks();
-                btn_simpan.setEnabled(false);
+                btn_ubah.setBackground(Color.gray);
+                btn_keluar.setBackground(Color.white);
+                btn_ubah.setEnabled(false);
                 nonaktif_teks();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btn_ubahMouseClicked
+    }//GEN-LAST:event_btn_simpanMouseClicked
 
     private void tabel_mata_kuliahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_mata_kuliahMouseClicked
         // TODO add your handling code here:
+        btn_simpan.setEnabled(false);
         if(evt.getClickCount()==1){
+            btn_ubah.setBackground(Color.white);
+            btn_hapus.setBackground(Color.white);
+            btn_simpan.setBackground(Color.gray);
+            
             tampil_field();
         }
     }//GEN-LAST:event_tabel_mata_kuliahMouseClicked
@@ -901,6 +939,19 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         tableModel.setRowCount(0);
         settableload();
     }//GEN-LAST:event_btn_tampil_dataMouseClicked
+
+    private void btn_batalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_batalMouseClicked
+        // TODO add your handling code here:
+        membersihkan_teks();
+        nonaktif_teks();
+        btn_keluar.setBackground(Color.white);
+        
+    }//GEN-LAST:event_btn_batalMouseClicked
+
+    private void btn_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_keluarMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_btn_keluarMouseClicked
 
     /**
      * @param args the command line arguments

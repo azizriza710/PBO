@@ -148,7 +148,7 @@ public class form_mahasiswa extends javax.swing.JFrame {
         data_mahasiswa1Layout.setVerticalGroup(
             data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -185,7 +185,7 @@ public class form_mahasiswa extends javax.swing.JFrame {
         data_mata_kuliah1Layout.setVerticalGroup(
             data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -229,7 +229,7 @@ public class form_mahasiswa extends javax.swing.JFrame {
         data_nilai1Layout.setVerticalGroup(
             data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -302,7 +302,7 @@ public class form_mahasiswa extends javax.swing.JFrame {
         Simulasi_nilai_akhir3Layout.setVerticalGroup(
             Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -412,19 +412,15 @@ public class form_mahasiswa extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel7.setText("Alamat");
 
-        batal.setBackground(new java.awt.Color(255, 255, 255));
-        batal.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         batal.setText("BATAL");
-        batal.setActionCommand(null);
+        batal.setActionCommand("null");
         batal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("Masukan Data");
 
-        keluar.setBackground(new java.awt.Color(255, 255, 255));
-        keluar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         keluar.setText("KELUAR");
-        keluar.setActionCommand(null);
+        keluar.setActionCommand("null");
         keluar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -453,30 +449,22 @@ public class form_mahasiswa extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabel_mahasiswa);
 
-        tambah.setBackground(new java.awt.Color(255, 255, 255));
-        tambah.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tambah.setText("TAMBAH");
-        tambah.setActionCommand(null);
+        tambah.setActionCommand("null");
         tambah.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tambah.setMargin(new java.awt.Insets(5, 10, 5, 10));
 
-        ubah.setBackground(new java.awt.Color(255, 255, 255));
-        ubah.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ubah.setText("UBAH");
-        ubah.setActionCommand(null);
+        ubah.setActionCommand("null");
         ubah.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         ubah.setPreferredSize(new java.awt.Dimension(53, 21));
 
-        hapus.setBackground(new java.awt.Color(255, 255, 255));
-        hapus.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         hapus.setText("HAPUS");
-        hapus.setActionCommand(null);
+        hapus.setActionCommand("null");
         hapus.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        simpan.setBackground(new java.awt.Color(255, 255, 255));
-        simpan.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         simpan.setText("SIMPAN");
-        simpan.setActionCommand(null);
+        simpan.setActionCommand("null");
         simpan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jSeparator3.setForeground(new java.awt.Color(65, 83, 128));
@@ -598,7 +586,7 @@ public class form_mahasiswa extends javax.swing.JFrame {
                     .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

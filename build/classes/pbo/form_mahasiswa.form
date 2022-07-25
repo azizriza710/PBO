@@ -60,35 +60,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                      <Component id="jSeparator4" min="-2" pref="225" max="-2" attributes="0"/>
+                      <Component id="data_mahasiswa1" min="-2" pref="225" max="-2" attributes="0"/>
+                      <Component id="data_mata_kuliah1" min="-2" pref="225" max="-2" attributes="0"/>
+                      <Component id="data_nilai1" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="Simulasi_nilai_akhir3" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="Simulasi_nilai_akhir2" min="-2" pref="235" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="jSeparator4" min="-2" pref="225" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="data_mahasiswa1" min="-2" pref="225" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="data_mata_kuliah1" min="-2" pref="225" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="data_nilai1" min="-2" pref="235" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="Simulasi_nilai_akhir3" min="-2" pref="235" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="Simulasi_nilai_akhir2" min="-2" pref="235" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="tentang_pembuat1" min="-2" pref="204" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,9 +94,9 @@
                   <Component id="Simulasi_nilai_akhir3" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                   <Component id="Simulasi_nilai_akhir2" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace min="124" pref="124" max="-2" attributes="0"/>
-                  <Component id="tentang_pembuat1" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="tentang_pembuat1" min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

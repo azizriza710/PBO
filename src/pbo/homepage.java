@@ -394,6 +394,10 @@ public class homepage extends javax.swing.JFrame {
 
     private void data_mata_kuliahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mata_kuliahMouseClicked
         // TODO add your handling code here:
+        form_mata_kuliah utama = new form_mata_kuliah();
+        utama.setVisible(true);
+        
+        this.setVisible(false);
 //        text_ubah.setText("Ini Data Mata Kuliah");
     }//GEN-LAST:event_data_mata_kuliahMouseClicked
 

@@ -5,19 +5,105 @@
  */
 package pbo;
 
+import javax.swing.*;
+//Fungsi import yang digunakan untuk SQL 
+import java.sql.*;
 /**
  *
  * @author SaIN
  */
 public class form_mata_kuliah extends javax.swing.JFrame {
 
-    /**
-     * Creates new form form_mata_kuliah
-     */
+    //    deklarasi variabel 
+    koneksi dbsetting;
+    String driver,database,user,pass;
+    Object tabel;
     public form_mata_kuliah() {
         initComponents();
+        
+        dbsetting = new koneksi(); 
+        driver = dbsetting.SettingPanel("DBDriver");
+        database = dbsetting.SettingPanel("DBDatabase");
+        user = dbsetting.SettingPanel("DBUsername");
+        pass = dbsetting.SettingPanel("DBPassword");
+        
+        tabel_mata_kuliah.setModel(tableModel);
+        settableload();
     }
 
+    private javax.swing.table.DefaultTableModel tableModel = getDefaultTabelModel();
+    private javax.swing.table.DefaultTableModel getDefaultTabelModel(){
+        //        membuat judul header 
+        return new javax.swing.table.DefaultTableModel (
+            new Object[][] {},
+            new String [] {
+                "Nomor M.K",
+                "Nama M.K",
+            }
+        )
+//                disable perubahan pada grid 
+        { 
+            boolean[] canEdit = new boolean[] {
+                false,false
+            };
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+    }
+    
+    String data[] = new String[5];
+    private void settableload() {
+        String stat = "";
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM mata_kuliah";
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next()) {
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                tableModel.addRow(data);
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+    
+     public void membersihkan_teks() {
+        nomor_mk.setText("");
+        nama_mk.setText("");
+    }
+    public void nonaktif_teks() {
+        nomor_mk.setEnabled(false);
+        nama_mk.setEnabled(false);
+    }
+    public void aktif_teks() {
+        nomor_mk.setEnabled(true);
+        nama_mk.setEnabled(true);
+    }
+    
+    int row = 0;
+    public void tampil_field() {
+        row = tabel_mata_kuliah.getSelectedRow();
+        nomor_mk.setText(tableModel.getValueAt(row, 0).toString());
+        nama_mk.setText(tableModel.getValueAt(row, 1).toString());
+        btn_simpan.setEnabled(false);
+        btn_ubah.setEnabled(true);
+        btn_hapus.setEnabled(true);
+        btn_keluar.setEnabled(false);
+        aktif_teks();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +137,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         panel_title = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         panel_content = new javax.swing.JPanel();
-        cari_data = new javax.swing.JTextField();
+        input_cari_data = new javax.swing.JTextField();
         nomor_mk = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -80,6 +166,12 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         btn_tambah = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btn_cari = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btn_tampil_data = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -379,26 +471,35 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         panel_content.setBackground(new java.awt.Color(255, 255, 255));
         panel_content.setForeground(new java.awt.Color(255, 255, 255));
         panel_content.setPreferredSize(new java.awt.Dimension(1100, 700));
+        panel_content.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cari_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        input_cari_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        panel_content.add(input_cari_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 66, 279, -1));
 
         nomor_mk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        panel_content.add(nomor_mk, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 153, 230, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setText("Nomor M.K");
+        panel_content.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 147, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setText("Nama M.K");
+        panel_content.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 147, -1, -1));
 
         nama_mk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        panel_content.add(nama_mk, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 153, 207, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("Masukan Data");
+        panel_content.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 65, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Pencarian Data Mata Kuliah");
+        panel_content.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 16, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(65, 83, 128));
+        panel_content.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 49, 951, -1));
 
         tabel_mata_kuliah.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tabel_mata_kuliah.setModel(new javax.swing.table.DefaultTableModel(
@@ -412,9 +513,17 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 "Title 1", "Title 2"
             }
         ));
+        tabel_mata_kuliah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel_mata_kuliahMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel_mata_kuliah);
 
+        panel_content.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 204, 765, 135));
+
         jSeparator3.setForeground(new java.awt.Color(65, 83, 128));
+        panel_content.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 111, 951, -1));
 
         btn_batal.setBackground(new java.awt.Color(255, 255, 255));
         btn_batal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -428,9 +537,16 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/file_delete_20px.png"))); // NOI18N
         btn_batal.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        panel_content.add(btn_batal, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 422, 83, 36));
+
         btn_hapus.setBackground(new java.awt.Color(255, 255, 255));
         btn_hapus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_hapusMouseClicked(evt);
+            }
+        });
         btn_hapus.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -440,9 +556,16 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/delete_20px.png"))); // NOI18N
         btn_hapus.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        panel_content.add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 422, 87, 36));
+
         btn_ubah.setBackground(new java.awt.Color(255, 255, 255));
         btn_ubah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_ubah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_ubah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ubahMouseClicked(evt);
+            }
+        });
         btn_ubah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -452,9 +575,16 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/add_file_20px.png"))); // NOI18N
         btn_ubah.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        panel_content.add(btn_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 422, 94, 36));
+
         btn_simpan.setBackground(new java.awt.Color(255, 255, 255));
         btn_simpan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_simpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_simpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_simpanMouseClicked(evt);
+            }
+        });
         btn_simpan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -463,6 +593,8 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/edit_20px.png"))); // NOI18N
         btn_simpan.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        panel_content.add(btn_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 422, 82, 36));
 
         btn_keluar.setBackground(new java.awt.Color(255, 255, 255));
         btn_keluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -476,9 +608,16 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/cancel_20px.png"))); // NOI18N
         btn_keluar.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(784, 422, 89, 36));
+
         btn_tambah.setBackground(new java.awt.Color(255, 255, 255));
         btn_tambah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_tambah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tambahMouseClicked(evt);
+            }
+        });
         btn_tambah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -488,86 +627,81 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/add_20px.png"))); // NOI18N
         btn_tambah.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        javax.swing.GroupLayout panel_contentLayout = new javax.swing.GroupLayout(panel_content);
-        panel_content.setLayout(panel_contentLayout);
-        panel_contentLayout.setHorizontalGroup(
-            panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_contentLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(panel_contentLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(40, 40, 40)
-                        .addComponent(cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_contentLayout.createSequentialGroup()
+        panel_content.add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 422, 97, 36));
+
+        btn_cari.setBackground(new java.awt.Color(255, 255, 255));
+        btn_cari.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_cari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cariMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/search_15px.png"))); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setText("Cari");
+
+        javax.swing.GroupLayout btn_cariLayout = new javax.swing.GroupLayout(btn_cari);
+        btn_cari.setLayout(btn_cariLayout);
+        btn_cariLayout.setHorizontalGroup(
+            btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cariLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2))
-                .addGap(17, 17, 17))
-            .addGroup(panel_contentLayout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_contentLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel3)
-                        .addGap(40, 40, 40)
-                        .addComponent(nomor_mk, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(42, 42, 42)
-                        .addComponent(nama_mk, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
-                    .addComponent(jScrollPane1)
-                    .addGroup(panel_contentLayout.createSequentialGroup()
-                        .addComponent(btn_tambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(48, 48, 48)
-                        .addComponent(btn_simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(49, 49, 49)
-                        .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(48, 48, 48)
-                        .addComponent(btn_ubah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(43, 43, 43)
-                        .addComponent(btn_batal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(45, 45, 45)
-                        .addComponent(btn_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(105, 105, 105))
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panel_contentLayout.setVerticalGroup(
-            panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_contentLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(panel_contentLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(nomor_mk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(nama_mk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                .addGap(83, 83, 83)
-                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_tambah, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btn_simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_ubah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_batal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(185, 185, 185))
+        btn_cariLayout.setVerticalGroup(
+            btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cariLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        panel_content.add(btn_cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 70, 30));
+
+        btn_tampil_data.setBackground(new java.awt.Color(255, 255, 255));
+        btn_tampil_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_tampil_data.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tampil_data.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tampil_dataMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/database_view_15px.png"))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Tampilkan Keseluruhan Data");
+
+        javax.swing.GroupLayout btn_tampil_dataLayout = new javax.swing.GroupLayout(btn_tampil_data);
+        btn_tampil_data.setLayout(btn_tampil_dataLayout);
+        btn_tampil_dataLayout.setHorizontalGroup(
+            btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_tampil_dataLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        btn_tampil_dataLayout.setVerticalGroup(
+            btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_tampil_dataLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panel_content.add(btn_tampil_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -621,6 +755,153 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         //        text_ubah.setText("Ini Simulasi Nilai Akhir");
     }//GEN-LAST:event_Simulasi_nilai_akhir3MouseClicked
 
+    private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
+        // TODO add your handling code here:
+        membersihkan_teks();
+        nomor_mk.requestFocus();
+        btn_simpan.setEnabled(true);
+        btn_ubah.setEnabled(false);
+        btn_hapus.setEnabled(false);
+        btn_keluar.setEnabled(false);
+        aktif_teks();
+    }//GEN-LAST:event_btn_tambahMouseClicked
+
+    private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
+        // TODO add your handling code here:
+        String nomor = nomor_mk.getText();
+        String nama = nama_mk.getText();
+        
+        if ((nomor.isEmpty()) | (nama.isEmpty())) {
+            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
+            nomor_mk.requestFocus();
+        } else {
+            try {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(
+                    database,
+                    user,
+                    pass);
+                Statement stt = kon.createStatement();
+//                
+                String SQL = "UPDATE `mata_kuliah` "
+                        + "SET `nomor_mk` = '"+nomor+"', "
+                        + "`nama_mk` = '"+nama+"' "
+                        + "WHERE `mata_kuliah`.`nomor_mk` = "+tableModel.getValueAt(row, 0)+";";
+                stt.executeUpdate(SQL);
+                data[0] = nomor;
+                data[1] = nama;
+                tableModel.removeRow(row);
+                tableModel.insertRow(row, data);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                btn_simpan.setEnabled(false);
+                nonaktif_teks();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btn_simpanMouseClicked
+
+    private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
+        // TODO add your handling code here:
+        try {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(
+                    database,
+                    user,
+                    pass);
+                Statement stt = kon.createStatement();
+                String SQL = "DELETE FROM mata_kuliah "
+                        + "WHERE "
+                        + "nomor_mk='"+tableModel.getValueAt(row, 0).toString()+"'";
+                stt.executeUpdate(SQL);
+                tableModel.removeRow(row);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+    }//GEN-LAST:event_btn_hapusMouseClicked
+
+    private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
+        // TODO add your handling code here:
+        String data[] = new String[5];
+        
+        if ((nomor_mk.getText().isEmpty() || (nama_mk.getText().isEmpty()))) {
+            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
+            nomor_mk.requestFocus();
+        } else {
+            try {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(
+                        database, 
+                        user,
+                        pass
+                );
+                Statement stt = kon.createStatement();
+                String SQL = "INSERT INTO mata_kuliah(nomor_mk, nama_mk)"
+                        + "VALUES "
+                        + "( '"+nomor_mk.getText()+"',"
+                        + " ' "+nama_mk.getText()+"')";
+                stt.executeUpdate(SQL);
+                data[0] = nomor_mk.getText();
+                data[1] = nama_mk.getText();
+                tableModel.insertRow(0, data);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                btn_simpan.setEnabled(false);
+                nonaktif_teks();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btn_ubahMouseClicked
+
+    private void tabel_mata_kuliahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_mata_kuliahMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==1){
+            tampil_field();
+        }
+    }//GEN-LAST:event_tabel_mata_kuliahMouseClicked
+
+    private void btn_cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cariMouseClicked
+        // TODO add your handling code here:
+        tableModel.setRowCount(0);
+        try {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(
+                        database, 
+                        user,
+                        pass
+                );
+                Statement stt = kon.createStatement();
+                String SQL = "SELECT * FROM mata_kuliah WHERE nomor_mk="+
+                        input_cari_data.getText();
+                ResultSet res = stt.executeQuery(SQL);
+                while(res.next()){
+                    data[0] = res.getString(1);
+                    data[1] = res.getString(2);
+                    tableModel.addRow(data);
+                }
+                res.close();
+                stt.close();
+                kon.close();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
+            }
+    }//GEN-LAST:event_btn_cariMouseClicked
+
+    private void btn_tampil_dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tampil_dataMouseClicked
+        // TODO add your handling code here:
+        tableModel.setRowCount(0);
+        settableload();
+    }//GEN-LAST:event_btn_tampil_dataMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -660,12 +941,13 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JPanel Simulasi_nilai_akhir2;
     private javax.swing.JPanel Simulasi_nilai_akhir3;
     private javax.swing.JPanel btn_batal;
+    private javax.swing.JPanel btn_cari;
     private javax.swing.JPanel btn_hapus;
     private javax.swing.JPanel btn_keluar;
     private javax.swing.JPanel btn_simpan;
     private javax.swing.JPanel btn_tambah;
+    private javax.swing.JPanel btn_tampil_data;
     private javax.swing.JPanel btn_ubah;
-    private javax.swing.JTextField cari_data;
     private javax.swing.JPanel data_mahasiswa1;
     private javax.swing.JPanel data_mata_kuliah1;
     private javax.swing.JPanel data_nilai1;
@@ -675,6 +957,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JLabel icon7;
     private javax.swing.JLabel icon8;
     private javax.swing.JLabel icon9;
+    private javax.swing.JTextField input_cari_data;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -697,7 +980,11 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

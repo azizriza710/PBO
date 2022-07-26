@@ -777,7 +777,10 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
     private void Simulasi_nilai_akhir3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Simulasi_nilai_akhir3MouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Simulasi Nilai Akhir");
+        form_simulasi_nilai_akhir nilai_akhir = new form_simulasi_nilai_akhir();
+        nilai_akhir.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_Simulasi_nilai_akhir3MouseClicked
 
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
@@ -829,6 +832,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 btn_ubah.setEnabled(false);
                 btn_ubah.setBackground(Color.gray);
                 nonaktif_teks();
+                JOptionPane.showMessageDialog(null, "Data Telah Diubah", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/change_50px.png"));
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
@@ -852,6 +856,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 stt.close();
                 kon.close();
                 membersihkan_teks();
+                JOptionPane.showMessageDialog(null, "Data Telah Terhapus", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/delete_50px.png"));
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
@@ -888,6 +893,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 btn_keluar.setBackground(Color.white);
                 btn_ubah.setEnabled(false);
                 nonaktif_teks();
+                JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/ok_50px.png"));
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -951,7 +957,10 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
     private void btn_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_keluarMouseClicked
         // TODO add your handling code here:
-        this.setVisible(true);
+        login masuk = new login();
+        masuk.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btn_keluarMouseClicked
 
     /**

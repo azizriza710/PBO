@@ -5,17 +5,62 @@
  */
 package pbo;
 
+
+import javax.swing.*;
+//Fungsi import yang digunakan untuk SQL 
+import java.sql.*;
 /**
  *
  * @author SaIN
  */
 public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
 
-    /**
-     * Creates new form form_simulasi_nilai_akhir
-     */
+    //    deklarasi variabel 
+    koneksi dbsetting;
+    String driver,database,user,pass;
+    Object tabel;
     public form_simulasi_nilai_akhir() {
         initComponents();
+        
+        input_kode_mk.setEnabled(false);
+        
+        dbsetting = new koneksi(); 
+        driver = dbsetting.SettingPanel("DBDriver");
+        database = dbsetting.SettingPanel("DBDatabase");
+        user = dbsetting.SettingPanel("DBUsername");
+        pass = dbsetting.SettingPanel("DBPassword");
+        
+        input_mata_kuliah.removeAllItems();
+        input_mata_kuliah.addItem("Silahkan Pilih Mata Kuliah");
+        input_kode_mk.setText("");
+        setcomboBox();
+    }
+    
+    String data[] = new String[1];
+    private void setcomboBox() {
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM mata_kuliah";
+            ResultSet res = stt.executeQuery(SQL);
+            
+            while(res.next()) {
+//                data[0] = res.getString("nama_mk");
+                input_mata_kuliah.addItem(res.getString("nama_mk"));
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
     }
 
     /**
@@ -558,6 +603,16 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         input_mata_kuliah.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         input_mata_kuliah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         input_mata_kuliah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        input_mata_kuliah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                input_mata_kuliahMouseClicked(evt);
+            }
+        });
+        input_mata_kuliah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input_mata_kuliahActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_contentLayout = new javax.swing.GroupLayout(panel_content);
         panel_content.setLayout(panel_contentLayout);
@@ -781,6 +836,60 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         // TODO add your handling code here:
         //        text_ubah.setText("Ini Simulasi Nilai Akhir");
     }//GEN-LAST:event_simulasi_nilai_akhirMouseClicked
+
+    private void input_mata_kuliahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_input_mata_kuliahMouseClicked
+        // TODO add your handling code here:
+//        input_kode_mk.setText("");
+//        try {
+//            Class.forName(driver);
+//            Connection kon = DriverManager.getConnection(
+//                database,
+//                user,
+//                pass);
+//            Statement stt = kon.createStatement();
+//            String SQL = "SELECT * FROM mata_kuliah WHERE nama_mk='"+input_mata_kuliah.getSelectedItem()+"';";
+//            ResultSet res = stt.executeQuery(SQL);
+//            
+//            while(res.next()) {
+//                input_kode_mk.setText(res.getString("nomor_mk"));
+//            }
+//            res.close();
+//            stt.close();
+//            kon.close();
+//        } catch (Exception ex) {
+//            System.err.println(ex.getMessage());
+//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+//                    JOptionPane.INFORMATION_MESSAGE);
+//            System.exit(0);
+//        }
+    }//GEN-LAST:event_input_mata_kuliahMouseClicked
+
+    private void input_mata_kuliahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_mata_kuliahActionPerformed
+        // TODO add your handling code here:
+        input_kode_mk.setText("");
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM mata_kuliah WHERE nama_mk='"+input_mata_kuliah.getSelectedItem()+"';";
+            ResultSet res = stt.executeQuery(SQL);
+            
+            while(res.next()) {
+                input_kode_mk.setText(res.getString("nomor_mk"));
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_input_mata_kuliahActionPerformed
 
     /**
      * @param args the command line arguments

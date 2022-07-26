@@ -6,6 +6,8 @@
 package pbo;
 
 
+import java.awt.Dimension;
+import java.awt.Font;
 import javax.swing.*;
 //Fungsi import yang digunakan untuk SQL 
 import java.sql.*;
@@ -33,9 +35,52 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         input_mata_kuliah.removeAllItems();
         input_mata_kuliah.addItem("Silahkan Pilih Mata Kuliah");
         input_kode_mk.setText("");
+        tabel_simulasi_akhir.getTableHeader().setPreferredSize(new Dimension (35,35));
+        Font bigfont = new Font("Segoi UI", Font.PLAIN, 11);
+        tabel_simulasi_akhir.getTableHeader().setFont(bigfont);
+        tabel_simulasi_akhir.setModel(tableModel);
         setcomboBox();
     }
     
+    private javax.swing.table.DefaultTableModel tableModel=getDefaultTableModel();
+    private javax.swing.table.DefaultTableModel getDefaultTableModel()
+    {
+        // membuat judul header
+        return new javax.swing.table.DefaultTableModel(
+            new Object[][] {},
+            new String [] {"<html><center>Nama<br>M.K</center></html>",
+                            "<html><center>Persentase<br>Absen</center></html>",
+                            "<html><center>Persentase<br>Tugas</center></html>",
+                            "<html><center>Persentase<br>UTS</center></html>",
+                            "<html><center>Persentase<br>UAS</center></html>",
+                            "<html><center>Absensi</center></html>",
+                            "<html><center>Tgs 1</center></html>",
+                            "<html><center>Tgs 2</center></html>",
+                            "<html><center>Tgs 3</center></html>",
+                            "<html><center>UTS</center></html>",
+                            "<html><center>UAS</center></html>",
+                            "<html><center>Nilai<br>Absen</center></html>",
+                            "<html><center>Nilai<br>Tugas</center></html>",
+                            "<html><center>Nilai<br>UTS</center></html>",
+                            "<html><center>Nilai<br>UAS</center></html>",
+                            "<html><center>Nilai<br>Akhir</center></html>",
+                            "<html><center>Index</center></html>",
+                            "<html><center>Keterangan</center</html>"}    
+        )
+        // disable perubahan pada grid
+        {
+            boolean[] canEdit = new boolean[]
+            {
+                false, false, false, false, false, false, false, false, false,
+                false, false, false, false, false, false, false, false, false
+            };
+            
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit[columnIndex];
+            }
+        };
+    }
     String data[] = new String[1];
     private void setcomboBox() {
         try {

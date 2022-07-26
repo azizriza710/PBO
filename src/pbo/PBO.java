@@ -16,7 +16,7 @@ public class PBO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        homepage utama = new homepage();
+        login utama = new login();
         utama.setVisible(true);
     }
     

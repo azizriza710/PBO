@@ -103,6 +103,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     
     int row = 0;
     public void tampil_field() {
+        btn_simpan.setEnabled(false);
         row = tabel_mata_kuliah.getSelectedRow();
         nomor_mk.setText(tableModel.getValueAt(row, 0).toString());
         nama_mk.setText(tableModel.getValueAt(row, 1).toString());
@@ -464,9 +465,9 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         panel_titleLayout.setHorizontalGroup(
             panel_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_titleLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(348, Short.MAX_VALUE)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(380, 380, 380))
+                .addGap(393, 393, 393))
         );
         panel_titleLayout.setVerticalGroup(
             panel_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -900,7 +901,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
             btn_ubah.setBackground(Color.white);
             btn_hapus.setBackground(Color.white);
             btn_simpan.setBackground(Color.gray);
-            
+            btn_simpan.setEnabled(false);
             tampil_field();
         }
     }//GEN-LAST:event_tabel_mata_kuliahMouseClicked
@@ -1004,6 +1005,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JPanel data_nilai1;
     private javax.swing.JLabel icon10;
     private javax.swing.JLabel icon11;
+    private javax.swing.JLabel icon12;
     private javax.swing.JLabel icon6;
     private javax.swing.JLabel icon7;
     private javax.swing.JLabel icon8;
@@ -1031,6 +1033,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1048,5 +1051,6 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JPanel sidebar;
     private javax.swing.JTable tabel_mata_kuliah;
     private javax.swing.JPanel tentang_pembuat1;
+    private javax.swing.JPanel tentang_pembuat2;
     // End of variables declaration//GEN-END:variables
 }

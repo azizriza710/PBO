@@ -4,18 +4,151 @@
  * and open the template in the editor.
  */
 package pbo;
-
+import javax.swing.*;
+import java.sql.*;
+import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 /**
  *
  * @author HP
  */
 public class form_data_nilai extends javax.swing.JFrame {
-
+koneksi dbsetting;
+String driver,database,user,pass;
+Object tabel;
     /**
      * Creates new form form_data_nilai
      */
     public form_data_nilai() {
         initComponents();
+        
+        dbsetting = new koneksi();
+        driver = dbsetting.SettingPanel("DBDriver");
+        database = dbsetting.SettingPanel("DBDatabase");
+        user = dbsetting.SettingPanel("DBUsername");
+        pass = dbsetting.SettingPanel("DBPassword");
+        
+        tabel_nilai_mahasiswa.setModel(tableModel);
+        settableload();
+    }
+    
+   private javax.swing.table.DefaultTableModel tableModel=getDefaultTabelModel();
+   private javax.swing.table.DefaultTableModel getDefaultTabelModel()
+   {
+       return new javax.swing.table.DefaultTableModel
+               (
+                   new Object [][] {},
+                   new String [] {"Nama",
+                                  "Nama M.K",
+                                  "Absensi",
+                                  "Tgs 1",
+                                  "Tgs 2",
+                                  "Tgs 3",
+                                  "UTS",
+                                  "UAS",
+                                  "Nilai Absen",
+                                  "Nilai Tugas",
+                                  "Nilai UTS",
+                                  "Nilai UAS",
+                                  "Nilai Akhir",
+                                  "Index",
+                                  "Keterangan"}
+               )
+               // disable perubahan pada grid
+               {
+            boolean[] canEdit = new boolean[]
+            {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+            
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit[columnIndex];
+            }
+        };
+   }
+    
+    private void settableload()
+    {
+        String stat = "";
+        try
+        {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database,user,pass);
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,
+                                          ex.getMessage(),"Error",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+    
+    public void membersihkan_teks()
+    {
+        input_nama.setText("");
+        input_nama_matkul.setText("");
+        absensi.setText("");
+        input_tugas1.setText("");
+        input_tugas2.setText("");
+        input_tugas3.setText("");
+        input_uts.setText("");
+        input_uas.setText("");
+        nilai_absen.setText("");
+        nilai_tugas.setText("");
+        nilai_uts.setText("");
+        nilai_uas.setText("");
+        nilai_akhir.setText("");
+        index.setText("");
+        keterangan.setText("");
+    }
+    public void nonaktif_teks() {
+        input_nama.setEnabled(false);
+        input_nama_matkul.setEnabled(false);
+        absensi.setEnabled(false);
+        input_tugas1.setEnabled(false);
+        input_tugas2.setEnabled(false);
+        input_tugas3.setEnabled(false);
+        input_uts.setEnabled(false);
+        input_uas.setEnabled(false);
+        nilai_absen.setEnabled(false);
+        nilai_tugas.setEnabled(false);
+        nilai_uts.setEnabled(false);
+        nilai_uas.setEnabled(false);
+        nilai_akhir.setEnabled(false);
+        index.setEnabled(false);
+        keterangan.setEnabled(false);
+    }
+    public void aktif_teks() {
+        input_nama.setEnabled(true);
+        input_nama_matkul.setEnabled(true);
+        absensi.setEnabled(true);
+        input_tugas1.setEnabled(true);
+        input_tugas2.setEnabled(true);
+        input_tugas3.setEnabled(true);
+        input_uts.setEnabled(true);
+        input_uas.setEnabled(true);
+        nilai_absen.setEnabled(true);
+        nilai_tugas.setEnabled(true);
+        nilai_uts.setEnabled(true);
+        nilai_uas.setEnabled(true);
+        nilai_akhir.setEnabled(true);
+        index.setEnabled(true);
+        keterangan.setEnabled(true);
+    }
+    
+    int row = 0;
+    public void tampil_field()
+    {
+        row = tabel_nilai_mahasiswa.getSelectedRow();
+        input_nama.setText(tableModel.getValueAt(row, 0).toString());
     }
 
     /**
@@ -106,7 +239,6 @@ public class form_data_nilai extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1224, 723));
 
         sidebar.setBackground(new java.awt.Color(65, 83, 128));
 
@@ -177,7 +309,7 @@ public class form_data_nilai extends javax.swing.JFrame {
         data_mahasiswaLayout.setVerticalGroup(
             data_mahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswaLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -214,7 +346,7 @@ public class form_data_nilai extends javax.swing.JFrame {
         data_mata_kuliahLayout.setVerticalGroup(
             data_mata_kuliahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliahLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -258,7 +390,7 @@ public class form_data_nilai extends javax.swing.JFrame {
         data_nilaiLayout.setVerticalGroup(
             data_nilaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilaiLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_nilaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -331,7 +463,7 @@ public class form_data_nilai extends javax.swing.JFrame {
         simulasi_nilai_akhirLayout.setVerticalGroup(
             simulasi_nilai_akhirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, simulasi_nilai_akhirLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(simulasi_nilai_akhirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -566,17 +698,17 @@ public class form_data_nilai extends javax.swing.JFrame {
             .addGroup(btn_cariLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btn_cariLayout.setVerticalGroup(
             btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cariLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                .addGroup(btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -765,16 +897,16 @@ public class form_data_nilai extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panel_contentLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(jLabel1))
                     .addGroup(panel_contentLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(input_cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -824,7 +956,7 @@ public class form_data_nilai extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(input_tugas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(66, 66, 66)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -910,16 +1042,39 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     private void btn_batalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_batalMouseClicked
         // TODO add your handling code here:
-
+        membersihkan_teks();
+        nonaktif_teks();
+        btn_keluar.setBackground(Color.white);
     }//GEN-LAST:event_btn_batalMouseClicked
 
     private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
         // TODO add your handling code here:
-
+        try {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(
+                    database,
+                    user,
+                    pass);
+                Statement stt = kon.createStatement();
+                String SQL = "DELETE FROM mahasiswa "
+                        + "WHERE "
+                        + "nim='"+tableModel.getValueAt(row, 0).toString()+"'";
+                stt.executeUpdate(SQL);
+                tableModel.removeRow(row);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                JOptionPane.showMessageDialog(null, "Data Telah Terhapus", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/delete_50px.png"));
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
     }//GEN-LAST:event_btn_hapusMouseClicked
 
     private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
         // TODO add your handling code here:
+        String data[]=new String[5];
+        
+        
 
     }//GEN-LAST:event_btn_simpanMouseClicked
 
@@ -930,21 +1085,72 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     private void btn_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_keluarMouseClicked
         // TODO add your handling code here:
-        this.setVisible(true);
+        login masuk = new login();
+        masuk.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btn_keluarMouseClicked
 
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
         // TODO add your handling code here:
-
+        
+        membersihkan_teks();
+        input_nama.requestFocus();
+        btn_simpan.setEnabled(true);
+        btn_ubah.setEnabled(false);
+        btn_hapus.setEnabled(false);
+        btn_keluar.setEnabled(false);
+        aktif_teks();
     }//GEN-LAST:event_btn_tambahMouseClicked
 
     private void btn_cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cariMouseClicked
         // TODO add your handling code here:
-
+        //menghapus seluruh isi data di dalam jtable
+        tableModel.setRowCount(0);
+        //gunakan query untuk mencari
+        try
+        {
+            Class.forName(driver);
+            Connection kon = Drivermanager.getConnection(database,user,pass);
+            Statement stt = kon.createStatement();
+            String SQL = "select * from mahasiswa where nim="+
+                          input_cari_data.getText();
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next())
+            {
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                data[2] = res.getString(3);
+                data[3] = res.getString(4);
+                data[4] = res.getString(5);
+                data[5] = res.getString(6);
+                data[6] = res.getString(7);
+                data[7] = res.getString(8);
+                data[8] = res.getString(9);
+                data[9] = res.getString(10);
+                data[10] = res.getString(11);
+                data[11] = res.getString(12);
+                data[12] = res.getString(13);
+                data[13] = res.getString(14);
+                data[14] = res.getString(15);
+                tableModel.addRow(data);
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
     }//GEN-LAST:event_btn_cariMouseClicked
 
     private void btn_tampil_dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tampil_dataMouseClicked
         // TODO add your handling code here:
+        tableModel.setRowCount(0);
+        settableload();
 
     }//GEN-LAST:event_btn_tampil_dataMouseClicked
 

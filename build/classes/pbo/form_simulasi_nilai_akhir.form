@@ -663,11 +663,11 @@
                   <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                   <Component id="btn_tambah" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="btn_simpan" max="32767" attributes="0"/>
+                  <Component id="btn_ubah" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="btn_hapus" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="btn_ubah" max="32767" attributes="0"/>
+                  <Component id="btn_simpan" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="btn_batal" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -770,9 +770,9 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btn_tambah" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="btn_simpan" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="btn_hapus" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btn_ubah" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btn_hapus" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btn_simpan" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btn_batal" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btn_keluar" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
@@ -863,6 +863,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabel_simulasi_akhirMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -958,7 +961,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="btn_ubah">
+        <Container class="javax.swing.JPanel" name="btn_simpan">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -973,7 +976,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_ubahMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_simpanMouseClicked"/>
           </Events>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -1007,7 +1010,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="btn_simpan">
+        <Container class="javax.swing.JPanel" name="btn_ubah">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1021,6 +1024,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_ubahMouseClicked"/>
+          </Events>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
             <Property name="useNullLayout" type="boolean" value="false"/>

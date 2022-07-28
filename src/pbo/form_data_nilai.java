@@ -4,42 +4,50 @@
  * and open the template in the editor.
  */
 package pbo;
-import javax.swing.*;
-import java.sql.*;
+
+
 import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
+import javax.swing.*;
+//Fungsi import yang digunakan untuk SQL 
+import java.sql.*;
 /**
  *
  * @author HP
  */
 public class form_data_nilai extends javax.swing.JFrame {
-koneksi dbsetting;
-String driver,database,user,pass;
-Object tabel;
-    /**
-     * Creates new form form_data_nilai
-     */
+
+    //    deklarasi variabel 
+    koneksi dbsetting;
+    String driver,database,user,pass;
+    Object tabel;
     public form_data_nilai() {
         initComponents();
         
-        dbsetting = new koneksi();
+        input_kode_mk.setEnabled(false);
+        input_nim.setEnabled(false);
+        
+        dbsetting = new koneksi(); 
         driver = dbsetting.SettingPanel("DBDriver");
         database = dbsetting.SettingPanel("DBDatabase");
         user = dbsetting.SettingPanel("DBUsername");
         pass = dbsetting.SettingPanel("DBPassword");
         
+        input_nama.removeAllItems();
+        input_nama.addItem("Silahkan Pilih Nama");
+        input_nim.setText("");
+        input_nama_matkul.removeAllItems();
+        input_nama_matkul.addItem("Silahkan Pilih Mata Kuliah");
+        input_kode_mk.setText("");
+        setcomboBoxNama();
+        setcomboBoxMatkul();
+        
         tabel_nilai_mahasiswa.setModel(tableModel);
         settableload();
     }
     
-   private javax.swing.table.DefaultTableModel tableModel=getDefaultTabelModel();
-   private javax.swing.table.DefaultTableModel getDefaultTabelModel()
-   {
+    private javax.swing.table.DefaultTableModel tableModel=getDefaultTabelModel();
+    private javax.swing.table.DefaultTableModel getDefaultTabelModel()
+    {
        return new javax.swing.table.DefaultTableModel
                (
                    new Object [][] {},
@@ -71,84 +79,196 @@ Object tabel;
                 return canEdit[columnIndex];
             }
         };
-   }
+    }
     
-    private void settableload()
-    {
+    String data[] = new String[15];
+    private void settableload() {
         String stat = "";
-        try
-        {
+        try {
             Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database,user,pass);
-        }
-        catch(Exception ex)
-        {
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM nilai_mahasiswa";
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next()) {
+                System.out.println(res.getInt("nim"));
+                Statement stt_nama = kon.createStatement();
+                String SQL_nama = "SELECT * FROM mahasiswa WHERE nim="+res.getInt("nim")+";";
+                ResultSet res_nama = stt_nama.executeQuery(SQL_nama);
+//                System.out.println(res_nama.next());
+                Statement stt_nama_matkul = kon.createStatement();
+                String SQL_nama_matkul = "SELECT * FROM mata_kuliah WHERE nomor_mk="+res.getInt("nomor_mk")+";";
+                ResultSet res_nama_matkul = stt_nama_matkul.executeQuery(SQL_nama_matkul);
+                
+//                get data 
+                int jumlah_pertemuan = res.getInt("kehadiran");
+                int tugas1 = res.getInt("tugas_1");
+                int tugas2 = res.getInt("tugas_2");
+                int tugas3 = res.getInt("tugas_3");
+                int uts = res.getInt("uts");
+                int uas = res.getInt("uas");
+//                end 
+                double nilai_absen = (((jumlah_pertemuan/14)*100*5)/100);
+                double nilai_tugas = (((tugas1+tugas2+tugas3)/3)*(0.25));
+                double nilai_uts = uts*0.3;
+                double nilai_uas = uas*0.4;
+                double nilai_akhir = nilai_absen+nilai_tugas+nilai_uts+nilai_uas;
+                String index;
+                if(nilai_akhir >= 80 & nilai_akhir <= 100){
+                    index = "A";
+                } else if(nilai_akhir >= 68 & nilai_akhir <= 79){
+                    index = "B";
+                } else if(nilai_akhir >= 56 & nilai_akhir <= 67){
+                    index = "C";
+                } else if(nilai_akhir >= 45 & nilai_akhir <= 55){
+                    index = "D";
+                } else {
+                    index = "E";
+                }
+                String keterangan = null;
+                if(index == "A" | index == "B" | index == "C"){
+                    keterangan = "Lulus";
+                }else if(index == "D" | index == "E"){
+                    keterangan = "Tidak Lulus";
+                } 
+                if(jumlah_pertemuan < 11){
+                    keterangan = "Tidak Lulus";
+                }
+                res_nama.next();
+                res_nama_matkul.next();
+                data[0] = res_nama.getString("nama");
+                data[1] = res_nama_matkul.getString("nama_mk");
+                data[2] = Integer.toString(jumlah_pertemuan);
+                data[3] = Double.toString(tugas1);
+                data[4] = Double.toString(tugas2);
+                data[5] = Double.toString(tugas3);
+                data[6] = Integer.toString(uts);
+                data[7] = Integer.toString(uas);
+                data[8] = Double.toString(nilai_absen);
+                data[9] = Double.toString(nilai_tugas);
+                data[10] = Double.toString(nilai_uts);
+                data[11] = Double.toString(nilai_uas);
+                data[12] = Double.toString(nilai_akhir);
+                data[13] = index;
+                data[14] = keterangan;
+                System.out.println(data);
+                tableModel.addRow(data);
+
+                res_nama.close();
+                stt_nama.close();
+                res_nama_matkul.close();
+                stt_nama_matkul.close();
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
             System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null,
-                                          ex.getMessage(),"Error",
-                                          JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+    
+    private void setcomboBoxNama() {
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM mahasiswa";
+            ResultSet res = stt.executeQuery(SQL);
+            
+            while(res.next()) {
+//                data[0] = res.getString("nama_mk");
+                input_nama.addItem(res.getString("nama"));
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+    
+    private void setcomboBoxMatkul() {
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM mata_kuliah";
+            ResultSet res = stt.executeQuery(SQL);
+            
+            while(res.next()) {
+//                data[0] = res.getString("nama_mk");
+                input_nama_matkul.addItem(res.getString("nama_mk"));
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
     }
     
     public void membersihkan_teks()
     {
-        input_nama.setText("");
-        input_nama_matkul.setText("");
-        absensi.setText("");
         input_tugas1.setText("");
         input_tugas2.setText("");
         input_tugas3.setText("");
         input_uts.setText("");
         input_uas.setText("");
-        nilai_absen.setText("");
-        nilai_tugas.setText("");
-        nilai_uts.setText("");
-        nilai_uas.setText("");
-        nilai_akhir.setText("");
-        index.setText("");
-        keterangan.setText("");
+        input_kehadiran.setText("");
+        input_angkatan.setText("");
+        input_nim.setText("");
+        input_kode_mk.setText("");
     }
     public void nonaktif_teks() {
-        input_nama.setEnabled(false);
-        input_nama_matkul.setEnabled(false);
-        absensi.setEnabled(false);
         input_tugas1.setEnabled(false);
         input_tugas2.setEnabled(false);
         input_tugas3.setEnabled(false);
         input_uts.setEnabled(false);
         input_uas.setEnabled(false);
-        nilai_absen.setEnabled(false);
-        nilai_tugas.setEnabled(false);
-        nilai_uts.setEnabled(false);
-        nilai_uas.setEnabled(false);
-        nilai_akhir.setEnabled(false);
-        index.setEnabled(false);
-        keterangan.setEnabled(false);
+        input_kehadiran.setEnabled(false);
+        input_angkatan.setEnabled(false);
+        input_nim.setEnabled(false);
+        input_kode_mk.setEnabled(false);
+        input_nama.setEnabled(false);
+        input_nama_matkul.setEnabled(false);
     }
     public void aktif_teks() {
-        input_nama.setEnabled(true);
-        input_nama_matkul.setEnabled(true);
-        absensi.setEnabled(true);
         input_tugas1.setEnabled(true);
         input_tugas2.setEnabled(true);
         input_tugas3.setEnabled(true);
         input_uts.setEnabled(true);
         input_uas.setEnabled(true);
-        nilai_absen.setEnabled(true);
-        nilai_tugas.setEnabled(true);
-        nilai_uts.setEnabled(true);
-        nilai_uas.setEnabled(true);
-        nilai_akhir.setEnabled(true);
-        index.setEnabled(true);
-        keterangan.setEnabled(true);
+        input_kehadiran.setEnabled(true);
+        input_angkatan.setEnabled(true);
+        input_nim.setEnabled(true);
+        input_kode_mk.setEnabled(true);
+        input_nama.setEnabled(true);
+        input_nama_matkul.setEnabled(true);
     }
     
     int row = 0;
     public void tampil_field()
     {
         row = tabel_nilai_mahasiswa.getSelectedRow();
-        input_nama.setText(tableModel.getValueAt(row, 0).toString());
+//        input_nama.setText(tableModel.getValueAt(row, 0).toString());
     }
 
     /**
@@ -239,7 +359,6 @@ Object tabel;
         jLabel37 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1224, 723));
 
         sidebar.setBackground(new java.awt.Color(65, 83, 128));
 
@@ -310,7 +429,7 @@ Object tabel;
         data_mahasiswaLayout.setVerticalGroup(
             data_mahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswaLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -347,7 +466,7 @@ Object tabel;
         data_mata_kuliahLayout.setVerticalGroup(
             data_mata_kuliahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliahLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -391,7 +510,7 @@ Object tabel;
         data_nilaiLayout.setVerticalGroup(
             data_nilaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilaiLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_nilaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -464,7 +583,7 @@ Object tabel;
         simulasi_nilai_akhirLayout.setVerticalGroup(
             simulasi_nilai_akhirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, simulasi_nilai_akhirLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(simulasi_nilai_akhirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -784,12 +903,27 @@ Object tabel;
         input_uts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
 
         input_kode_mk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        input_kode_mk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input_kode_mkActionPerformed(evt);
+            }
+        });
 
         input_nama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         input_nama.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        input_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input_namaActionPerformed(evt);
+            }
+        });
 
         input_nama_matkul.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         input_nama_matkul.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        input_nama_matkul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input_nama_matkulActionPerformed(evt);
+            }
+        });
 
         input_uas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
 
@@ -905,8 +1039,8 @@ Object tabel;
                     .addGroup(panel_contentLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(input_cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
@@ -1045,7 +1179,6 @@ Object tabel;
         // TODO add your handling code here:
         membersihkan_teks();
         nonaktif_teks();
-        btn_keluar.setBackground(Color.white);
     }//GEN-LAST:event_btn_batalMouseClicked
 
     private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
@@ -1073,14 +1206,127 @@ Object tabel;
 
     private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
         // TODO add your handling code here:
-        String data[]=new String[5];
+        String data[] = new String[12];
         
+        if ((input_nim.getText().isEmpty()) || (input_kehadiran.getText().isEmpty())
+                || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
+                || (input_tugas2.getText().isEmpty()) || (input_tugas3.getText().isEmpty())
+                || (input_uts.getText().isEmpty()) || (input_uas.getText().isEmpty())
+                || (input_kode_mk.getText().isEmpty()))
+        {
+            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
+            input_nim.requestFocus();
+        } else {
+            try {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(
+                        database, 
+                        user,
+                        pass
+                );
+                Statement stt = kon.createStatement();
+                String SQL = "INSERT INTO nilai_mahasiswa(nim, nomor_mk, kehadiran, tugas_1, tugas_2, tugas_3, uts, uas, angkatan)"
+                        + "VALUES "
+                        + "( '"+input_nim.getText()+"',"
+                        + " '"+input_kode_mk.getText()+"',"
+                        + " '"+input_kehadiran.getText()+"',"
+                        + " '"+input_tugas1.getText()+"',"
+                        + " '"+input_tugas2.getText()+"',"
+                        + " '"+input_tugas3.getText()+"',"
+                        + " '"+input_uts.getText()+"',"
+                        + " '"+input_uas.getText()+"',"
+                        + " '"+input_angkatan.getText()+"')";
+                stt.executeUpdate(SQL);
+                data[0] = input_nim.getText();
+                data[1] = input_kode_mk.getText();
+                data[2] = input_kehadiran.getText();
+                data[3] = input_tugas1.getText();
+                data[4] = input_tugas2.getText();
+                data[5] = input_tugas3.getText();
+                data[6] = input_uts.getText();
+                data[7] = input_uas.getText();
+                data[8] = input_angkatan.getText();
+                tableModel.insertRow(0, data);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                btn_keluar.setBackground(Color.white);
+                btn_ubah.setEnabled(false);
+                nonaktif_teks();
+                JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/ok_50px.png"));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
         
 
     }//GEN-LAST:event_btn_simpanMouseClicked
 
     private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
         // TODO add your handling code here:
+        String nama = (String)input_nama.getSelectedItem();
+        String nama_matkul = (String)input_nama_matkul.getSelectedItem();
+        String kode_mk = input_kode_mk.getText();
+        String nim = input_nim.getText();
+        String kehadiran = input_kehadiran.getText();
+        String tug1 = input_tugas1.getText();
+        String tug2 = input_tugas2.getText();
+        String tug3 = input_tugas3.getText();
+        String uts = input_uts.getText();
+        String uas = input_uas.getText();
+        String angkatan = input_angkatan.getText();
+        
+        if ((input_nim.getText().isEmpty()) || (input_kehadiran.getText().isEmpty())
+                || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
+                || (input_tugas2.getText().isEmpty()) || (input_tugas3.getText().isEmpty())
+                || (input_uts.getText().isEmpty()) || (input_uas.getText().isEmpty())
+                || (input_kode_mk.getText().isEmpty()))
+        {
+            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
+            input_nim.requestFocus();
+        }
+        else
+        {
+            try
+            {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(database, user, pass);
+                Statement stt = kon.createStatement();
+                String SQL = "UPDATE `nilai_mahasiswa` "
+                        + "SET `nim`='"+nim+"',"
+                        + "`nomor_mk`='"+kode_mk+"',"
+                        + "`kehadiran`='"+kehadiran+"',"
+                        + "`tugas_1`='"+tug1+"',"
+                        + "`tugas_2`='"+tug2+"',"
+                        + "`tugas_3`='"+tug3+"',"
+                        + "`uts`='"+uts+"',"
+                        + "`uas`='"+uas+"' "
+                        + "`angkatan`='"+angkatan+"' "
+                        + "WHERE "
+                        + "`nim`='"+tableModel.getValueAt(row, 0).toString()+"';";
+                stt.execute(SQL);
+                data[0] = nim;
+                data[1] = kode_mk;
+                data[2] = kehadiran;
+                data[3] = tug1;
+                data[4] = tug2;
+                data[5] = tug3;
+                data[6] = uts;
+                data[7] = uas;
+                data[8] = angkatan;
+                tableModel.removeRow(row);
+                tableModel.insertRow(row, data);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                btn_simpan.setEnabled(false);
+                nonaktif_teks();
+            }
+            catch (Exception ex)
+            {
+                System.err.println(ex.getMessage());
+            }
+        }
 
     }//GEN-LAST:event_btn_ubahMouseClicked
 
@@ -1094,9 +1340,14 @@ Object tabel;
 
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
         // TODO add your handling code here:
-        
         membersihkan_teks();
         input_nama.requestFocus();
+        
+        btn_ubah.setBackground(Color.gray);
+        btn_hapus.setBackground(Color.gray);
+        btn_keluar.setBackground(Color.gray);
+        btn_simpan.setBackground(Color.white);
+        
         btn_simpan.setEnabled(true);
         btn_ubah.setEnabled(false);
         btn_hapus.setEnabled(false);
@@ -1112,7 +1363,7 @@ Object tabel;
         try
         {
             Class.forName(driver);
-            Connection kon = Drivermanager.getConnection(database,user,pass);
+            Connection kon = DriverManager.getConnection(database,user,pass);
             Statement stt = kon.createStatement();
             String SQL = "select * from mahasiswa where nim="+
                           input_cari_data.getText();
@@ -1152,8 +1403,65 @@ Object tabel;
         // TODO add your handling code here:
         tableModel.setRowCount(0);
         settableload();
-
     }//GEN-LAST:event_btn_tampil_dataMouseClicked
+
+    private void input_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_namaActionPerformed
+        // TODO add your handling code here:
+        input_nim.setText("");
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM mahasiswa WHERE nama='"+input_nama.getSelectedItem()+"';";
+            ResultSet res = stt.executeQuery(SQL);
+            
+            while(res.next()) {
+                input_nim.setText(res.getString("nim"));
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_input_namaActionPerformed
+
+    private void input_kode_mkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_kode_mkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input_kode_mkActionPerformed
+
+    private void input_nama_matkulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_nama_matkulActionPerformed
+        // TODO add your handling code here:
+        input_kode_mk.setText("");
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                database,
+                user,
+                pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM mata_kuliah WHERE nama_mk='"+input_nama_matkul.getSelectedItem()+"';";
+            ResultSet res = stt.executeQuery(SQL);
+//            System.out.println(res);
+            while(res.next()) {
+                input_kode_mk.setText(res.getString("nomor_mk"));
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_input_nama_matkulActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1180,6 +1488,7 @@ Object tabel;
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(form_data_nilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

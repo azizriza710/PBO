@@ -5,12 +5,13 @@
  */
 package pbo;
 
-
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.*;
 //Fungsi import yang digunakan untuk SQL 
 import java.sql.*;
+import javax.swing.table.TableCellRenderer;
+
 /**
  *
  * @author SaIN
@@ -47,6 +48,32 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         tabel_simulasi_akhir.getTableHeader().setFont(bigfont);
         // set font header
         tabel_simulasi_akhir.setModel(tableModel);
+        
+        // mengatur lebar kolom
+        tabel_simulasi_akhir.getColumnModel().getColumn(0).setPreferredWidth(90);
+        tabel_simulasi_akhir.getColumnModel().getColumn(1).setPreferredWidth(98);
+        tabel_simulasi_akhir.getColumnModel().getColumn(2).setPreferredWidth(97);
+        tabel_simulasi_akhir.getColumnModel().getColumn(3).setPreferredWidth(97);
+        tabel_simulasi_akhir.getColumnModel().getColumn(4).setPreferredWidth(97);
+        tabel_simulasi_akhir.getColumnModel().getColumn(5).setPreferredWidth(78);
+        tabel_simulasi_akhir.getColumnModel().getColumn(6).setPreferredWidth(55);
+        tabel_simulasi_akhir.getColumnModel().getColumn(7).setPreferredWidth(55);
+        tabel_simulasi_akhir.getColumnModel().getColumn(8).setPreferredWidth(55);
+        tabel_simulasi_akhir.getColumnModel().getColumn(9).setPreferredWidth(42);
+        tabel_simulasi_akhir.getColumnModel().getColumn(10).setPreferredWidth(42);
+        tabel_simulasi_akhir.getColumnModel().getColumn(11).setPreferredWidth(58);
+        tabel_simulasi_akhir.getColumnModel().getColumn(12).setPreferredWidth(200);
+        tabel_simulasi_akhir.getColumnModel().getColumn(13).setPreferredWidth(45);
+        tabel_simulasi_akhir.getColumnModel().getColumn(14).setPreferredWidth(45);
+        tabel_simulasi_akhir.getColumnModel().getColumn(15).setPreferredWidth(50);
+        tabel_simulasi_akhir.getColumnModel().getColumn(16).setPreferredWidth(50);
+        tabel_simulasi_akhir.getColumnModel().getColumn(17).setPreferredWidth(96);
+        
+        // Set Center Alignment of tabel_simulasi_akhir
+        TableCellRenderer rendererFromHeader = tabel_simulasi_akhir.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        
         settableload();
         setcomboBox();
     }
@@ -58,7 +85,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         // membuat judul header
         return new javax.swing.table.DefaultTableModel(
             new Object[][] {},
-            new String [] {"<html><center>Nama<br>M.K</center></html>",
+            new String [] {"Nama M.K",
                             "<html><center>Persentase<br>Absen</center></html>",
                             "<html><center>Persentase<br>Tugas</center></html>",
                             "<html><center>Persentase<br>UTS</center></html>",
@@ -70,12 +97,12 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                             "<html><center>UTS</center></html>",
                             "<html><center>UAS</center></html>",
                             "<html><center>Nilai<br>Absen</center></html>",
-                            "<html><center>Nilai<br>Tugas</center></html>",
+                            "<html><center>Nilai Tugas</center></html>",
                             "<html><center>Nilai<br>UTS</center></html>",
                             "<html><center>Nilai<br>UAS</center></html>",
                             "<html><center>Nilai<br>Akhir</center></html>",
-                            "<html><center>Index</center></html>",
-                            "<html><center>Keterangan</center</html>"}    
+                            "Index",
+                            "Keterangan"}    
         )
         // disable perubahan pada grid
         {
@@ -379,6 +406,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         input_uas = new javax.swing.JTextField();
         input_mata_kuliah = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -714,6 +742,11 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         btn_batal.setBackground(new java.awt.Color(255, 255, 255));
         btn_batal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_batal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_batal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_batalMouseClicked(evt);
+            }
+        });
         btn_batal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -726,6 +759,11 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         btn_hapus.setBackground(new java.awt.Color(255, 255, 255));
         btn_hapus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_hapusMouseClicked(evt);
+            }
+        });
         btn_hapus.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -772,6 +810,11 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         btn_keluar.setBackground(new java.awt.Color(255, 255, 255));
         btn_keluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_keluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_keluarMouseClicked(evt);
+            }
+        });
         btn_keluar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -829,6 +872,11 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         jLabel31.setText("Kehadiran");
 
         input_kehadiran.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        input_kehadiran.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                input_kehadiranKeyReleased(evt);
+            }
+        });
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel32.setText("Tugas 1");
@@ -868,6 +916,9 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setText("Pertemuan");
+
         javax.swing.GroupLayout panel_contentLayout = new javax.swing.GroupLayout(panel_content);
         panel_content.setLayout(panel_contentLayout);
         panel_contentLayout.setHorizontalGroup(
@@ -904,7 +955,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel11))))
                     .addComponent(jLabel33))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panel_contentLayout.createSequentialGroup()
                         .addComponent(jLabel38)
@@ -932,7 +983,9 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                                 .addComponent(jLabel31)
                                 .addGap(42, 42, 42)
                                 .addComponent(input_kehadiran, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(249, 249, 249))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(161, 161, 161))
             .addGroup(panel_contentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1004,8 +1057,10 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                         .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel31)
                             .addGroup(panel_contentLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(input_kehadiran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(2, 2, 2)
+                                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(input_kehadiran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel32)
@@ -1200,7 +1255,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                         +"keterangan) "
                         +"VALUES "
                         +"( '"+input_mata_kuliah.getSelectedItem()+"',"
-                        +" ' "+input_persentase_absen.getText()+" ' ,"
+                        +" ' "+input_persentase_absen.getText()+" ',"
                         +" ' "+input_persentase_tugas.getText()+" ',"
                         +" ' "+input_persentase_uts.getText()+" ',"
                         +" ' "+input_persentase_uas.getText()+" ',"
@@ -1241,7 +1296,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 stt.close();
                 kon.close();
                 membersihkan_text();
-                btn_ubah.setEnabled(false);
+                btn_simpan.setEnabled(false);
                 nonaktif_text();
             }
             catch (Exception ex)
@@ -1331,6 +1386,50 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_ubahMouseClicked
 
+    private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
+        // TODO add your handling code here:
+        try
+        {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database, user, pass);
+            Statement stt = kon.createStatement();
+            String SQL = "Delete From simulasi_nilai_akhir "
+                    + "where "
+                    + "nama_mk='"+tableModel.getValueAt(row, 0).toString()+"'";
+            stt.executeUpdate(SQL);
+            tableModel.removeRow(row);
+            stt.close();
+            kon.close();
+            membersihkan_text();
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btn_hapusMouseClicked
+
+    private void btn_batalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_batalMouseClicked
+        // TODO add your handling code here:
+        membersihkan_text();
+        nonaktif_text();
+    }//GEN-LAST:event_btn_batalMouseClicked
+
+    private void btn_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_keluarMouseClicked
+        // TODO add your handling code here:
+        login masuk = new login();
+        masuk.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_keluarMouseClicked
+
+    private void input_kehadiranKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kehadiranKeyReleased
+        // TODO add your handling code here:
+        int absen = Integer.valueOf(input_kehadiran.getText());
+        if(absen>14){
+            JOptionPane.showMessageDialog(null, "Maksimal Kehadiran adalah 14 pertemuan");
+            input_kehadiran.setText("");
+        }
+    }//GEN-LAST:event_input_kehadiranKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1405,6 +1504,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

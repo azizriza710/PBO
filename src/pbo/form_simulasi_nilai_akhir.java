@@ -43,9 +43,13 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         // size header
         tabel_simulasi_akhir.getTableHeader().setPreferredSize(new Dimension (35,35));
         // font header
-        Font bigfont = new Font("Segoi UI", Font.PLAIN, 11);
+        Font fontheader = new Font("Segoi UI", Font.PLAIN, 11);
         // set size header
-        tabel_simulasi_akhir.getTableHeader().setFont(bigfont);
+        tabel_simulasi_akhir.getTableHeader().setFont(fontheader);
+        // font cell
+        Font fontcell = new Font("Segoi UI", Font.PLAIN, 12);
+        // set font cell
+        tabel_simulasi_akhir.setFont(fontcell);
         // set font header
         tabel_simulasi_akhir.setModel(tableModel);
         
@@ -130,7 +134,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
             Connection kon = DriverManager.getConnection(database, user, pass);
             // Menampilkan data nilai dari tabel simulasi nilai akhir
             Statement stt=kon.createStatement();
-            String SQL = "select * from simulasi_nilai_akhir";
+            String SQL = "SELECT * FROM `simulasi_nilai_akhir`";
             ResultSet res = stt.executeQuery(SQL);
             while (res.next())
             {
@@ -152,7 +156,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 datatabel[15] = res.getString(16);
                 datatabel[16] = res.getString(17);
                 datatabel[17] = res.getString(18);
-                tableModel.addRow(data);
+                tableModel.addRow(datatabel);
             }
             res.close();
             stt.close();
@@ -198,16 +202,16 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
     public void hitung_nilai()
     {
         // Ubah string to int or float
-        int kehadiran = Integer.valueOf(input_kehadiran.getText());
+        float kehadiran = Float.valueOf(input_kehadiran.getText());
         float per_absen = Float.valueOf(input_persentase_absen.getText());
         float per_tug = Float.valueOf(input_persentase_tugas.getText());
         float per_uts = Float.valueOf(input_persentase_uts.getText());
         float per_uas = Float.valueOf(input_persentase_uas.getText());
-        int tug1 = Integer.valueOf(input_tugas1.getText());
-        int tug2 = Integer.valueOf(input_tugas2.getText());
-        int tug3 = Integer.valueOf(input_tugas3.getText());
-        int uts = Integer.valueOf(input_uts.getText());
-        int uas = Integer.valueOf(input_uas.getText());
+        float tug1 = Float.valueOf(input_tugas1.getText());
+        float tug2 = Float.valueOf(input_tugas2.getText());
+        float tug3 = Float.valueOf(input_tugas3.getText());
+        float uts = Float.valueOf(input_uts.getText());
+        float uas = Float.valueOf(input_uas.getText());
         
         // HITUNG NILAI ABSEN
         nilai_absen = (((kehadiran/14)*100*per_absen)/100);
@@ -306,18 +310,17 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
     public void tampil_field()
     {
         row = tabel_simulasi_akhir.getSelectedRow();
-        input_mata_kuliah.setSelectedItem(tableModel.getValueAt(row, 0).toString());
-        input_kode_mk.setText(tableModel.getValueAt(row, 1).toString());
-        input_persentase_absen.setText(tableModel.getValueAt(row, 2).toString());
-        input_persentase_tugas.setText(tableModel.getValueAt(row, 3).toString());
-        input_persentase_uts.setText(tableModel.getValueAt(row, 4).toString());
-        input_persentase_uas.setText(tableModel.getValueAt(row, 5).toString());
-        input_kehadiran.setText(tableModel.getValueAt(row, 6).toString());
-        input_tugas1.setText(tableModel.getValueAt(row, 7).toString());
-        input_tugas2.setText(tableModel.getValueAt(row, 8).toString());
-        input_tugas3.setText(tableModel.getValueAt(row, 9).toString());
-        input_uts.setText(tableModel.getValueAt(row, 10).toString());
-        input_uas.setText(tableModel.getValueAt(row, 11).toString());
+        input_mata_kuliah.setSelectedItem(tableModel.getValueAt(row, 0));
+        input_persentase_absen.setText(tableModel.getValueAt(row, 1).toString());
+        input_persentase_tugas.setText(tableModel.getValueAt(row, 2).toString());
+        input_persentase_uts.setText(tableModel.getValueAt(row, 3).toString());
+        input_persentase_uas.setText(tableModel.getValueAt(row, 4).toString());
+        input_kehadiran.setText(tableModel.getValueAt(row, 5).toString());
+        input_tugas1.setText(tableModel.getValueAt(row, 6).toString());
+        input_tugas2.setText(tableModel.getValueAt(row, 7).toString());
+        input_tugas3.setText(tableModel.getValueAt(row, 8).toString());
+        input_uts.setText(tableModel.getValueAt(row, 9).toString());
+        input_uas.setText(tableModel.getValueAt(row, 10).toString());
         
         btn_simpan.setEnabled(false);
         btn_ubah.setEnabled(true);
@@ -1218,16 +1221,26 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         index();
         keterangan();
         
-        if ((input_persentase_absen.getText().isEmpty()) || (input_persentase_tugas.getText().isEmpty())
-                || (input_persentase_uts.getText().isEmpty()) || (input_persentase_uas.getText().isEmpty())
-                || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
-                || (input_tugas2.getText().isEmpty()) || (input_tugas3.getText().isEmpty())
-                || (input_uts.getText().isEmpty()) || (input_uas.getText().isEmpty())
-                || (input_kode_mk.getText().isEmpty()))
+        if ((input_persentase_absen.getText().isEmpty()) || input_persentase_tugas.getText().isEmpty()
+                || input_persentase_uts.getText().isEmpty() || input_persentase_uas.getText().isEmpty()
+                || input_kehadiran.getText().isEmpty() || input_tugas1.getText().isEmpty()
+                || input_tugas2.getText().isEmpty() || input_tugas3.getText().isEmpty()
+                || input_uts.getText().isEmpty() || input_uas.getText().isEmpty()
+                || input_kode_mk.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
             input_persentase_absen.requestFocus();
         }
+//        if ((input_persentase_absen.getText().isEmpty()) || (input_persentase_tugas.getText().isEmpty())
+//                || (input_persentase_uts.getText().isEmpty()) || (input_persentase_uas.getText().isEmpty())
+//                || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
+//                || (input_tugas2.getText().isEmpty()) || (input_tugas3.getText().isEmpty())
+//                || (input_uts.getText().isEmpty()) || (input_uas.getText().isEmpty())
+//                || (input_kode_mk.getText().isEmpty()))
+//        {
+//            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
+//            input_persentase_absen.requestFocus();
+//        }
         else
         {
             try
@@ -1235,24 +1248,24 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 Class.forName(driver);
                 Connection kon = DriverManager.getConnection(database, user, pass);
                 Statement stt = kon.createStatement();
-                String SQL = "INSERT INTO simulasi_nilai_akhir(nama_mk,"
-                        +"persentase_absen,"
-                        +"persentase_tugas,"
-                        +"persentase_uts,"
-                        +"persentase_uas,"
-                        +"absensi,"
-                        +"tgs_1,"
-                        +"tgs_2,"
-                        +"tgs_3,"
-                        +"uts,"
-                        +"uas,"
-                        +"nilai_absen,"
-                        +"nilai_tugas,"
-                        +"nilai_uts,"
-                        +"nilai_uas,"
-                        +"nilai_akhir,"
-                        +"index,"
-                        +"keterangan) "
+                String SQL = "INSERT INTO `simulasi_nilai_akhir` (`nama_mk`, "
+                        + "`persentase_absen`, "
+                        + "`persentase_tugas`, "
+                        + "`persentase_uts`, "
+                        + "`persentase_uas`, "
+                        + "`absensi`, "
+                        + "`tgs_1`, "
+                        + "`tgs_2`, "
+                        + "`tgs_3`, "
+                        + "`uts`, "
+                        + "`uas`, "
+                        + "`nilai_absen`, "
+                        + "`nilai_tugas`, "
+                        + "`nilai_uts`, "
+                        + "`nilai_uas`, "
+                        + "`nilai_akhir`, "
+                        + "`index`, "
+                        + "`keterangan`)"
                         +"VALUES "
                         +"( '"+input_mata_kuliah.getSelectedItem()+"',"
                         +" ' "+input_persentase_absen.getText()+" ',"
@@ -1328,6 +1341,10 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         String uts = input_uts.getText();
         String uas = input_uas.getText();
         
+        hitung_nilai();
+        index();
+        keterangan();
+        
         if ((input_persentase_absen.getText().isEmpty()) || (input_persentase_tugas.getText().isEmpty())
                 || (input_persentase_uts.getText().isEmpty()) || (input_persentase_uas.getText().isEmpty())
                 || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
@@ -1346,19 +1363,40 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 Connection kon = DriverManager.getConnection(database, user, pass);
                 Statement stt = kon.createStatement();
                 String SQL = "UPDATE `simulasi_nilai_akhir` "
-                        + "SET `nama_mk`='"+nama_mk+"',"
+                        + "SET `nama_mk` = '"+nama_mk+"', "
                         + "`persentase_absen`='"+per_absen+"',"
                         + "`persentase_tugas`='"+per_tug+"',"
                         + "`persentase_uts`='"+per_uts+"',"
                         + "`persentase_uas`='"+per_uas+"',"
                         + "`absensi`='"+absen+"',"
-                        + "`tugas_1`='"+tug1+"',"
-                        + "`tugas_2`='"+tug2+"',"
-                        + "`tugas_3`='"+tug3+"',"
+                        + "`tgs_1`='"+tug1+"',"
+                        + "`tgs_2`='"+tug2+"',"
+                        + "`tgs_3`='"+tug3+"',"
                         + "`uts`='"+uts+"',"
-                        + "`uas`='"+uas+"' "
-                        + "WHERE "
-                        + "`nama_mk`='"+tableModel.getValueAt(row, 0).toString()+"';";
+                        + "`uas`='"+uas+"',"
+                        + "`nilai_absen`='"+nilai_absen+"',"
+                        + "`nilai_tugas`='"+nilai_tugas+"',"
+                        + "`nilai_uts`='"+nilai_uts+"',"
+                        + "`nilai_uas`='"+nilai_uas+"',"
+                        + "`nilai_akhir`='"+nilai_akhir+"',"
+                        + "`index`='"+index+"',"
+                        + "`keterangan`='"+keterangan+"'"
+                        + " WHERE "
+                        + "`nama_mk`'"+tableModel.getValueAt(row, 0).toString()+"';";
+//                        "UPDATE `simulasi_nilai_akhir` "
+//                        + "SET `nama_mk`='"+nama_mk+"',"
+//                        + "`persentase_absen`='"+per_absen+"',"
+//                        + "`persentase_tugas`='"+per_tug+"',"
+//                        + "`persentase_uts`='"+per_uts+"',"
+//                        + "`persentase_uas`='"+per_uas+"',"
+//                        + "`absensi`='"+absen+"',"
+//                        + "`tugas_1`='"+tug1+"',"
+//                        + "`tugas_2`='"+tug2+"',"
+//                        + "`tugas_3`='"+tug3+"',"
+//                        + "`uts`='"+uts+"',"
+//                        + "`uas`='"+uas+"' "
+//                        + "WHERE "
+//                        + "`nama_mk`='"+tableModel.getValueAt(row, 0).toString()+"';";
                 stt.execute(SQL);
                 data[0] = nama_mk;
                 data[1] = per_absen;
@@ -1371,12 +1409,19 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 data[8] = tug3;
                 data[9] = uts;
                 data[10] = uas;
+                data[11] = Float.toString(nilai_absen);
+                data[12] = Float.toString(nilai_tugas);
+                data[13] = Float.toString(nilai_uts);
+                data[14] = Float.toString(nilai_uas);
+                data[15] = Float.toString(nilai_akhir);
+                data[16] = Character.toString(index);
+                data[17] = keterangan;
                 tableModel.removeRow(row);
                 tableModel.insertRow(row, data);
                 stt.close();
                 kon.close();
                 membersihkan_text();
-                btn_simpan.setEnabled(false);
+                btn_ubah.setEnabled(false);
                 nonaktif_text();
             }
             catch (Exception ex)

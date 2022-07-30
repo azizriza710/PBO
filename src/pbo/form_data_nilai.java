@@ -1471,7 +1471,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             Class.forName(driver);
             Connection kon = DriverManager.getConnection(database,user,pass);
             Statement stt = kon.createStatement();
-            String SQL = "select * from mahasiswa where nim="+
+            String SQL = "select * from nilai_mahasiswa where nim="+
                           input_cari_data.getText();
             ResultSet res = stt.executeQuery(SQL);
             while(res.next())

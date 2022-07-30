@@ -103,6 +103,33 @@ public class form_transaksi extends javax.swing.JFrame {
         qty_teh.setText("");
         qty_telor.setText("");
         qty_usus.setText("");
+        j_air.setText("");
+        j_ayam.setText("");
+        j_ceker.setText("");
+        j_kepala.setText("");
+        j_mie_goreng.setText("");
+        j_mie_nelongso.setText("");
+        j_nasi.setText("");
+        j_paket_mie_ayam.setText("");
+        j_paket_nasi_ayam.setText("");
+        j_sayap.setText("");
+        j_teh.setText("");
+        j_telor.setText("");
+        j_usus.setText("");
+        total_harga.setText("");
+        air.setSelected(false);
+        ayam.setSelected(false);
+        ceker.setSelected(false);
+        kepala.setSelected(false);
+        mie_goreng.setSelected(false);
+        mie_nelongso.setSelected(false);
+        nasi.setSelected(false);
+        paket_nasi_ayam.setSelected(false);
+        paket_mie_ayam.setSelected(false);
+        sayap.setSelected(false);
+        teh.setSelected(false);
+        telor.setSelected(false);
+        usus.setSelected(false);
     }
     public void nonaktif_teks() {
         qty_air.setEnabled(false);
@@ -118,6 +145,33 @@ public class form_transaksi extends javax.swing.JFrame {
         qty_teh.setEnabled(false);
         qty_telor.setEnabled(false);
         qty_usus.setEnabled(false);
+        j_air.setEnabled(false);
+        j_ayam.setEnabled(false);
+        j_ceker.setEnabled(false);
+        j_kepala.setEnabled(false);
+        j_mie_goreng.setEnabled(false);
+        j_mie_nelongso.setEnabled(false);
+        j_nasi.setEnabled(false);
+        j_paket_mie_ayam.setEnabled(false);
+        j_paket_nasi_ayam.setEnabled(false);
+        j_sayap.setEnabled(false);
+        j_teh.setEnabled(false);
+        j_telor.setEnabled(false);
+        j_usus.setEnabled(false);
+        total_harga.setEnabled(false);
+        air.setEnabled(false);
+        ayam.setEnabled(false);
+        ceker.setEnabled(false);
+        kepala.setEnabled(false);
+        mie_goreng.setEnabled(false);
+        mie_nelongso.setEnabled(false);
+        nasi.setEnabled(false);
+        paket_nasi_ayam.setEnabled(false);
+        paket_mie_ayam.setEnabled(false);
+        sayap.setEnabled(false);
+        teh.setEnabled(false);
+        telor.setEnabled(false);
+        usus.setEnabled(false);
     }
     public void aktif_teks() {
         qty_air.setEnabled(true);
@@ -133,6 +187,33 @@ public class form_transaksi extends javax.swing.JFrame {
         qty_teh.setEnabled(true);
         qty_telor.setEnabled(true);
         qty_usus.setEnabled(true);
+        j_air.setEnabled(true);
+        j_ayam.setEnabled(true);
+        j_ceker.setEnabled(true);
+        j_kepala.setEnabled(true);
+        j_mie_goreng.setEnabled(true);
+        j_mie_nelongso.setEnabled(true);
+        j_nasi.setEnabled(true);
+        j_paket_mie_ayam.setEnabled(true);
+        j_paket_nasi_ayam.setEnabled(true);
+        j_sayap.setEnabled(true);
+        j_teh.setEnabled(true);
+        j_telor.setEnabled(true);
+        j_usus.setEnabled(true);
+        total_harga.setEnabled(true);
+        air.setEnabled(true);
+        ayam.setEnabled(true);
+        ceker.setEnabled(true);
+        kepala.setEnabled(true);
+        mie_goreng.setEnabled(true);
+        mie_nelongso.setEnabled(true);
+        nasi.setEnabled(true);
+        paket_nasi_ayam.setEnabled(true);
+        paket_mie_ayam.setEnabled(true);
+        sayap.setEnabled(true);
+        teh.setEnabled(true);
+        telor.setEnabled(true);
+        usus.setEnabled(true);
     }
 
     /**
@@ -211,18 +292,6 @@ public class form_transaksi extends javax.swing.JFrame {
         qty_air = new javax.swing.JTextField();
         qty_teh = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        j_ceker = new javax.swing.JLabel();
-        j_sayap = new javax.swing.JLabel();
-        j_kepala = new javax.swing.JLabel();
-        j_ayam = new javax.swing.JLabel();
-        j_mie_nelongso = new javax.swing.JLabel();
-        j_paket_nasi_ayam = new javax.swing.JLabel();
-        j_paket_mie_ayam = new javax.swing.JLabel();
-        j_nasi = new javax.swing.JLabel();
-        j_mie_goreng = new javax.swing.JLabel();
-        j_telor = new javax.swing.JLabel();
-        j_air = new javax.swing.JLabel();
-        j_teh = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -239,18 +308,35 @@ public class form_transaksi extends javax.swing.JFrame {
         btn_pesan = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btn_pesan1 = new javax.swing.JPanel();
+        btn_cancel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btn_pesan2 = new javax.swing.JPanel();
+        btn_keluar = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        btn_keluar = new javax.swing.JLabel();
+        pict = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         total_harga = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        j_usus = new javax.swing.JLabel();
+        j_ceker = new javax.swing.JTextField();
+        j_usus = new javax.swing.JTextField();
+        j_sayap = new javax.swing.JTextField();
+        j_kepala = new javax.swing.JTextField();
+        j_ayam = new javax.swing.JTextField();
+        j_mie_nelongso = new javax.swing.JTextField();
+        j_paket_nasi_ayam = new javax.swing.JTextField();
+        j_paket_mie_ayam = new javax.swing.JTextField();
+        j_nasi = new javax.swing.JTextField();
+        j_mie_goreng = new javax.swing.JTextField();
+        j_telor = new javax.swing.JTextField();
+        j_air = new javax.swing.JTextField();
+        j_teh = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         panel_title.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -552,42 +638,107 @@ public class form_transaksi extends javax.swing.JFrame {
         panel_content.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ceker.setText("Ceker ndower");
+        ceker.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cekerMouseClicked(evt);
+            }
+        });
         panel_content.add(ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 60, -1, -1));
 
         usus.setText("Usus ndower");
+        usus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ususMouseClicked(evt);
+            }
+        });
         panel_content.add(usus, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 97, -1, -1));
 
         sayap.setText("Sayap ndower");
+        sayap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sayapMouseClicked(evt);
+            }
+        });
         panel_content.add(sayap, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 134, -1, -1));
 
         kepala.setText("Kepala ndower");
+        kepala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kepalaMouseClicked(evt);
+            }
+        });
         panel_content.add(kepala, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 171, -1, -1));
 
         ayam.setText("Ayam geprek");
+        ayam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ayamMouseClicked(evt);
+            }
+        });
         panel_content.add(ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 208, -1, -1));
 
         mie_nelongso.setText("Mie nelongso");
+        mie_nelongso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mie_nelongsoMouseClicked(evt);
+            }
+        });
         panel_content.add(mie_nelongso, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 245, -1, -1));
 
         paket_nasi_ayam.setText("Paket nasi ayam geprek");
+        paket_nasi_ayam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paket_nasi_ayamMouseClicked(evt);
+            }
+        });
         panel_content.add(paket_nasi_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 282, -1, -1));
 
         paket_mie_ayam.setText("Paket mie ayam geprek");
+        paket_mie_ayam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paket_mie_ayamMouseClicked(evt);
+            }
+        });
         panel_content.add(paket_mie_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 319, -1, -1));
 
         nasi.setText("Nasi");
+        nasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nasiMouseClicked(evt);
+            }
+        });
         panel_content.add(nasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 356, -1, -1));
 
         mie_goreng.setText("Mie goreng");
+        mie_goreng.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mie_gorengMouseClicked(evt);
+            }
+        });
         panel_content.add(mie_goreng, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 393, -1, -1));
 
         telor.setText("Telor ceplok/dadar");
+        telor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                telorMouseClicked(evt);
+            }
+        });
         panel_content.add(telor, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 430, -1, -1));
 
         air.setText("Air mineral");
+        air.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                airMouseClicked(evt);
+            }
+        });
         panel_content.add(air, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 467, -1, -1));
 
         teh.setText("Teh pucuk");
+        teh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tehMouseClicked(evt);
+            }
+        });
         panel_content.add(teh, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 504, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -661,42 +812,6 @@ public class form_transaksi extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(65, 83, 128));
         jLabel4.setText("JUMLAH");
         panel_content.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 22, -1, -1));
-
-        j_ceker.setText("Rp. 0,-");
-        panel_content.add(j_ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 62, -1, -1));
-
-        j_sayap.setText("Rp. 0,-");
-        panel_content.add(j_sayap, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 136, -1, -1));
-
-        j_kepala.setText("Rp. 0,-");
-        panel_content.add(j_kepala, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 173, -1, -1));
-
-        j_ayam.setText("Rp. 0,-");
-        panel_content.add(j_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 210, -1, -1));
-
-        j_mie_nelongso.setText("Rp. 0,-");
-        panel_content.add(j_mie_nelongso, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 247, -1, -1));
-
-        j_paket_nasi_ayam.setText("Rp. 0,-");
-        panel_content.add(j_paket_nasi_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 284, -1, -1));
-
-        j_paket_mie_ayam.setText("Rp. 0,-");
-        panel_content.add(j_paket_mie_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 321, -1, -1));
-
-        j_nasi.setText("Rp. 0,-");
-        panel_content.add(j_nasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 358, -1, -1));
-
-        j_mie_goreng.setText("Rp. 0,-");
-        panel_content.add(j_mie_goreng, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 395, -1, -1));
-
-        j_telor.setText("Rp. 0,-");
-        panel_content.add(j_telor, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 432, -1, -1));
-
-        j_air.setText("Rp. 0,-");
-        panel_content.add(j_air, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 469, -1, -1));
-
-        j_teh.setText("Rp. 0,-");
-        panel_content.add(j_teh, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 506, -1, -1));
         panel_content.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 87, 655, -1));
 
         jSeparator2.setForeground(new java.awt.Color(65, 83, 128));
@@ -729,37 +844,42 @@ public class form_transaksi extends javax.swing.JFrame {
 
         panel_content.add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 96, 39));
 
-        btn_pesan1.setBackground(new java.awt.Color(255, 255, 255));
-        btn_pesan1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_pesan1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_pesan1.setMinimumSize(new java.awt.Dimension(84, 30));
-        btn_pesan1.setPreferredSize(new java.awt.Dimension(84, 30));
-        btn_pesan1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_cancel.setBackground(new java.awt.Color(255, 255, 255));
+        btn_cancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_cancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cancel.setMinimumSize(new java.awt.Dimension(84, 30));
+        btn_cancel.setPreferredSize(new java.awt.Dimension(84, 30));
+        btn_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cancelMouseClicked(evt);
+            }
+        });
+        btn_cancel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Cancel");
-        btn_pesan1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 40));
+        btn_cancel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 40));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/delete_20px.png"))); // NOI18N
-        btn_pesan1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        btn_cancel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_pesan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 560, 96, 39));
+        panel_content.add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 560, 96, 39));
 
-        btn_pesan2.setBackground(new java.awt.Color(255, 255, 255));
-        btn_pesan2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_pesan2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_pesan2.setMinimumSize(new java.awt.Dimension(84, 30));
-        btn_pesan2.setPreferredSize(new java.awt.Dimension(84, 30));
-        btn_pesan2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_keluar.setBackground(new java.awt.Color(255, 255, 255));
+        btn_keluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_keluar.setMinimumSize(new java.awt.Dimension(84, 30));
+        btn_keluar.setPreferredSize(new java.awt.Dimension(84, 30));
+        btn_keluar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Keluar");
-        btn_pesan2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 40));
+        btn_keluar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 40));
 
-        btn_keluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/cancel_20px.png"))); // NOI18N
-        btn_pesan2.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        pict.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/cancel_20px.png"))); // NOI18N
+        btn_keluar.add(pict, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_pesan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, 224, 39));
+        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, 120, 39));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "TOTAL HARGA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16), new java.awt.Color(65, 83, 128))); // NOI18N
@@ -788,9 +908,19 @@ public class form_transaksi extends javax.swing.JFrame {
         );
 
         panel_content.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
-
-        j_usus.setText("Rp. 0,-");
-        panel_content.add(j_usus, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 99, -1, -1));
+        panel_content.add(j_ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 59, 80, -1));
+        panel_content.add(j_usus, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 96, 80, -1));
+        panel_content.add(j_sayap, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 133, 80, -1));
+        panel_content.add(j_kepala, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 170, 80, -1));
+        panel_content.add(j_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 207, 80, -1));
+        panel_content.add(j_mie_nelongso, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 244, 80, -1));
+        panel_content.add(j_paket_nasi_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 281, 80, -1));
+        panel_content.add(j_paket_mie_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 318, 80, -1));
+        panel_content.add(j_nasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 355, 80, -1));
+        panel_content.add(j_mie_goreng, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 392, 80, -1));
+        panel_content.add(j_telor, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 429, 80, -1));
+        panel_content.add(j_air, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 466, 80, -1));
+        panel_content.add(j_teh, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 503, 80, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -853,6 +983,119 @@ public class form_transaksi extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_Simulasi_nilai_akhir3MouseClicked
 
+    private void btn_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelMouseClicked
+        // TODO add your handling code here:
+        membersihkan_teks();
+    }//GEN-LAST:event_btn_cancelMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        j_air.setEnabled(false);
+        j_ayam.setEnabled(false);
+        j_ceker.setEnabled(false);
+        j_kepala.setEnabled(false);
+        j_mie_goreng.setEnabled(false);
+        j_mie_nelongso.setEnabled(false);
+        j_nasi.setEnabled(false);
+        j_paket_mie_ayam.setEnabled(false);
+        j_paket_nasi_ayam.setEnabled(false);
+        j_sayap.setEnabled(false);
+        j_teh.setEnabled(false);
+        j_telor.setEnabled(false);
+        j_usus.setEnabled(false);
+        qty_air.setEnabled(false);
+        qty_ayam.setEnabled(false);
+        qty_ceker.setEnabled(false);
+        qty_kepala.setEnabled(false);
+        qty_mie_goreng.setEnabled(false);
+        qty_mie_nelongso.setEnabled(false);
+        qty_nasi.setEnabled(false);
+        qty_paket_mie_ayam.setEnabled(false);
+        qty_paket_nasi_ayam.setEnabled(false);
+        qty_sayap.setEnabled(false);
+        qty_teh.setEnabled(false);
+        qty_telor.setEnabled(false);
+        qty_usus.setEnabled(false);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void cekerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cekerMouseClicked
+        // TODO add your handling code here:
+        qty_ceker.setEnabled(true);
+        j_ceker.setEnabled(true);
+    }//GEN-LAST:event_cekerMouseClicked
+
+    private void ususMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ususMouseClicked
+        // TODO add your handling code here:
+        qty_usus.setEnabled(true);
+        j_usus.setEnabled(true);
+    }//GEN-LAST:event_ususMouseClicked
+
+    private void sayapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sayapMouseClicked
+        // TODO add your handling code here:
+        qty_sayap.setEnabled(true);
+        j_sayap.setEnabled(true);
+    }//GEN-LAST:event_sayapMouseClicked
+
+    private void kepalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kepalaMouseClicked
+        // TODO add your handling code here:
+        qty_kepala.setEnabled(true);
+        j_kepala.setEnabled(true);
+    }//GEN-LAST:event_kepalaMouseClicked
+
+    private void ayamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ayamMouseClicked
+        // TODO add your handling code here:
+        qty_ayam.setEnabled(true);
+        j_ayam.setEnabled(true);
+    }//GEN-LAST:event_ayamMouseClicked
+
+    private void mie_nelongsoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mie_nelongsoMouseClicked
+        // TODO add your handling code here:
+        qty_mie_nelongso.setEnabled(true);
+        j_mie_nelongso.setEnabled(true);
+    }//GEN-LAST:event_mie_nelongsoMouseClicked
+
+    private void paket_nasi_ayamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paket_nasi_ayamMouseClicked
+        // TODO add your handling code here:
+        qty_paket_nasi_ayam.setEnabled(true);
+        j_paket_nasi_ayam.setEnabled(true);
+    }//GEN-LAST:event_paket_nasi_ayamMouseClicked
+
+    private void paket_mie_ayamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paket_mie_ayamMouseClicked
+        // TODO add your handling code here:
+        qty_paket_mie_ayam.setEnabled(true);
+        j_paket_mie_ayam.setEnabled(true);
+    }//GEN-LAST:event_paket_mie_ayamMouseClicked
+
+    private void nasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasiMouseClicked
+        // TODO add your handling code here:
+        qty_nasi.setEnabled(true);
+        j_nasi.setEnabled(true);
+    }//GEN-LAST:event_nasiMouseClicked
+
+    private void mie_gorengMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mie_gorengMouseClicked
+        // TODO add your handling code here:
+        qty_mie_goreng.setEnabled(true);
+        j_mie_goreng.setEnabled(true);
+    }//GEN-LAST:event_mie_gorengMouseClicked
+
+    private void telorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_telorMouseClicked
+        // TODO add your handling code here:
+        qty_telor.setEnabled(true);
+        j_telor.setEnabled(true);
+    }//GEN-LAST:event_telorMouseClicked
+
+    private void airMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_airMouseClicked
+        // TODO add your handling code here:
+        qty_air.setEnabled(true);
+        j_air.setEnabled(true);
+    }//GEN-LAST:event_airMouseClicked
+
+    private void tehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tehMouseClicked
+        // TODO add your handling code here:
+        qty_teh.setEnabled(true);
+        j_teh.setEnabled(true);
+    }//GEN-LAST:event_tehMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -893,10 +1136,9 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JPanel Simulasi_nilai_akhir3;
     private javax.swing.JCheckBox air;
     private javax.swing.JCheckBox ayam;
-    private javax.swing.JLabel btn_keluar;
+    private javax.swing.JPanel btn_cancel;
+    private javax.swing.JPanel btn_keluar;
     private javax.swing.JPanel btn_pesan;
-    private javax.swing.JPanel btn_pesan1;
-    private javax.swing.JPanel btn_pesan2;
     private javax.swing.JCheckBox ceker;
     private javax.swing.JPanel data_mahasiswa1;
     private javax.swing.JPanel data_mata_kuliah1;
@@ -952,19 +1194,19 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JLabel j_air;
-    private javax.swing.JLabel j_ayam;
-    private javax.swing.JLabel j_ceker;
-    private javax.swing.JLabel j_kepala;
-    private javax.swing.JLabel j_mie_goreng;
-    private javax.swing.JLabel j_mie_nelongso;
-    private javax.swing.JLabel j_nasi;
-    private javax.swing.JLabel j_paket_mie_ayam;
-    private javax.swing.JLabel j_paket_nasi_ayam;
-    private javax.swing.JLabel j_sayap;
-    private javax.swing.JLabel j_teh;
-    private javax.swing.JLabel j_telor;
-    private javax.swing.JLabel j_usus;
+    private javax.swing.JTextField j_air;
+    private javax.swing.JTextField j_ayam;
+    private javax.swing.JTextField j_ceker;
+    private javax.swing.JTextField j_kepala;
+    private javax.swing.JTextField j_mie_goreng;
+    private javax.swing.JTextField j_mie_nelongso;
+    private javax.swing.JTextField j_nasi;
+    private javax.swing.JTextField j_paket_mie_ayam;
+    private javax.swing.JTextField j_paket_nasi_ayam;
+    private javax.swing.JTextField j_sayap;
+    private javax.swing.JTextField j_teh;
+    private javax.swing.JTextField j_telor;
+    private javax.swing.JTextField j_usus;
     private javax.swing.JCheckBox kepala;
     private java.awt.Label label1;
     private javax.swing.JCheckBox mie_goreng;
@@ -974,6 +1216,7 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JCheckBox paket_nasi_ayam;
     private javax.swing.JPanel panel_content;
     private javax.swing.JPanel panel_title;
+    private javax.swing.JLabel pict;
     private javax.swing.JTextField qty_air;
     private javax.swing.JTextField qty_ayam;
     private javax.swing.JTextField qty_ceker;

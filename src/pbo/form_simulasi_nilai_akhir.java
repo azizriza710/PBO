@@ -10,6 +10,8 @@ import java.awt.Font;
 import javax.swing.*;
 //Fungsi import yang digunakan untuk SQL 
 import java.sql.*;
+import java.text.DecimalFormat;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
 /**
@@ -25,6 +27,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
     float nilai_absen, nilai_tugas, nilai_uts, nilai_uas, nilai_akhir;
     char index;
     String keterangan;
+    float n_absen, n_tugas, n_uts, n_uas, n_akhir;
     
     public form_simulasi_nilai_akhir() {
         initComponents();
@@ -54,7 +57,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         tabel_simulasi_akhir.setModel(tableModel);
         
         // mengatur lebar kolom
-        tabel_simulasi_akhir.getColumnModel().getColumn(0).setPreferredWidth(90);
+        tabel_simulasi_akhir.getColumnModel().getColumn(0).setPreferredWidth(150);
         tabel_simulasi_akhir.getColumnModel().getColumn(1).setPreferredWidth(98);
         tabel_simulasi_akhir.getColumnModel().getColumn(2).setPreferredWidth(97);
         tabel_simulasi_akhir.getColumnModel().getColumn(3).setPreferredWidth(97);
@@ -66,17 +69,26 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         tabel_simulasi_akhir.getColumnModel().getColumn(9).setPreferredWidth(42);
         tabel_simulasi_akhir.getColumnModel().getColumn(10).setPreferredWidth(42);
         tabel_simulasi_akhir.getColumnModel().getColumn(11).setPreferredWidth(58);
-        tabel_simulasi_akhir.getColumnModel().getColumn(12).setPreferredWidth(200);
+        tabel_simulasi_akhir.getColumnModel().getColumn(12).setPreferredWidth(130);
         tabel_simulasi_akhir.getColumnModel().getColumn(13).setPreferredWidth(45);
         tabel_simulasi_akhir.getColumnModel().getColumn(14).setPreferredWidth(45);
         tabel_simulasi_akhir.getColumnModel().getColumn(15).setPreferredWidth(50);
         tabel_simulasi_akhir.getColumnModel().getColumn(16).setPreferredWidth(50);
-        tabel_simulasi_akhir.getColumnModel().getColumn(17).setPreferredWidth(96);
+        tabel_simulasi_akhir.getColumnModel().getColumn(17).setPreferredWidth(120);
         
         // Set Center Alignment of tabel_simulasi_akhir
         TableCellRenderer rendererFromHeader = tabel_simulasi_akhir.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        // Set Center
+        int i;
+        for(i=1; i <=16; i++)
+        {
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+            tabel_simulasi_akhir.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
+        }
         
         settableload();
         setcomboBox();
@@ -225,23 +237,37 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         nilai_akhir = nilai_absen + nilai_tugas + nilai_uts + nilai_uas;
     }
     
+    // METHOD MEMBULATKAN NILAI
+    public void bulatkan_nilai()
+    {
+        hitung_nilai();
+        DecimalFormat formatData = new DecimalFormat("#.#");
+        
+        n_absen = Float.valueOf(formatData.format(nilai_absen));
+        n_tugas = Float.valueOf(formatData.format(nilai_tugas));
+        n_uts = Float.valueOf(formatData.format(nilai_uts));
+        n_uas = Float.valueOf(formatData.format(nilai_uas));
+        n_akhir = Float.valueOf(formatData.format(nilai_akhir));
+    }
+    
     // METHOD MENENTUKAN INDEX
     public void index()
     {
-        hitung_nilai();
-        if(nilai_akhir>=80 && nilai_akhir<=100){
+        bulatkan_nilai();
+        int nilaiakhir = Math.round(n_akhir);
+        if(nilaiakhir>=80 && nilaiakhir<=100){
             index = 'A';
         }
-        else if(nilai_akhir>=68 && nilai_akhir<=79){
+        else if(nilaiakhir>=68 && nilaiakhir<=79){
             index = 'B';
         }
-        else if(nilai_akhir>=56 && nilai_akhir<=67){
+        else if(nilaiakhir>=56 && nilaiakhir<=67){
             index = 'C';
         }
-        else if(nilai_akhir>=45 && nilai_akhir<=55){
+        else if(nilaiakhir>=45 && nilaiakhir<=55){
             index = 'D';
         }
-        else if(nilai_akhir>=0 && nilai_akhir<=44){
+        else if(nilaiakhir>=0 && nilaiakhir<=44){
             index = 'E';
         }
     }
@@ -1122,22 +1148,34 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
 
     private void tentang_pembuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tentang_pembuatMouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Tentang Pembuat");
+        homepage utama = new homepage();
+        utama.setVisible(true);
+
+        this.setVisible(false);
     }//GEN-LAST:event_tentang_pembuatMouseClicked
 
     private void data_mahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mahasiswaMouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Mahasiswa");
+        form_mahasiswa mhs = new form_mahasiswa();
+        mhs.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_mahasiswaMouseClicked
 
     private void data_mata_kuliahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mata_kuliahMouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Mata Kuliah");
+        form_mata_kuliah mk = new form_mata_kuliah();
+        mk.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_mata_kuliahMouseClicked
 
     private void data_nilaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_nilaiMouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Nilai");
+        form_data_nilai nilai = new form_data_nilai();
+        nilai.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_nilaiMouseClicked
 
     private void simulasi_kasusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulasi_kasusMouseClicked
@@ -1146,7 +1184,10 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
 
     private void simulasi_nilai_akhirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulasi_nilai_akhirMouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Simulasi Nilai Akhir");
+        form_simulasi_nilai_akhir sim_nilai = new form_simulasi_nilai_akhir();
+        sim_nilai.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_simulasi_nilai_akhirMouseClicked
 
     private void input_mata_kuliahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_input_mata_kuliahMouseClicked
@@ -1217,16 +1258,16 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
     private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
         // TODO add your handling code here:
         String data[] = new String[18];
-        hitung_nilai();
+        bulatkan_nilai();
         index();
         keterangan();
         
-        if ((input_persentase_absen.getText().isEmpty()) || input_persentase_tugas.getText().isEmpty()
-                || input_persentase_uts.getText().isEmpty() || input_persentase_uas.getText().isEmpty()
-                || input_kehadiran.getText().isEmpty() || input_tugas1.getText().isEmpty()
-                || input_tugas2.getText().isEmpty() || input_tugas3.getText().isEmpty()
-                || input_uts.getText().isEmpty() || input_uas.getText().isEmpty()
-                || input_kode_mk.getText().isEmpty())
+        if ((input_persentase_absen.getText().isEmpty()) || (input_persentase_tugas.getText().isEmpty())
+                || (input_persentase_uts.getText().isEmpty()) || (input_persentase_uas.getText().isEmpty())
+                || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
+                || (input_tugas2.getText().isEmpty()) || (input_tugas3.getText().isEmpty())
+                || (input_uts.getText().isEmpty()) || (input_uas.getText().isEmpty())
+                || (input_kode_mk.getText().isEmpty()))
         {
             JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
             input_persentase_absen.requestFocus();
@@ -1278,11 +1319,11 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                         +" ' "+input_tugas3.getText()+" ',"
                         +" ' "+input_uts.getText()+" ',"
                         +" ' "+input_uas.getText()+" ',"
-                        +" ' "+nilai_absen+" ',"
-                        +" ' "+nilai_tugas+" ',"
-                        +" ' "+nilai_uts+" ',"
-                        +" ' "+nilai_uas+" ',"
-                        +" ' "+nilai_akhir+" ',"
+                        +" ' "+n_absen+" ',"
+                        +" ' "+n_tugas+" ',"
+                        +" ' "+n_uts+" ',"
+                        +" ' "+n_uas+" ',"
+                        +" ' "+n_akhir+" ',"
                         +" ' "+index+" ',"
                         +" ' "+keterangan+" ')";
                 
@@ -1298,11 +1339,11 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 data[8] = input_tugas3.getText();
                 data[9] = input_uts.getText();
                 data[10] = input_uas.getText();
-                data[11] = Float.toString(nilai_absen);
-                data[12] = Float.toString(nilai_tugas);
-                data[13] = Float.toString(nilai_uts);
-                data[14] = Float.toString(nilai_uas);
-                data[15] = Float.toString(nilai_akhir);
+                data[11] = Float.toString(n_absen);
+                data[12] = Float.toString(n_tugas);
+                data[13] = Float.toString(n_uts);
+                data[14] = Float.toString(n_uas);
+                data[15] = Float.toString(n_akhir);
                 data[16] = Character.toString(index);
                 data[17] = keterangan;
                 tableModel.insertRow(0, data);
@@ -1342,6 +1383,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
         String uas = input_uas.getText();
         
         hitung_nilai();
+        bulatkan_nilai();
         index();
         keterangan();
         
@@ -1363,7 +1405,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 Connection kon = DriverManager.getConnection(database, user, pass);
                 Statement stt = kon.createStatement();
                 String SQL = "UPDATE `simulasi_nilai_akhir` "
-                        + "SET `nama_mk` = '"+nama_mk+"', "
+                        + "SET `nama_mk`='"+nama_mk+"',"
                         + "`persentase_absen`='"+per_absen+"',"
                         + "`persentase_tugas`='"+per_tug+"',"
                         + "`persentase_uts`='"+per_uts+"',"
@@ -1374,15 +1416,15 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                         + "`tgs_3`='"+tug3+"',"
                         + "`uts`='"+uts+"',"
                         + "`uas`='"+uas+"',"
-                        + "`nilai_absen`='"+nilai_absen+"',"
-                        + "`nilai_tugas`='"+nilai_tugas+"',"
-                        + "`nilai_uts`='"+nilai_uts+"',"
-                        + "`nilai_uas`='"+nilai_uas+"',"
-                        + "`nilai_akhir`='"+nilai_akhir+"',"
+                        + "`nilai_absen`='"+n_absen+"',"
+                        + "`nilai_tugas`='"+n_tugas+"',"
+                        + "`nilai_uts`='"+n_uts+"',"
+                        + "`nilai_uas`='"+n_uas+"',"
+                        + "`nilai_akhir`='"+n_akhir+"',"
                         + "`index`='"+index+"',"
                         + "`keterangan`='"+keterangan+"'"
                         + " WHERE "
-                        + "`nama_mk`'"+tableModel.getValueAt(row, 0).toString()+"';";
+                        + "`nama_mk`='"+tableModel.getValueAt(row, 0).toString()+"';";
 //                        "UPDATE `simulasi_nilai_akhir` "
 //                        + "SET `nama_mk`='"+nama_mk+"',"
 //                        + "`persentase_absen`='"+per_absen+"',"
@@ -1409,11 +1451,11 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 data[8] = tug3;
                 data[9] = uts;
                 data[10] = uas;
-                data[11] = Float.toString(nilai_absen);
-                data[12] = Float.toString(nilai_tugas);
-                data[13] = Float.toString(nilai_uts);
-                data[14] = Float.toString(nilai_uas);
-                data[15] = Float.toString(nilai_akhir);
+                data[11] = Float.toString(n_absen);
+                data[12] = Float.toString(n_tugas);
+                data[13] = Float.toString(n_uts);
+                data[14] = Float.toString(n_uas);
+                data[15] = Float.toString(n_akhir);
                 data[16] = Character.toString(index);
                 data[17] = keterangan;
                 tableModel.removeRow(row);

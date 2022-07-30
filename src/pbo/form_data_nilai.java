@@ -105,11 +105,11 @@ public class form_data_nilai extends javax.swing.JFrame {
                 
 //                get data 
                 int jumlah_pertemuan = res.getInt("kehadiran");
-                int tugas1 = res.getInt("tugas_1");
-                int tugas2 = res.getInt("tugas_2");
-                int tugas3 = res.getInt("tugas_3");
-                int uts = res.getInt("uts");
-                int uas = res.getInt("uas");
+                double tugas1 = res.getInt("tugas_1");
+                double tugas2 = res.getInt("tugas_2");
+                double tugas3 = res.getInt("tugas_3");
+                double uts = res.getInt("uts");
+                double uas = res.getInt("uas");
 //                end 
                 double nilai_absen = (((jumlah_pertemuan/14)*100*5)/100);
                 double nilai_tugas = (((tugas1+tugas2+tugas3)/3)*(0.25));
@@ -145,8 +145,8 @@ public class form_data_nilai extends javax.swing.JFrame {
                 data[3] = Double.toString(tugas1);
                 data[4] = Double.toString(tugas2);
                 data[5] = Double.toString(tugas3);
-                data[6] = Integer.toString(uts);
-                data[7] = Integer.toString(uas);
+                data[6] = Double.toString(uts);
+                data[7] = Double.toString(uas);
                 data[8] = Double.toString(nilai_absen);
                 data[9] = Double.toString(nilai_tugas);
                 data[10] = Double.toString(nilai_uts);
@@ -268,6 +268,23 @@ public class form_data_nilai extends javax.swing.JFrame {
     public void tampil_field()
     {
         row = tabel_nilai_mahasiswa.getSelectedRow();
+        input_nama.setSelectedItem(tableModel.getValueAt(row, 0).toString());
+        input_nama_matkul.setSelectedItem(tableModel.getValueAt(row, 1).toString());
+        input_kehadiran.setText(tableModel.getValueAt(row, 2).toString());
+        input_tugas1.setText(tableModel.getValueAt(row, 3).toString());
+        input_tugas2.setText(tableModel.getValueAt(row, 4).toString());
+        input_tugas3.setText(tableModel.getValueAt(row, 5).toString());
+        input_uts.setText(tableModel.getValueAt(row, 6).toString());
+        input_uas.setText(tableModel.getValueAt(row, 7).toString());
+        input_angkatan.setText("2022");
+        
+        
+        
+        btn_simpan.setEnabled(false);
+        btn_ubah.setEnabled(true);
+        btn_hapus.setEnabled(true);
+        btn_keluar.setEnabled(false);
+        aktif_teks();
 //        input_nama.setText(tableModel.getValueAt(row, 0).toString());
     }
 
@@ -820,7 +837,7 @@ public class form_data_nilai extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btn_cariLayout.setVerticalGroup(
             btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -845,6 +862,11 @@ public class form_data_nilai extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Tampilkan Keseluruhan Data");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_tampil_dataLayout = new javax.swing.GroupLayout(btn_tampil_data);
         btn_tampil_data.setLayout(btn_tampil_dataLayout);
@@ -903,11 +925,6 @@ public class form_data_nilai extends javax.swing.JFrame {
         input_uts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
 
         input_kode_mk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
-        input_kode_mk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                input_kode_mkActionPerformed(evt);
-            }
-        });
 
         input_nama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         input_nama.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -1039,8 +1056,8 @@ public class form_data_nilai extends javax.swing.JFrame {
                     .addGroup(panel_contentLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(input_cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
@@ -1172,6 +1189,15 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     private void tabel_nilai_mahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_nilai_mahasiswaMouseClicked
         // TODO add your handling code here:
+        System.out.println("masuk");
+        btn_simpan.setEnabled(false);
+        if(evt.getClickCount()==1){
+            btn_ubah.setBackground(Color.white);
+            btn_hapus.setBackground(Color.white);
+            btn_simpan.setBackground(Color.gray);
+            btn_simpan.setEnabled(false);
+            tampil_field();
+        }
 
     }//GEN-LAST:event_tabel_nilai_mahasiswaMouseClicked
 
@@ -1189,13 +1215,45 @@ public class form_data_nilai extends javax.swing.JFrame {
                     database,
                     user,
                     pass);
+                
+//                C A R I  N I M 
+                Statement stt_nama = kon.createStatement();
+                String SQL_nama = "SELECT * FROM mahasiswa "
+                        + "WHERE nama"
+                        + "='"+tableModel.getValueAt(row, 0).toString()+"'";
+                ResultSet res_nama = stt_nama.executeQuery(SQL_nama);
+                res_nama.next();
+                Integer nim = res_nama.getInt("nim");
+//                E N D 
+
+//                   C A R I  N O M O R M K 
+                Statement stt_matkul = kon.createStatement();
+                String SQL_matkul = "SELECT * FROM mata_kuliah "
+                        + "WHERE nama_mk"
+                        + "='"+tableModel.getValueAt(row, 1).toString()+"'";
+                ResultSet res_matkul = stt_matkul.executeQuery(SQL_matkul);
+                res_matkul.next();
+                Integer nomor_mk = res_matkul.getInt("nomor_mk");
+//                E N D 
+                
                 Statement stt = kon.createStatement();
-                String SQL = "DELETE FROM mahasiswa "
-                        + "WHERE "
-                        + "nim='"+tableModel.getValueAt(row, 0).toString()+"'";
+                String SQL = "DELETE FROM `nilai_mahasiswa` WHERE nim="+nim+" AND nomor_mk="+nomor_mk+";";
                 stt.executeUpdate(SQL);
+//                System.out.println("ini : "+res.next());
+//                Statement stt = kon.createStatement();
+//                String SQL = "SELECT * FROM mahasiswa "
+//                        + "WHERE nama"
+//                        + "='"+tableModel.getValueAt(row, 0).toString()+"'";
+                //stt.executeUpdate(SQL);
+                //String SQL = "DELETE FROM nilai_mahasiswa "
+                  //      + "WHERE "
+                    //    + "='"+tableModel.getValueAt(row, 0).toString()+"'";
+//                ResultSet res = stt.executeUpdate(SQL);
                 tableModel.removeRow(row);
+//                res.close();
                 stt.close();
+                res_nama.close();
+                stt_nama.close();
                 kon.close();
                 membersihkan_teks();
                 JOptionPane.showMessageDialog(null, "Data Telah Terhapus", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/delete_50px.png"));
@@ -1206,7 +1264,7 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
         // TODO add your handling code here:
-        String data[] = new String[12];
+        String data[] = new String[15];
         
         if ((input_nim.getText().isEmpty()) || (input_kehadiran.getText().isEmpty())
                 || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
@@ -1237,15 +1295,63 @@ public class form_data_nilai extends javax.swing.JFrame {
                         + " '"+input_uas.getText()+"',"
                         + " '"+input_angkatan.getText()+"')";
                 stt.executeUpdate(SQL);
-                data[0] = input_nim.getText();
-                data[1] = input_kode_mk.getText();
+                String nama = String.valueOf(input_nama.getSelectedItem());
+                String matkul = String.valueOf(input_nama_matkul.getSelectedItem());
+                double tgs1 = Integer.parseInt(input_tugas1.getText());
+                Integer tgs2 = Integer.parseInt(input_tugas2.getText());
+                Integer tgs3 = Integer.parseInt(input_tugas3.getText());                
+                Integer jumlah_pertemuan = Integer.parseInt(input_kehadiran.getText());
+                Integer uts = Integer.parseInt(input_uts.getText());
+                Integer uas = Integer.parseInt(input_uas.getText());
+                
+                double nilai_absen = (((jumlah_pertemuan/14)*100*5)/100);
+                double nilai_tugas = (((tgs1+tgs2+tgs3)/3)*(0.25));
+                double nilai_uts = uts*0.3;
+                double nilai_uas = uas*0.4;
+                double nilai_akhir = nilai_absen+nilai_tugas+nilai_uts+nilai_uas;
+                
+                String index;
+                if(nilai_akhir >= 80 & nilai_akhir <= 100){
+                    index = "A";
+                } else if(nilai_akhir >= 68 & nilai_akhir <= 79){
+                    index = "B";
+                } else if(nilai_akhir >= 56 & nilai_akhir <= 67){
+                    index = "C";
+                } else if(nilai_akhir >= 45 & nilai_akhir <= 55){
+                    index = "D";
+                } else {
+                    index = "E";
+                }
+                String keterangan = null;
+                if(index == "A" | index == "B" | index == "C"){
+                    keterangan = "Lulus";
+                }else if(index == "D" | index == "E"){
+                    keterangan = "Tidak Lulus";
+                } 
+                if(jumlah_pertemuan < 11){
+                    keterangan = "Tidak Lulus";
+                }
+                double tugas1 = Double.valueOf(input_tugas1.getText());
+                double tugas2 = Double.valueOf(input_tugas1.getText());
+                double tugas3 = Double.valueOf(input_tugas1.getText());
+                double getuts = Double.valueOf(input_uts.getText());
+                double getuas = Double.valueOf(input_tugas1.getText());
+                data[0] = nama;
+                data[1] = matkul;
                 data[2] = input_kehadiran.getText();
-                data[3] = input_tugas1.getText();
-                data[4] = input_tugas2.getText();
-                data[5] = input_tugas3.getText();
-                data[6] = input_uts.getText();
-                data[7] = input_uas.getText();
-                data[8] = input_angkatan.getText();
+                data[3] = String.valueOf(tugas1);
+                data[4] = String.valueOf(tugas2);
+                data[5] = String.valueOf(tugas3);
+                data[6] = String.valueOf(getuts);
+                data[7] = String.valueOf(getuas);
+                data[8] = Double.toString(nilai_absen);
+                data[9] = Double.toString(nilai_tugas);
+                data[10] = Double.toString(nilai_uts);
+                data[11] = Double.toString(nilai_uas);
+                data[12] = Double.toString(nilai_akhir);
+                data[13] = index;
+                data[14] = keterangan;
+                
                 tableModel.insertRow(0, data);
                 stt.close();
                 kon.close();
@@ -1419,6 +1525,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             ResultSet res = stt.executeQuery(SQL);
             
             while(res.next()) {
+                System.out.println("masuk nim");
                 input_nim.setText(res.getString("nim"));
             }
             res.close();
@@ -1450,6 +1557,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             ResultSet res = stt.executeQuery(SQL);
 //            System.out.println(res);
             while(res.next()) {
+                System.out.println("masuk kode");
                 input_kode_mk.setText(res.getString("nomor_mk"));
             }
             res.close();
@@ -1462,6 +1570,10 @@ public class form_data_nilai extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_input_nama_matkulActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments

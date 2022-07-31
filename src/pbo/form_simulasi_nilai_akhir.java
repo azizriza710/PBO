@@ -1352,6 +1352,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 membersihkan_text();
                 btn_simpan.setEnabled(false);
                 nonaktif_text();
+                JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/ok_50px.png"));
             }
             catch (Exception ex)
             {
@@ -1370,6 +1371,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
 
     private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
         // TODO add your handling code here:
+        String data[] = new String[18];
         String nama_mk = (String)input_mata_kuliah.getSelectedItem();
         String per_absen = input_persentase_absen.getText();
         String per_tug = input_persentase_tugas.getText();
@@ -1458,13 +1460,15 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                 data[15] = Float.toString(n_akhir);
                 data[16] = Character.toString(index);
                 data[17] = keterangan;
-                tableModel.removeRow(row);
-                tableModel.insertRow(row, data);
+                tableModel.setRowCount(0);
+                settableload();
                 stt.close();
                 kon.close();
                 membersihkan_text();
                 btn_ubah.setEnabled(false);
                 nonaktif_text();
+                input_mata_kuliah.setSelectedIndex(0);
+                JOptionPane.showMessageDialog(null, "Data Telah Diubah", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/change_50px.png"));
             }
             catch (Exception ex)
             {
@@ -1488,6 +1492,7 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
             stt.close();
             kon.close();
             membersihkan_text();
+            JOptionPane.showMessageDialog(null, "Data Telah Diubah", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/change_50px.png"));
         }
         catch (Exception ex)
         {

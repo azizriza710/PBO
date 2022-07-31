@@ -7,9 +7,15 @@ package pbo;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.util.Calendar;
 import javax.swing.*;
+import java.text.DecimalFormat;
 //Fungsi import yang digunakan untuk SQL 
 import java.sql.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 /**
  *
  * @author HP
@@ -20,11 +26,22 @@ public class form_data_nilai extends javax.swing.JFrame {
     koneksi dbsetting;
     String driver,database,user,pass;
     Object tabel;
+    String cari_nim = "", cari_nomor_mk= "";
+    DecimalFormat df = new DecimalFormat("#.#");
     public form_data_nilai() {
         initComponents();
         
         input_kode_mk.setEnabled(false);
         input_nim.setEnabled(false);
+        input_kehadiran.setEnabled(false);
+        input_tugas1.setEnabled(false);
+        input_tugas2.setEnabled(false);
+        input_tugas3.setEnabled(false);
+        input_uts.setEnabled(false);
+        input_uas.setEnabled(false);
+        input_angkatan.setEnabled(false);
+        
+        input_cari_data.requestFocus(false);
         
         dbsetting = new koneksi(); 
         driver = dbsetting.SettingPanel("DBDriver");
@@ -41,7 +58,47 @@ public class form_data_nilai extends javax.swing.JFrame {
         setcomboBoxNama();
         setcomboBoxMatkul();
         
+        // size header
+        tabel_nilai_mahasiswa.getTableHeader().setPreferredSize(new Dimension (35,35));
+        // font header
+        Font fontheader = new Font("Segoi UI", Font.BOLD, 13);
+        // set size header
+        tabel_nilai_mahasiswa.getTableHeader().setFont(fontheader);
+        // font cell
+        Font fontcell = new Font("Segoi UI", Font.PLAIN, 12);
+        // set font cell
+        tabel_nilai_mahasiswa.setFont(fontcell);
+        
+        // Set Center Alignment of tabel_simulasi_akhir
+        TableCellRenderer rendererFromHeader = tabel_nilai_mahasiswa.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        
         tabel_nilai_mahasiswa.setModel(tableModel);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(3).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(4).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(6).setPreferredWidth(40);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(7).setPreferredWidth(40);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(8).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(9).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(10).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(11).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(12).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(13).setPreferredWidth(50);
+        tabel_nilai_mahasiswa.getColumnModel().getColumn(14).setPreferredWidth(100);
+        
+//        S e t  C e n t e r R o w 
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        int i;
+        for (i=1; i<=14; i++){
+            tabel_nilai_mahasiswa.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
+        }
+        
+        
         settableload();
     }
     
@@ -59,11 +116,11 @@ public class form_data_nilai extends javax.swing.JFrame {
                                   "Tgs 3",
                                   "UTS",
                                   "UAS",
-                                  "Nilai Absen",
-                                  "Nilai Tugas",
-                                  "Nilai UTS",
-                                  "Nilai UAS",
-                                  "Nilai Akhir",
+                                  "<html><center>Nilai<br>Absen</center></html>",
+                                  "<html><center>Nilai<br>Tugas</center></html>",
+                                  "<html><center>Nilai<br>UTS</center></html>",
+                                  "<html><center>Nilai<br>UAS</center></html>",
+                                  "<html><center>Nilai<br>Akhir</center></html>",
                                   "Index",
                                   "Keterangan"}
                )
@@ -94,7 +151,6 @@ public class form_data_nilai extends javax.swing.JFrame {
             String SQL = "SELECT * FROM nilai_mahasiswa";
             ResultSet res = stt.executeQuery(SQL);
             while(res.next()) {
-                System.out.println(res.getInt("nim"));
                 Statement stt_nama = kon.createStatement();
                 String SQL_nama = "SELECT * FROM mahasiswa WHERE nim="+res.getInt("nim")+";";
                 ResultSet res_nama = stt_nama.executeQuery(SQL_nama);
@@ -104,7 +160,7 @@ public class form_data_nilai extends javax.swing.JFrame {
                 ResultSet res_nama_matkul = stt_nama_matkul.executeQuery(SQL_nama_matkul);
                 
 //                get data 
-                int jumlah_pertemuan = res.getInt("kehadiran");
+                double jumlah_pertemuan = res.getInt("kehadiran");
                 double tugas1 = res.getInt("tugas_1");
                 double tugas2 = res.getInt("tugas_2");
                 double tugas3 = res.getInt("tugas_3");
@@ -139,22 +195,22 @@ public class form_data_nilai extends javax.swing.JFrame {
                 }
                 res_nama.next();
                 res_nama_matkul.next();
+                
                 data[0] = res_nama.getString("nama");
                 data[1] = res_nama_matkul.getString("nama_mk");
-                data[2] = Integer.toString(jumlah_pertemuan);
+                data[2] = String.format("%.0f",jumlah_pertemuan);
                 data[3] = Double.toString(tugas1);
                 data[4] = Double.toString(tugas2);
                 data[5] = Double.toString(tugas3);
                 data[6] = Double.toString(uts);
                 data[7] = Double.toString(uas);
-                data[8] = Double.toString(nilai_absen);
-                data[9] = Double.toString(nilai_tugas);
-                data[10] = Double.toString(nilai_uts);
-                data[11] = Double.toString(nilai_uas);
-                data[12] = Double.toString(nilai_akhir);
+                data[8] = String.format("%.1f",nilai_absen);
+                data[9] = String.format("%.1f",nilai_tugas);
+                data[10] = String.format("%.1f",nilai_uts);
+                data[11] = String.format("%.1f",nilai_uas);
+                data[12] = String.format("%.1f",nilai_akhir);
                 data[13] = index;
                 data[14] = keterangan;
-                System.out.println(data);
                 tableModel.addRow(data);
 
                 res_nama.close();
@@ -349,12 +405,6 @@ public class form_data_nilai extends javax.swing.JFrame {
         btn_tambah = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        btn_cari = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        btn_tampil_data = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -675,13 +725,29 @@ public class form_data_nilai extends javax.swing.JFrame {
         panel_content.setPreferredSize(new java.awt.Dimension(1100, 700));
 
         input_cari_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        input_cari_data.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_cari_dataKeyPressed(evt);
+            }
+        });
 
+        input_nim.setEditable(false);
         input_nim.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        input_nim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_nimKeyPressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setText("Tugas 3");
 
         input_kehadiran.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
+        input_kehadiran.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_kehadiranKeyPressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("Masukan Data");
@@ -694,13 +760,13 @@ public class form_data_nilai extends javax.swing.JFrame {
         tabel_nilai_mahasiswa.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tabel_nilai_mahasiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14", "Title 15"
             }
         ));
         tabel_nilai_mahasiswa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -814,81 +880,6 @@ public class form_data_nilai extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/add_20px.png"))); // NOI18N
         btn_tambah.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        btn_cari.setBackground(new java.awt.Color(255, 255, 255));
-        btn_cari.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_cari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_cari.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_cariMouseClicked(evt);
-            }
-        });
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/search_15px.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Cari");
-
-        javax.swing.GroupLayout btn_cariLayout = new javax.swing.GroupLayout(btn_cari);
-        btn_cari.setLayout(btn_cariLayout);
-        btn_cariLayout.setHorizontalGroup(
-            btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cariLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        btn_cariLayout.setVerticalGroup(
-            btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cariLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(btn_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        btn_tampil_data.setBackground(new java.awt.Color(255, 255, 255));
-        btn_tampil_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_tampil_data.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_tampil_data.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_tampil_dataMouseClicked(evt);
-            }
-        });
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/database_view_15px.png"))); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setText("Tampilkan Keseluruhan Data");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btn_tampil_dataLayout = new javax.swing.GroupLayout(btn_tampil_data);
-        btn_tampil_data.setLayout(btn_tampil_dataLayout);
-        btn_tampil_dataLayout.setHorizontalGroup(
-            btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_tampil_dataLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        btn_tampil_dataLayout.setVerticalGroup(
-            btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_tampil_dataLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel10.setText("NIM");
 
@@ -924,6 +915,7 @@ public class form_data_nilai extends javax.swing.JFrame {
 
         input_uts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
 
+        input_kode_mk.setEditable(false);
         input_kode_mk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
 
         input_nama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -944,6 +936,7 @@ public class form_data_nilai extends javax.swing.JFrame {
 
         input_uas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
 
+        input_angkatan.setEditable(false);
         input_angkatan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -953,24 +946,6 @@ public class form_data_nilai extends javax.swing.JFrame {
         panel_content.setLayout(panel_contentLayout);
         panel_contentLayout.setHorizontalGroup(
             panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_contentLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2))
-            .addGroup(panel_contentLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(panel_contentLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addComponent(input_cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(panel_contentLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panel_contentLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1002,7 +977,7 @@ public class form_data_nilai extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_contentLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(input_tugas3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)))
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel34)
                     .addComponent(jLabel35)
@@ -1028,18 +1003,35 @@ public class form_data_nilai extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
             .addGroup(panel_contentLayout.createSequentialGroup()
                 .addGap(110, 110, 110)
-                .addComponent(btn_tambah, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addComponent(btn_tambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(43, 43, 43)
-                .addComponent(btn_ubah, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addComponent(btn_ubah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(48, 48, 48)
-                .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(53, 53, 53)
-                .addComponent(btn_simpan, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(btn_simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(46, 46, 46)
-                .addComponent(btn_batal, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                .addComponent(btn_batal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(37, 37, 37)
-                .addComponent(btn_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                .addComponent(btn_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(98, 98, 98))
+            .addGroup(panel_contentLayout.createSequentialGroup()
+                .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_contentLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2))
+                    .addGroup(panel_contentLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_contentLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1)
+                        .addGap(40, 40, 40)
+                        .addComponent(input_cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_contentLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         panel_contentLayout.setVerticalGroup(
             panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1048,17 +1040,14 @@ public class form_data_nilai extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(11, 11, 11)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_contentLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addGap(14, 14, 14)
                         .addComponent(jLabel1))
                     .addGroup(panel_contentLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(input_cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_tampil_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                        .addGap(15, 15, 15)
+                        .addComponent(input_cari_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1108,7 +1097,7 @@ public class form_data_nilai extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(input_tugas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(66, 66, 66)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addGroup(panel_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1239,16 +1228,6 @@ public class form_data_nilai extends javax.swing.JFrame {
                 Statement stt = kon.createStatement();
                 String SQL = "DELETE FROM `nilai_mahasiswa` WHERE nim="+nim+" AND nomor_mk="+nomor_mk+";";
                 stt.executeUpdate(SQL);
-//                System.out.println("ini : "+res.next());
-//                Statement stt = kon.createStatement();
-//                String SQL = "SELECT * FROM mahasiswa "
-//                        + "WHERE nama"
-//                        + "='"+tableModel.getValueAt(row, 0).toString()+"'";
-                //stt.executeUpdate(SQL);
-                //String SQL = "DELETE FROM nilai_mahasiswa "
-                  //      + "WHERE "
-                    //    + "='"+tableModel.getValueAt(row, 0).toString()+"'";
-//                ResultSet res = stt.executeUpdate(SQL);
                 tableModel.removeRow(row);
 //                res.close();
                 stt.close();
@@ -1256,6 +1235,8 @@ public class form_data_nilai extends javax.swing.JFrame {
                 stt_nama.close();
                 kon.close();
                 membersihkan_teks();
+                input_nama.setSelectedIndex(0);
+                input_nama_matkul.setSelectedIndex(0);
                 JOptionPane.showMessageDialog(null, "Data Telah Terhapus", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/delete_50px.png"));
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -1344,11 +1325,11 @@ public class form_data_nilai extends javax.swing.JFrame {
                 data[5] = String.valueOf(tugas3);
                 data[6] = String.valueOf(getuts);
                 data[7] = String.valueOf(getuas);
-                data[8] = Double.toString(nilai_absen);
-                data[9] = Double.toString(nilai_tugas);
-                data[10] = Double.toString(nilai_uts);
-                data[11] = Double.toString(nilai_uas);
-                data[12] = Double.toString(nilai_akhir);
+                data[8] = String.format("%.1f",nilai_absen);
+                data[9] = String.format("%.1f",nilai_tugas);
+                data[10] = String.format("%.1f",nilai_uts);
+                data[11] = String.format("%.1f",nilai_uas);
+                data[12] = String.format("%.1f",nilai_akhir);
                 data[13] = index;
                 data[14] = keterangan;
                 
@@ -1358,6 +1339,8 @@ public class form_data_nilai extends javax.swing.JFrame {
                 membersihkan_teks();
                 btn_keluar.setBackground(Color.white);
                 btn_ubah.setEnabled(false);
+                input_nama.setSelectedIndex(0);
+                input_nama_matkul.setSelectedIndex(0);
                 nonaktif_teks();
                 JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/ok_50px.png"));
             } catch (Exception ex) {
@@ -1399,17 +1382,17 @@ public class form_data_nilai extends javax.swing.JFrame {
                 Connection kon = DriverManager.getConnection(database, user, pass);
                 Statement stt = kon.createStatement();
                 String SQL = "UPDATE `nilai_mahasiswa` "
-                        + "SET `nim`='"+nim+"',"
+                        + "SET `nim`="+nim+","
                         + "`nomor_mk`='"+kode_mk+"',"
                         + "`kehadiran`='"+kehadiran+"',"
                         + "`tugas_1`='"+tug1+"',"
                         + "`tugas_2`='"+tug2+"',"
                         + "`tugas_3`='"+tug3+"',"
                         + "`uts`='"+uts+"',"
-                        + "`uas`='"+uas+"' "
-                        + "`angkatan`='"+angkatan+"' "
+                        + "`uas`='"+uas+"', "
+                        + "`angkatan`="+Integer.valueOf(angkatan)+" "
                         + "WHERE "
-                        + "`nim`='"+tableModel.getValueAt(row, 0).toString()+"';";
+                        + "`nim`="+nim+" AND nomor_mk="+kode_mk+";";
                 stt.execute(SQL);
                 data[0] = nim;
                 data[1] = kode_mk;
@@ -1420,13 +1403,16 @@ public class form_data_nilai extends javax.swing.JFrame {
                 data[6] = uts;
                 data[7] = uas;
                 data[8] = angkatan;
-                tableModel.removeRow(row);
-                tableModel.insertRow(row, data);
+                tableModel.setRowCount(0);
                 stt.close();
                 kon.close();
                 membersihkan_teks();
                 btn_simpan.setEnabled(false);
                 nonaktif_teks();
+                settableload();
+                input_nama.setSelectedIndex(0);
+                input_nama_matkul.setSelectedIndex(0);
+                JOptionPane.showMessageDialog(null, "Data Telah Diubah", "Success", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("picture/change_50px.png"));
             }
             catch (Exception ex)
             {
@@ -1446,8 +1432,10 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
         // TODO add your handling code here:
+        int year = Calendar.getInstance().get(Calendar.YEAR);
         membersihkan_teks();
         input_nama.requestFocus();
+        input_angkatan.setText(Integer.toString(year));
         
         btn_ubah.setBackground(Color.gray);
         btn_hapus.setBackground(Color.gray);
@@ -1460,56 +1448,6 @@ public class form_data_nilai extends javax.swing.JFrame {
         btn_keluar.setEnabled(false);
         aktif_teks();
     }//GEN-LAST:event_btn_tambahMouseClicked
-
-    private void btn_cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cariMouseClicked
-        // TODO add your handling code here:
-        //menghapus seluruh isi data di dalam jtable
-        tableModel.setRowCount(0);
-        //gunakan query untuk mencari
-        try
-        {
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database,user,pass);
-            Statement stt = kon.createStatement();
-            String SQL = "select * from nilai_mahasiswa where nim="+
-                          input_cari_data.getText();
-            ResultSet res = stt.executeQuery(SQL);
-            while(res.next())
-            {
-                data[0] = res.getString(1);
-                data[1] = res.getString(2);
-                data[2] = res.getString(3);
-                data[3] = res.getString(4);
-                data[4] = res.getString(5);
-                data[5] = res.getString(6);
-                data[6] = res.getString(7);
-                data[7] = res.getString(8);
-                data[8] = res.getString(9);
-                data[9] = res.getString(10);
-                data[10] = res.getString(11);
-                data[11] = res.getString(12);
-                data[12] = res.getString(13);
-                data[13] = res.getString(14);
-                data[14] = res.getString(15);
-                tableModel.addRow(data);
-            }
-            res.close();
-            stt.close();
-            kon.close();
-        }
-        catch(Exception ex)
-        {
-            System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }
-    }//GEN-LAST:event_btn_cariMouseClicked
-
-    private void btn_tampil_dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tampil_dataMouseClicked
-        // TODO add your handling code here:
-        tableModel.setRowCount(0);
-        settableload();
-    }//GEN-LAST:event_btn_tampil_dataMouseClicked
 
     private void input_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_namaActionPerformed
         // TODO add your handling code here:
@@ -1571,9 +1509,167 @@ public class form_data_nilai extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_input_nama_matkulActionPerformed
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+    private void input_nimKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_nimKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel9MouseClicked
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        input_angkatan.setText(Integer.toString(year));
+
+    }//GEN-LAST:event_input_nimKeyPressed
+
+    private void input_cari_dataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_cari_dataKeyPressed
+        // TODO add your handling code here:
+        tableModel.setRowCount(0);
+        String SQL = "";
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(
+                    database, 
+                    user,
+                    pass
+            );
+            System.out.println("ini cari data : "+input_cari_data.getText());
+//            System.out.println("SELECT * FROM mahasiswa "
+//                    + "WHERE ( nama LIKE '%"+input_cari_data.getText()+"%');");
+            Statement stt_nim = kon.createStatement();
+            String SQL_nim = "SELECT * FROM mahasiswa "
+                    + "WHERE ( nama LIKE '%"+input_cari_data.getText()+"%');";
+            ResultSet res_nim = stt_nim.executeQuery(SQL_nim);
+            Integer jumlah_nim = 0;
+            while(res_nim.next()){
+                cari_nim = Integer.toString(res_nim.getInt("nim"));
+                jumlah_nim = jumlah_nim+1;
+            }
+            System.out.println("ini jumlah nim : "+jumlah_nim);
+            if(jumlah_nim > 1){
+                cari_nim = "1012";
+            }
+            
+            
+
+            Statement stt_nomor_mk = kon.createStatement();
+            String SQL_nomor_mk = "SELECT * FROM mata_kuliah "
+                    + "WHERE ( nama_mk LIKE '%"+input_cari_data.getText()+"%');";
+//            System.out.println("SELECT * FROM mata_kuliah "
+//                    + "WHERE ( nama_mk LIKE '%"+input_cari_data.getText()+"%');");
+            ResultSet res_nomor_mk = stt_nomor_mk.executeQuery(SQL_nomor_mk);
+            Integer jumlah_nomor_mk = 0;
+            while(res_nomor_mk.next()){
+                cari_nomor_mk = Integer.toString(res_nomor_mk.getInt("nomor_mk"));
+                jumlah_nomor_mk = jumlah_nomor_mk+1;
+            }
+            System.out.println("ini jumlah nomor mk : "+jumlah_nomor_mk);
+            if(jumlah_nomor_mk > 1){
+                cari_nomor_mk = "10";
+            }
+            
+            System.out.println("Ini nim : "+cari_nim+", ini nomor mk : "+cari_nomor_mk);
+                    
+
+            Statement stt = kon.createStatement();
+            SQL = "SELECT * FROM nilai_mahasiswa "
+                    + "WHERE (nim LIKE '%"+cari_nim+"%') OR (nomor_mk LIKE '%"+cari_nomor_mk+"%');";
+            if(jumlah_nim == 1 & jumlah_nomor_mk == 0){
+                SQL = "SELECT * FROM nilai_mahasiswa "
+                    + "WHERE (nim LIKE '%"+cari_nim+"%');";
+            } else if(jumlah_nim == 0 & jumlah_nomor_mk == 1){
+                SQL = "SELECT * FROM nilai_mahasiswa "
+                    + "WHERE (nomor_mk LIKE '%"+cari_nomor_mk+"%');";
+            } 
+            
+            System.out.println("SELECT * FROM nilai_mahasiswa "
+                    + "WHERE ( nim LIKE '%"+cari_nim+"%') OR "
+                    + "(nomor_mk LIKE '%"+cari_nomor_mk+"%');");
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next()) {
+                System.out.println(res.getInt("nim"));
+                Statement stt_nama = kon.createStatement();
+                String SQL_nama = "SELECT * FROM mahasiswa WHERE nim="+res.getInt("nim")+";";
+                ResultSet res_nama = stt_nama.executeQuery(SQL_nama);
+//                System.out.println(res_nama.next());
+                Statement stt_nama_matkul = kon.createStatement();
+                String SQL_nama_matkul = "SELECT * FROM mata_kuliah WHERE nomor_mk="+res.getInt("nomor_mk")+";";
+                ResultSet res_nama_matkul = stt_nama_matkul.executeQuery(SQL_nama_matkul);
+                
+//                get data 
+                double jumlah_pertemuan = res.getInt("kehadiran");
+                double tugas1 = res.getInt("tugas_1");
+                double tugas2 = res.getInt("tugas_2");
+                double tugas3 = res.getInt("tugas_3");
+                double uts = res.getInt("uts");
+                double uas = res.getInt("uas");
+//                end 
+                double nilai_absen = (((jumlah_pertemuan/14)*100*5)/100);
+                double nilai_tugas = (((tugas1+tugas2+tugas3)/3)*(0.25));
+                double nilai_uts = uts*0.3;
+                double nilai_uas = uas*0.4;
+                double nilai_akhir = nilai_absen+nilai_tugas+nilai_uts+nilai_uas;
+                String index;
+                if(nilai_akhir >= 80 & nilai_akhir <= 100){
+                    index = "A";
+                } else if(nilai_akhir >= 68 & nilai_akhir <= 79){
+                    index = "B";
+                } else if(nilai_akhir >= 56 & nilai_akhir <= 67){
+                    index = "C";
+                } else if(nilai_akhir >= 45 & nilai_akhir <= 55){
+                    index = "D";
+                } else {
+                    index = "E";
+                }
+                String keterangan = null;
+                if(index == "A" | index == "B" | index == "C"){
+                    keterangan = "Lulus";
+                }else if(index == "D" | index == "E"){
+                    keterangan = "Tidak Lulus";
+                } 
+                if(jumlah_pertemuan < 11){
+                    keterangan = "Tidak Lulus";
+                }
+                res_nama.next();
+                res_nama_matkul.next();
+//                s
+                data[0] = res_nama.getString("nama");
+                data[1] = res_nama_matkul.getString("nama_mk");
+                data[2] = String.format("%.0f",jumlah_pertemuan);
+                data[3] = Double.toString(tugas1);
+                data[4] = Double.toString(tugas2);
+                data[5] = Double.toString(tugas3);
+                data[6] = Double.toString(uts);
+                data[7] = Double.toString(uas);
+                data[8] = String.format("%.1f",nilai_absen);
+                data[9] = String.format("%.1f",nilai_tugas);
+                data[10] = String.format("%.1f",nilai_uts);
+                data[11] = String.format("%.1f",nilai_uas);
+                data[12] = String.format("%.1f",nilai_akhir);
+                data[13] = index;
+                data[14] = keterangan;
+                System.out.println(data);
+                tableModel.addRow(data);
+
+                res_nama.close();
+                stt_nama.close();
+                res_nama_matkul.close();
+                stt_nama_matkul.close();
+            }
+            res.close();
+            stt.close();
+            res_nim.close();
+            stt_nim.close();
+            res_nomor_mk.close();
+            stt_nomor_mk.close();
+            kon.close();
+            cari_nim = "";
+            cari_nomor_mk = "";
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_input_cari_dataKeyPressed
+
+    private void input_kehadiranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kehadiranKeyPressed
+        // TODO add your handling code here:
+        input_angkatan.setText("2022");
+    }//GEN-LAST:event_input_kehadiranKeyPressed
 
     /**
      * @param args the command line arguments
@@ -1613,12 +1709,10 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btn_batal;
-    private javax.swing.JPanel btn_cari;
     private javax.swing.JPanel btn_hapus;
     private javax.swing.JPanel btn_keluar;
     private javax.swing.JPanel btn_simpan;
     private javax.swing.JPanel btn_tambah;
-    private javax.swing.JPanel btn_tampil_data;
     private javax.swing.JPanel btn_ubah;
     private javax.swing.JPanel data_mahasiswa;
     private javax.swing.JPanel data_mata_kuliah;
@@ -1672,11 +1766,7 @@ public class form_data_nilai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

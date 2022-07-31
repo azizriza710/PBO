@@ -19,6 +19,7 @@ public class login extends javax.swing.JFrame {
     koneksi dbsetting;
     String driver,database,user,pass;
     Object tabel;
+    Integer gagal = 0;
     public login() {
         initComponents();
         
@@ -220,22 +221,25 @@ public class login extends javax.swing.JFrame {
                 boolean hasil_cek = res.next();
 //                System.out.println(res.next());
                 if(hasil_cek == false) {
+                    gagal = gagal+1;
+                    if(gagal == 3) {
+                        JOptionPane.showMessageDialog(null, "Anda Sudah Gagal Sebanyak Tiga Kali, Program Akan Keluar", "Alert", 
+                        JOptionPane.WARNING_MESSAGE);
+                        System.exit(0);
+                    }
                     JOptionPane.showMessageDialog(null, "username atau password yang anda masukkan salah", "Alert", 
                         JOptionPane.WARNING_MESSAGE);
                     input_username.requestFocus();
-                } else {
-                    username = res.getString("username");
-                    password = res.getString("password");
-                }
-                res.close();
-                stt.close();
-                kon.close();
-                if(hasil_cek == true) {
+                } else if(hasil_cek == true) {
                     homepage utama = new homepage();
                     utama.setVisible(true);
                     
                     this.setVisible(false);
                 }
+                res.close();
+                stt.close();
+                kon.close();
+                
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 

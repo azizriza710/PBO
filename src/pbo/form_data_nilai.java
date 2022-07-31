@@ -100,6 +100,8 @@ public class form_data_nilai extends javax.swing.JFrame {
         
         
         settableload();
+        
+        
     }
     
     private javax.swing.table.DefaultTableModel tableModel=getDefaultTabelModel();
@@ -358,15 +360,15 @@ public class form_data_nilai extends javax.swing.JFrame {
         icon6 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         data_mahasiswa = new javax.swing.JPanel();
-        icon7 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        icon_mahasiswa = new javax.swing.JLabel();
+        btn_mahasiswa = new javax.swing.JLabel();
         data_mata_kuliah = new javax.swing.JPanel();
-        icon8 = new javax.swing.JLabel();
+        icon_matkul = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         data_nilai = new javax.swing.JPanel();
-        icon9 = new javax.swing.JLabel();
+        icon_nilai = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         simulasi_kasus = new javax.swing.JPanel();
         icon10 = new javax.swing.JLabel();
@@ -426,6 +428,11 @@ public class form_data_nilai extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         sidebar.setBackground(new java.awt.Color(65, 83, 128));
 
@@ -475,12 +482,12 @@ public class form_data_nilai extends javax.swing.JFrame {
             }
         });
 
-        icon7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/student_male_20px.png"))); // NOI18N
+        icon_mahasiswa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/student_male_20px.png"))); // NOI18N
 
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Data Mahasiswa");
+        btn_mahasiswa.setBackground(new java.awt.Color(255, 255, 255));
+        btn_mahasiswa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_mahasiswa.setForeground(new java.awt.Color(255, 255, 255));
+        btn_mahasiswa.setText("Data Mahasiswa");
 
         javax.swing.GroupLayout data_mahasiswaLayout = new javax.swing.GroupLayout(data_mahasiswa);
         data_mahasiswa.setLayout(data_mahasiswaLayout);
@@ -488,9 +495,9 @@ public class form_data_nilai extends javax.swing.JFrame {
             data_mahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(data_mahasiswaLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(icon7)
+                .addComponent(icon_mahasiswa)
                 .addGap(27, 27, 27)
-                .addComponent(jLabel15)
+                .addComponent(btn_mahasiswa)
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         data_mahasiswaLayout.setVerticalGroup(
@@ -498,8 +505,8 @@ public class form_data_nilai extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon7)
-                    .addComponent(jLabel15))
+                    .addComponent(icon_mahasiswa)
+                    .addComponent(btn_mahasiswa))
                 .addContainerGap())
         );
 
@@ -512,7 +519,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             }
         });
 
-        icon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/open_book_20px.png"))); // NOI18N
+        icon_matkul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/open_book_20px.png"))); // NOI18N
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -525,7 +532,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             data_mata_kuliahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(data_mata_kuliahLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(icon8)
+                .addComponent(icon_matkul)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel16)
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -535,7 +542,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliahLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon8)
+                    .addComponent(icon_matkul)
                     .addComponent(jLabel16))
                 .addContainerGap())
         );
@@ -556,7 +563,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             }
         });
 
-        icon9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/clipboard_list_20px.png"))); // NOI18N
+        icon_nilai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/clipboard_list_20px.png"))); // NOI18N
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -569,7 +576,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             data_nilaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(data_nilaiLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(icon9)
+                .addComponent(icon_nilai)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel18)
                 .addContainerGap(102, Short.MAX_VALUE))
@@ -579,7 +586,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilaiLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_nilaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon9)
+                    .addComponent(icon_nilai)
                     .addComponent(jLabel18))
                 .addContainerGap())
         );
@@ -1166,6 +1173,10 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     private void simulasi_kasusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulasi_kasusMouseClicked
         // TODO add your handling code here:
+        form_transaksi transaksi = new form_transaksi();
+        transaksi.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_simulasi_kasusMouseClicked
 
     private void simulasi_nilai_akhirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulasi_nilai_akhirMouseClicked
@@ -1671,6 +1682,11 @@ public class form_data_nilai extends javax.swing.JFrame {
         input_angkatan.setText("2022");
     }//GEN-LAST:event_input_kehadiranKeyPressed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        setExtendedState(JFrame.MAXIMIZED_BOTH);        
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -1711,6 +1727,7 @@ public class form_data_nilai extends javax.swing.JFrame {
     private javax.swing.JPanel btn_batal;
     private javax.swing.JPanel btn_hapus;
     private javax.swing.JPanel btn_keluar;
+    private javax.swing.JLabel btn_mahasiswa;
     private javax.swing.JPanel btn_simpan;
     private javax.swing.JPanel btn_tambah;
     private javax.swing.JPanel btn_ubah;
@@ -1720,9 +1737,9 @@ public class form_data_nilai extends javax.swing.JFrame {
     private javax.swing.JLabel icon10;
     private javax.swing.JLabel icon11;
     private javax.swing.JLabel icon6;
-    private javax.swing.JLabel icon7;
-    private javax.swing.JLabel icon8;
-    private javax.swing.JLabel icon9;
+    private javax.swing.JLabel icon_mahasiswa;
+    private javax.swing.JLabel icon_matkul;
+    private javax.swing.JLabel icon_nilai;
     private javax.swing.JTextField input_angkatan;
     private javax.swing.JTextField input_cari_data;
     private javax.swing.JTextField input_kehadiran;
@@ -1741,7 +1758,6 @@ public class form_data_nilai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

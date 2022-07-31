@@ -507,7 +507,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mahasiswa1Layout.setVerticalGroup(
             data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -544,7 +544,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mata_kuliah1Layout.setVerticalGroup(
             data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -588,7 +588,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_nilai1Layout.setVerticalGroup(
             data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -661,7 +661,7 @@ public class form_transaksi extends javax.swing.JFrame {
         Simulasi_nilai_akhir3Layout.setVerticalGroup(
             Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -1137,32 +1137,42 @@ public class form_transaksi extends javax.swing.JFrame {
 
     private void tentang_pembuat1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tentang_pembuat1MouseClicked
 //        // TODO add your handling code here:
-//        homepage utama = new homepage();
-//        utama.setVisible(true);
-//
-//        this.setVisible(false);
+        homepage utama = new homepage();
+        utama.setVisible(true);
+
+        this.setVisible(false);
     }//GEN-LAST:event_tentang_pembuat1MouseClicked
 
     private void data_mahasiswa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mahasiswa1MouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Mahasiswa");
+        form_mahasiswa mahasiswa = new form_mahasiswa();
+        mahasiswa.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_mahasiswa1MouseClicked
 
     private void data_mata_kuliah1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mata_kuliah1MouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Mata Kuliah");
+        form_mata_kuliah matkul = new form_mata_kuliah();
+        matkul.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_mata_kuliah1MouseClicked
 
     private void data_nilai1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_nilai1MouseClicked
         // TODO add your handling code here:
-//        form_data_nilai nilai = new form_data_nilai();
-//        nilai.setVisible(true);
-//
-//        this.setVisible(false);
+        form_data_nilai nilai = new form_data_nilai();
+        nilai.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_nilai1MouseClicked
 
     private void Simulasi_nilai_akhir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Simulasi_nilai_akhir2MouseClicked
         // TODO add your handling code here:
+        form_data_nilai nilai = new form_data_nilai();
+        nilai.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_Simulasi_nilai_akhir2MouseClicked
 
     private void Simulasi_nilai_akhir3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Simulasi_nilai_akhir3MouseClicked
@@ -1206,6 +1216,8 @@ public class form_transaksi extends javax.swing.JFrame {
         qty_teh.setEnabled(false);
         qty_telor.setEnabled(false);
         qty_usus.setEnabled(false);
+        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);        
     }//GEN-LAST:event_formWindowOpened
 
     private void cekerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cekerMouseClicked

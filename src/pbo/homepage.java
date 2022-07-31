@@ -5,6 +5,8 @@
  */
 package pbo;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author SaIN
@@ -435,7 +437,6 @@ public class homepage extends javax.swing.JFrame {
 
     private void tentang_pembuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tentang_pembuatMouseClicked
         // TODO add your handling code here:
-//        text_ubah.setText("Ini Tentang Pembuat");
         jPanel3.setVisible(true);
     }//GEN-LAST:event_tentang_pembuatMouseClicked
 
@@ -458,11 +459,15 @@ public class homepage extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         jPanel3.setVisible(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);        
     }//GEN-LAST:event_formWindowOpened
 
     private void simulasi_kasusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulasi_kasusMouseClicked
         // TODO add your handling code here:
+        form_transaksi transaksi = new form_transaksi();
+        transaksi.setVisible(true);
         
+        this.setVisible(false);        
     }//GEN-LAST:event_simulasi_kasusMouseClicked
 
     /**

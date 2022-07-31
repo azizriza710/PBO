@@ -191,8 +191,19 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         btn_tambah = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btn_tampil_data = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btn_cari = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         sidebar.setBackground(new java.awt.Color(65, 83, 128));
 
@@ -459,7 +470,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
                 .addComponent(Simulasi_nilai_akhir3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(Simulasi_nilai_akhir2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
                 .addComponent(tentang_pembuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -663,6 +674,60 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
         panel_content.add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 422, 97, 36));
 
+        btn_tampil_data.setBackground(new java.awt.Color(255, 255, 255));
+        btn_tampil_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_tampil_data.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tampil_data.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tampil_dataMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/database_view_15px.png"))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Tampilkan Keseluruhan Data");
+
+        javax.swing.GroupLayout btn_tampil_dataLayout = new javax.swing.GroupLayout(btn_tampil_data);
+        btn_tampil_data.setLayout(btn_tampil_dataLayout);
+        btn_tampil_dataLayout.setHorizontalGroup(
+            btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_tampil_dataLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel8)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel9))
+        );
+        btn_tampil_dataLayout.setVerticalGroup(
+            btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_tampil_dataLayout.createSequentialGroup()
+                .addGroup(btn_tampil_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
+        );
+
+        panel_content.add(btn_tampil_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 200, 30));
+
+        btn_cari.setBackground(new java.awt.Color(255, 255, 255));
+        btn_cari.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_cari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cariMouseClicked(evt);
+            }
+        });
+        btn_cari.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/search_15px.png"))); // NOI18N
+        btn_cari.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 30));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setText("    Cari    ");
+        btn_cari.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 50, 30));
+
+        panel_content.add(btn_cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 60, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -680,7 +745,7 @@ public class form_mata_kuliah extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(panel_content, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panel_content, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -696,12 +761,18 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
     private void data_mahasiswa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mahasiswa1MouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Mahasiswa");
+        form_mahasiswa mahasiswa = new form_mahasiswa();
+        mahasiswa.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_mahasiswa1MouseClicked
 
     private void data_mata_kuliah1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_mata_kuliah1MouseClicked
         // TODO add your handling code here:
-        //        text_ubah.setText("Ini Data Mata Kuliah");
+        form_mata_kuliah matkul = new form_mata_kuliah();
+        matkul.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_data_mata_kuliah1MouseClicked
 
     private void data_nilai1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_nilai1MouseClicked
@@ -714,6 +785,10 @@ public class form_mata_kuliah extends javax.swing.JFrame {
 
     private void Simulasi_nilai_akhir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Simulasi_nilai_akhir2MouseClicked
         // TODO add your handling code here:
+        form_transaksi transaksi = new form_transaksi();
+        transaksi.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_Simulasi_nilai_akhir2MouseClicked
 
     private void Simulasi_nilai_akhir3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Simulasi_nilai_akhir3MouseClicked
@@ -901,6 +976,61 @@ public class form_mata_kuliah extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_input_cari_dataKeyPressed
 
+    private void btn_tampil_dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tampil_dataMouseClicked
+        // TODO add your handling code here:
+        tableModel.setRowCount(0);
+        settableload();
+    }//GEN-LAST:event_btn_tampil_dataMouseClicked
+
+    private void btn_cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cariMouseClicked
+        // TODO add your handling code here:
+        //menghapus seluruh isi data di dalam jtable
+        tableModel.setRowCount(0);
+        //gunakan query untuk mencari
+        try
+        {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database,user,pass);
+            Statement stt = kon.createStatement();
+            String SQL = "select * from mahasiswa where nim="+
+            input_cari_data.getText();
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next())
+            {
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                data[2] = res.getString(3);
+                data[3] = res.getString(4);
+                data[4] = res.getString(5);
+                data[5] = res.getString(6);
+                data[6] = res.getString(7);
+                data[7] = res.getString(8);
+                data[8] = res.getString(9);
+                data[9] = res.getString(10);
+                data[10] = res.getString(11);
+                data[11] = res.getString(12);
+                data[12] = res.getString(13);
+                data[13] = res.getString(14);
+                data[14] = res.getString(15);
+                tableModel.addRow(data);
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btn_cariMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        setExtendedState(JFrame.MAXIMIZED_BOTH);        
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -940,10 +1070,12 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JPanel Simulasi_nilai_akhir2;
     private javax.swing.JPanel Simulasi_nilai_akhir3;
     private javax.swing.JPanel btn_batal;
+    private javax.swing.JPanel btn_cari;
     private javax.swing.JPanel btn_hapus;
     private javax.swing.JPanel btn_keluar;
     private javax.swing.JPanel btn_simpan;
     private javax.swing.JPanel btn_tambah;
+    private javax.swing.JPanel btn_tampil_data;
     private javax.swing.JPanel btn_ubah;
     private javax.swing.JPanel data_mahasiswa1;
     private javax.swing.JPanel data_mata_kuliah1;
@@ -956,6 +1088,8 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JLabel icon9;
     private javax.swing.JTextField input_cari_data;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -978,6 +1112,8 @@ public class form_mata_kuliah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

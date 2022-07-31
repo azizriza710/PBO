@@ -10,6 +10,10 @@ import java.awt.Color;
 import javax.swing.*;
 //Fungsi import yang digunakan untuk SQL 
 import java.sql.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 /**
  *
  * @author SaIN
@@ -20,13 +24,25 @@ public class form_transaksi extends javax.swing.JFrame {
 //    koneksi dbsetting;
     String driver,database,user,pass;
     Object tabel;
-    double total_ceker, total_usus, total_sayap, total_kepala, total_ayam,
-            total_mie_nelongso, total_paket_nasi, total_paket_mie,
-            total_nasi, total_mie, total_telor, total_air, total_teh, totalharga;
+    double total_ceker = 0, total_usus = 0, total_sayap = 0, total_kepala = 0, total_ayam = 0,
+            total_mie_nelongso = 0, total_paket_nasi = 0, total_paket_mie = 0,
+            total_nasi = 0, total_mie = 0, total_telor = 0, total_air = 0, total_teh = 0, totalharga = 0;
     int total_bayar = 0;
+//    String menu[];
+//    String banyak[];
+//    String jumlah[];
+    
     public form_transaksi() {
         initComponents();
         
+        nota.getColumnModel().getColumn(0).setPreferredWidth(97);
+        nota.getColumnModel().getColumn(1).setPreferredWidth(25);
+        nota.getColumnModel().getColumn(2).setPreferredWidth(55);
+        
+        // Set Center Alignment
+        TableCellRenderer rendererFromHeader = nota.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
         
 //        input_harga.setEnabled(false);
         
@@ -256,6 +272,25 @@ public class form_transaksi extends javax.swing.JFrame {
         usus.setEnabled(true);
     }
     
+//    public void menu(){
+////        String menu[] = null;
+////        String banyak[] = null;
+////        String jumlah[] = null;
+//        int i = 0;
+//        if (ceker.isSelected()){
+//            i += 1;
+//            menu[1] = ceker.getText();
+//            banyak[1] = qty_ceker.getText();
+//            jumlah[1] = j_ceker.getText();
+//        }
+//        else if(usus.isSelected()){
+//            i += 1;
+//            menu[i] = usus.getText();
+//            banyak[i] = qty_usus.getText();
+//            jumlah[i] = j_ceker.getText();
+//        }
+//    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -355,8 +390,8 @@ public class form_transaksi extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         pict = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        total_harga = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        total_harga = new javax.swing.JLabel();
         j_ceker = new javax.swing.JTextField();
         j_usus = new javax.swing.JTextField();
         j_sayap = new javax.swing.JTextField();
@@ -370,6 +405,8 @@ public class form_transaksi extends javax.swing.JFrame {
         j_telor = new javax.swing.JTextField();
         j_air = new javax.swing.JTextField();
         j_teh = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        nota = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -389,7 +426,7 @@ public class form_transaksi extends javax.swing.JFrame {
         panel_titleLayout.setHorizontalGroup(
             panel_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_titleLayout.createSequentialGroup()
-                .addContainerGap(428, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(393, 393, 393))
         );
@@ -470,7 +507,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mahasiswa1Layout.setVerticalGroup(
             data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -507,7 +544,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mata_kuliah1Layout.setVerticalGroup(
             data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -551,7 +588,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_nilai1Layout.setVerticalGroup(
             data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -624,7 +661,7 @@ public class form_transaksi extends javax.swing.JFrame {
         Simulasi_nilai_akhir3Layout.setVerticalGroup(
             Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -1002,54 +1039,78 @@ public class form_transaksi extends javax.swing.JFrame {
         pict.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/cancel_20px.png"))); // NOI18N
         btn_keluar.add(pict, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, 120, 39));
+        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, 110, 39));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "TOTAL HARGA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16), new java.awt.Color(65, 83, 128))); // NOI18N
 
-        total_harga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                total_hargaActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel10.setText("Rp. ");
+        total_harga.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        total_harga.setText("Rp. 0 ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(total_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(total_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         panel_content.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
-        panel_content.add(j_ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 59, 80, -1));
-        panel_content.add(j_usus, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 96, 80, -1));
-        panel_content.add(j_sayap, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 133, 80, -1));
-        panel_content.add(j_kepala, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 170, 80, -1));
-        panel_content.add(j_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 207, 80, -1));
-        panel_content.add(j_mie_nelongso, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 244, 80, -1));
-        panel_content.add(j_paket_nasi_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 281, 80, -1));
-        panel_content.add(j_paket_mie_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 318, 80, -1));
-        panel_content.add(j_nasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 355, 80, -1));
-        panel_content.add(j_mie_goreng, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 392, 80, -1));
-        panel_content.add(j_telor, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 429, 80, -1));
-        panel_content.add(j_air, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 466, 80, -1));
-        panel_content.add(j_teh, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 503, 80, -1));
+        panel_content.add(j_ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 59, 110, -1));
+        panel_content.add(j_usus, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 96, 110, -1));
+        panel_content.add(j_sayap, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 133, 110, -1));
+        panel_content.add(j_kepala, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 170, 110, -1));
+        panel_content.add(j_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 207, 110, -1));
+        panel_content.add(j_mie_nelongso, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 244, 110, -1));
+        panel_content.add(j_paket_nasi_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 281, 110, -1));
+        panel_content.add(j_paket_mie_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 318, 110, -1));
+        panel_content.add(j_nasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 355, 110, -1));
+        panel_content.add(j_mie_goreng, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 392, 110, -1));
+        panel_content.add(j_telor, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 429, 110, -1));
+        panel_content.add(j_air, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 466, 110, -1));
+        panel_content.add(j_teh, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 503, 110, -1));
+
+        nota.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Menu", "Banyak", "Jumlah"
+            }
+        ));
+        nota.setPreferredSize(new java.awt.Dimension(10, 10));
+        jScrollPane1.setViewportView(nota);
+
+        panel_content.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 260, 250));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1227,91 +1288,95 @@ public class form_transaksi extends javax.swing.JFrame {
 
     private void qty_cekerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_cekerActionPerformed
         // TODO add your handling code here:
-        double total_ceker = Integer.valueOf(qty_ceker.getText()) * 12000;
-        String total = Double.toString(total_ceker);
-        j_ceker.setText(total);
+        DecimalFormat formatData = new DecimalFormat("#.##");
+
+//        n_absen = Float.valueOf(formatData.format(nilai_absen));
+        total_ceker = Integer.valueOf(qty_ceker.getText()) * 12000;
+        double total = Double.valueOf(formatData.format(total_ceker));
+//        String total = Double.toString(total_ceker);
+        j_ceker.setText(String.valueOf(total));
     }//GEN-LAST:event_qty_cekerActionPerformed
 
     private void qty_ususActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ususActionPerformed
         // TODO add your handling code here:
-        double total_usus = Integer.valueOf(qty_usus.getText()) * 12000;
+        total_usus = Integer.valueOf(qty_usus.getText()) * 12000;
         String total = Double.toString(total_usus);
         j_usus.setText(total);
     }//GEN-LAST:event_qty_ususActionPerformed
 
     private void qty_sayapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_sayapActionPerformed
         // TODO add your handling code here:
-        double total_sayap = Integer.valueOf(qty_sayap.getText()) * 17500;
+        total_sayap = Integer.valueOf(qty_sayap.getText()) * 17500;
         String total = Double.toString(total_sayap);
         j_sayap.setText(total);
     }//GEN-LAST:event_qty_sayapActionPerformed
 
     private void qty_kepalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_kepalaActionPerformed
         // TODO add your handling code here:
-        double total_kepala = Integer.valueOf(qty_kepala.getText()) * 12000;
+        total_kepala = Integer.valueOf(qty_kepala.getText()) * 12000;
         String total = Double.toString(total_kepala);
         j_kepala.setText(total);
     }//GEN-LAST:event_qty_kepalaActionPerformed
 
     private void qty_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ayamActionPerformed
         // TODO add your handling code here:
-        double total_ayam = Integer.valueOf(qty_ayam.getText()) * 17500;
+        total_ayam = Integer.valueOf(qty_ayam.getText()) * 17500;
         String total = Double.toString(total_ayam);
         j_ayam.setText(total);
     }//GEN-LAST:event_qty_ayamActionPerformed
 
     private void qty_mie_nelongsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_nelongsoActionPerformed
         // TODO add your handling code here:
-        double total_mie_nelongso = Integer.valueOf(qty_mie_nelongso.getText()) * 12000;
+        total_mie_nelongso = Integer.valueOf(qty_mie_nelongso.getText()) * 12000;
         String total = Double.toString(total_mie_nelongso);
         j_mie_nelongso.setText(total);
     }//GEN-LAST:event_qty_mie_nelongsoActionPerformed
 
     private void qty_paket_nasi_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_nasi_ayamActionPerformed
         // TODO add your handling code here:
-        double total_paket_nasi = Integer.valueOf(qty_paket_nasi_ayam.getText()) * 21500;
+        total_paket_nasi = Integer.valueOf(qty_paket_nasi_ayam.getText()) * 21500;
         String total = Double.toString(total_paket_nasi);
         j_paket_nasi_ayam.setText(total);
     }//GEN-LAST:event_qty_paket_nasi_ayamActionPerformed
 
     private void qty_paket_mie_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_mie_ayamActionPerformed
         // TODO add your handling code here:
-        double total_paket_mie = Integer.valueOf(qty_paket_mie_ayam.getText()) * 22500;
+        total_paket_mie = Integer.valueOf(qty_paket_mie_ayam.getText()) * 22500;
         String total = Double.toString(total_paket_mie);
         j_paket_mie_ayam.setText(total);
     }//GEN-LAST:event_qty_paket_mie_ayamActionPerformed
 
     private void qty_nasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_nasiActionPerformed
         // TODO add your handling code here:
-        double total_nasi = Integer.valueOf(qty_nasi.getText()) * 5000;
+        total_nasi = Integer.valueOf(qty_nasi.getText()) * 5000;
         String total = Double.toString(total_nasi);
         j_nasi.setText(total);
     }//GEN-LAST:event_qty_nasiActionPerformed
 
     private void qty_mie_gorengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_gorengActionPerformed
         // TODO add your handling code here:
-        double total_mie = Integer.valueOf(qty_mie_goreng.getText()) * 6000;
+        total_mie = Integer.valueOf(qty_mie_goreng.getText()) * 6000;
         String total = Double.toString(total_mie);
         j_mie_goreng.setText(total);
     }//GEN-LAST:event_qty_mie_gorengActionPerformed
 
     private void qty_telorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_telorActionPerformed
         // TODO add your handling code here:
-        double total_telor = Integer.valueOf(qty_telor.getText()) * 3000;
+        total_telor = Integer.valueOf(qty_telor.getText()) * 3000;
         String total = Double.toString(total_telor);
         j_telor.setText(total);
     }//GEN-LAST:event_qty_telorActionPerformed
 
     private void qty_airActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_airActionPerformed
         // TODO add your handling code here:
-        double total_air = Integer.valueOf(qty_air.getText()) * 5000;
+        total_air = Integer.valueOf(qty_air.getText()) * 5000;
         String total = Double.toString(total_air);
         j_air.setText(total);
     }//GEN-LAST:event_qty_airActionPerformed
 
     private void qty_tehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_tehActionPerformed
         // TODO add your handling code here:
-        double total_teh = Integer.valueOf(qty_teh.getText()) * 6000;
+        total_teh = Integer.valueOf(qty_teh.getText()) * 6000;
         String total = Double.toString(total_teh);
         j_teh.setText(total);
     }//GEN-LAST:event_qty_tehActionPerformed
@@ -1319,13 +1384,33 @@ public class form_transaksi extends javax.swing.JFrame {
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
         // TODO add your handling code here:
         //hitung_total();
-        total_harga.setText(String.valueOf(totalharga));
+//        total_harga.setText(String.valueOf(totalharga));
+        // FORMAT RUPIAH
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
+        // HITUNG TOTAL HARGA
+        totalharga = total_air + total_ayam + total_ceker + total_kepala + total_mie
+                + total_mie_nelongso + total_nasi + total_paket_mie + total_paket_nasi + total_sayap
+                + total_teh + total_telor + total_usus;
+        String total = kursIndonesia.format(totalharga);
+        total_harga.setText(total);
+        
+        // ADD DATA TO TABLE
+//        menu();
+        DefaultTableModel model = (DefaultTableModel)nota.getModel();
+        model.addRow(new Object[] {});
+//        System.out.println(menu);
+//        System.out.println(banyak);
+//        System.out.println(jumlah);
+//        total_harga.setText(""+total_harga.toString());
         
     }//GEN-LAST:event_btn_pesanMouseClicked
-
-    private void total_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total_hargaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_total_hargaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1394,7 +1479,6 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel icon8;
     private javax.swing.JLabel icon9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1411,6 +1495,8 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -1443,6 +1529,7 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JCheckBox mie_goreng;
     private javax.swing.JCheckBox mie_nelongso;
     private javax.swing.JCheckBox nasi;
+    private javax.swing.JTable nota;
     private javax.swing.JCheckBox paket_mie_ayam;
     private javax.swing.JCheckBox paket_nasi_ayam;
     private javax.swing.JPanel panel_content;
@@ -1466,7 +1553,7 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JCheckBox teh;
     private javax.swing.JCheckBox telor;
     private javax.swing.JPanel tentang_pembuat1;
-    private javax.swing.JTextField total_harga;
+    private javax.swing.JLabel total_harga;
     private javax.swing.JCheckBox usus;
     // End of variables declaration//GEN-END:variables
 }

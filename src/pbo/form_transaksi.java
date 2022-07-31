@@ -20,9 +20,13 @@ public class form_transaksi extends javax.swing.JFrame {
 //    koneksi dbsetting;
     String driver,database,user,pass;
     Object tabel;
+    double total_ceker, total_usus, total_sayap, total_kepala, total_ayam,
+            total_mie_nelongso, total_paket_nasi, total_paket_mie,
+            total_nasi, total_mie, total_telor, total_air, total_teh, totalharga;
     int total_bayar = 0;
     public form_transaksi() {
         initComponents();
+        
         
 //        input_harga.setEnabled(false);
         
@@ -88,6 +92,42 @@ public class form_transaksi extends javax.swing.JFrame {
 //            System.exit(0);
 //        }
 //    }
+    
+    public void hitung_total()
+    {
+//        double jumlah_ceker = Integer.valueOf(qty_ceker.getText());
+//        double jumlah_usus = Integer.valueOf(qty_usus.getText());
+//        double jumlah_sayap = Integer.valueOf(qty_sayap.getText());
+//        double jumlah_kepala = Integer.valueOf(qty_kepala.getText());
+//        double jumlah_ayam = Integer.valueOf(qty_ayam.getText());
+//        double jumlah_mie_nelongso = Integer.valueOf(qty_mie_nelongso.getText());
+//        double jumlah_paket_nasi_ayam = Integer.valueOf(qty_paket_nasi_ayam.getText());
+//        double jumlah_paket_mie_ayam = Integer.valueOf(qty_paket_mie_ayam.getText());
+//        double jumlah_nasi = Integer.valueOf(qty_nasi.getText());
+//        double jumlah_mie_goreng = Integer.valueOf(qty_mie_goreng.getText());
+//        double jumlah_telor = Integer.valueOf(qty_telor.getText());
+//        double jumlah_air = Integer.valueOf(qty_air.getText());
+//        double jumlah_teh = Integer.valueOf(qty_teh.getText());           
+        
+//        total_ceker = (jumlah_ceker * 12000);
+//        total_usus = (jumlah_usus * 12000);
+//        total_sayap = (jumlah_sayap * 17500);
+//        total_kepala = (jumlah_kepala * 12000);
+//        total_ayam = (jumlah_ayam * 17500);
+//        total_mie_nelongso = (jumlah_mie_nelongso * 12000);
+//        total_paket_nasi = (jumlah_paket_nasi_ayam * 21500);
+//        total_paket_mie = (jumlah_paket_mie_ayam * 22500);
+//        total_nasi = (jumlah_nasi * 5000);
+//        total_mie = (jumlah_mie_goreng * 6000);
+//        total_telor = (jumlah_telor * 3000);
+        //total_air = (jumlah_air * 5000);
+        //total_teh = (jumlah_teh * 6000);
+        
+        totalharga = (total_ceker + total_usus);
+                //total_usus+total_sayap+total_kepala+total_ayam+
+                //total_mie_nelongso+total_paket_nasi+total_paket_mie+total_nasi+
+                //total_mie+total_telor+total_air+total_teh;
+    }
     
     public void membersihkan_teks() {
         qty_air.setText("");
@@ -215,7 +255,7 @@ public class form_transaksi extends javax.swing.JFrame {
         telor.setEnabled(true);
         usus.setEnabled(true);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -430,7 +470,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mahasiswa1Layout.setVerticalGroup(
             data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -467,7 +507,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mata_kuliah1Layout.setVerticalGroup(
             data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -511,7 +551,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_nilai1Layout.setVerticalGroup(
             data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -584,7 +624,7 @@ public class form_transaksi extends javax.swing.JFrame {
         Simulasi_nilai_akhir3Layout.setVerticalGroup(
             Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -794,18 +834,96 @@ public class form_transaksi extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(65, 83, 128));
         jLabel3.setText("BANYAK");
         panel_content.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 22, -1, -1));
+
+        qty_ceker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_cekerActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 59, 50, -1));
+
+        qty_usus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_ususActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_usus, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 96, 50, -1));
+
+        qty_sayap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_sayapActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_sayap, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 133, 50, -1));
+
+        qty_kepala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_kepalaActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_kepala, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 170, 50, -1));
+
+        qty_ayam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_ayamActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 207, 50, -1));
+
+        qty_mie_nelongso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_mie_nelongsoActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_mie_nelongso, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 244, 50, -1));
+
+        qty_paket_nasi_ayam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_paket_nasi_ayamActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_paket_nasi_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 281, 50, -1));
+
+        qty_paket_mie_ayam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_paket_mie_ayamActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_paket_mie_ayam, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 318, 50, -1));
+
+        qty_nasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_nasiActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_nasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 355, 50, -1));
+
+        qty_mie_goreng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_mie_gorengActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_mie_goreng, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 392, 50, -1));
+
+        qty_telor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_telorActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_telor, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 429, 50, -1));
+
+        qty_air.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_airActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_air, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 466, 50, -1));
+
+        qty_teh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qty_tehActionPerformed(evt);
+            }
+        });
         panel_content.add(qty_teh, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 503, 50, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -833,6 +951,11 @@ public class form_transaksi extends javax.swing.JFrame {
         btn_pesan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_pesan.setMinimumSize(new java.awt.Dimension(84, 30));
         btn_pesan.setPreferredSize(new java.awt.Dimension(84, 30));
+        btn_pesan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pesanMouseClicked(evt);
+            }
+        });
         btn_pesan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -883,6 +1006,12 @@ public class form_transaksi extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "TOTAL HARGA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16), new java.awt.Color(65, 83, 128))); // NOI18N
+
+        total_harga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                total_hargaActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Rp. ");
 
@@ -1095,6 +1224,108 @@ public class form_transaksi extends javax.swing.JFrame {
         qty_teh.setEnabled(true);
         j_teh.setEnabled(true);
     }//GEN-LAST:event_tehMouseClicked
+
+    private void qty_cekerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_cekerActionPerformed
+        // TODO add your handling code here:
+        double total_ceker = Integer.valueOf(qty_ceker.getText()) * 12000;
+        String total = Double.toString(total_ceker);
+        j_ceker.setText(total);
+    }//GEN-LAST:event_qty_cekerActionPerformed
+
+    private void qty_ususActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ususActionPerformed
+        // TODO add your handling code here:
+        double total_usus = Integer.valueOf(qty_usus.getText()) * 12000;
+        String total = Double.toString(total_usus);
+        j_usus.setText(total);
+    }//GEN-LAST:event_qty_ususActionPerformed
+
+    private void qty_sayapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_sayapActionPerformed
+        // TODO add your handling code here:
+        double total_sayap = Integer.valueOf(qty_sayap.getText()) * 17500;
+        String total = Double.toString(total_sayap);
+        j_sayap.setText(total);
+    }//GEN-LAST:event_qty_sayapActionPerformed
+
+    private void qty_kepalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_kepalaActionPerformed
+        // TODO add your handling code here:
+        double total_kepala = Integer.valueOf(qty_kepala.getText()) * 12000;
+        String total = Double.toString(total_kepala);
+        j_kepala.setText(total);
+    }//GEN-LAST:event_qty_kepalaActionPerformed
+
+    private void qty_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ayamActionPerformed
+        // TODO add your handling code here:
+        double total_ayam = Integer.valueOf(qty_ayam.getText()) * 17500;
+        String total = Double.toString(total_ayam);
+        j_ayam.setText(total);
+    }//GEN-LAST:event_qty_ayamActionPerformed
+
+    private void qty_mie_nelongsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_nelongsoActionPerformed
+        // TODO add your handling code here:
+        double total_mie_nelongso = Integer.valueOf(qty_mie_nelongso.getText()) * 12000;
+        String total = Double.toString(total_mie_nelongso);
+        j_mie_nelongso.setText(total);
+    }//GEN-LAST:event_qty_mie_nelongsoActionPerformed
+
+    private void qty_paket_nasi_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_nasi_ayamActionPerformed
+        // TODO add your handling code here:
+        double total_paket_nasi = Integer.valueOf(qty_paket_nasi_ayam.getText()) * 21500;
+        String total = Double.toString(total_paket_nasi);
+        j_paket_nasi_ayam.setText(total);
+    }//GEN-LAST:event_qty_paket_nasi_ayamActionPerformed
+
+    private void qty_paket_mie_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_mie_ayamActionPerformed
+        // TODO add your handling code here:
+        double total_paket_mie = Integer.valueOf(qty_paket_mie_ayam.getText()) * 22500;
+        String total = Double.toString(total_paket_mie);
+        j_paket_mie_ayam.setText(total);
+    }//GEN-LAST:event_qty_paket_mie_ayamActionPerformed
+
+    private void qty_nasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_nasiActionPerformed
+        // TODO add your handling code here:
+        double total_nasi = Integer.valueOf(qty_nasi.getText()) * 5000;
+        String total = Double.toString(total_nasi);
+        j_nasi.setText(total);
+    }//GEN-LAST:event_qty_nasiActionPerformed
+
+    private void qty_mie_gorengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_gorengActionPerformed
+        // TODO add your handling code here:
+        double total_mie = Integer.valueOf(qty_mie_goreng.getText()) * 6000;
+        String total = Double.toString(total_mie);
+        j_mie_goreng.setText(total);
+    }//GEN-LAST:event_qty_mie_gorengActionPerformed
+
+    private void qty_telorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_telorActionPerformed
+        // TODO add your handling code here:
+        double total_telor = Integer.valueOf(qty_telor.getText()) * 3000;
+        String total = Double.toString(total_telor);
+        j_telor.setText(total);
+    }//GEN-LAST:event_qty_telorActionPerformed
+
+    private void qty_airActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_airActionPerformed
+        // TODO add your handling code here:
+        double total_air = Integer.valueOf(qty_air.getText()) * 5000;
+        String total = Double.toString(total_air);
+        j_air.setText(total);
+    }//GEN-LAST:event_qty_airActionPerformed
+
+    private void qty_tehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_tehActionPerformed
+        // TODO add your handling code here:
+        double total_teh = Integer.valueOf(qty_teh.getText()) * 6000;
+        String total = Double.toString(total_teh);
+        j_teh.setText(total);
+    }//GEN-LAST:event_qty_tehActionPerformed
+
+    private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
+        // TODO add your handling code here:
+        //hitung_total();
+        total_harga.setText(String.valueOf(totalharga));
+        
+    }//GEN-LAST:event_btn_pesanMouseClicked
+
+    private void total_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total_hargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_total_hargaActionPerformed
 
     /**
      * @param args the command line arguments

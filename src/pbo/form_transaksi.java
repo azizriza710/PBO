@@ -14,8 +14,6 @@ import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import javax.swing.*;
-//Fungsi import yang digunakan untuk SQL 
-import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -30,8 +28,7 @@ import javax.swing.table.TableCellRenderer;
  */
 public class form_transaksi extends javax.swing.JFrame {
 
-    //    deklarasi variabel 
-//    koneksi dbsetting;
+    //    deklarasi variabel
     String driver,database,user,pass;
     Object tabel;
     double total_ceker = 0, total_usus = 0, total_sayap = 0, total_kepala = 0, total_ayam = 0,
@@ -41,10 +38,6 @@ public class form_transaksi extends javax.swing.JFrame {
     ArrayList<String> makanan = new ArrayList<String>();
     ArrayList<String> banyak = new ArrayList<String>();
     ArrayList<String> jumlah = new ArrayList<String>();
-//    String menu[];
-//    String banyak[];
-//    String jumlah[];
-    
     public form_transaksi() {
         initComponents();
         
@@ -66,105 +59,6 @@ public class form_transaksi extends javax.swing.JFrame {
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
         nota.getColumnModel().getColumn(2).setCellRenderer( rightRenderer );
-//        input_harga.setEnabled(false);
-        
-//        dbsetting = new koneksi(); 
-//        driver = dbsetting.SettingPanel("DBDriver");
-//        database = dbsetting.SettingPanel("DBDatabase");
-//        user = dbsetting.SettingPanel("DBUsername");
-//        pass = dbsetting.SettingPanel("DBPassword");
-        
-//        input_menu.removeAllItems();
-//        input_menu.addItem("Silahkan Pilih Menu");
-//        input_harga.setText("");
-//        setcomboBoxMenu();
-//    
-//        table_transaksi.setModel(tableModel);
-    }
-
-//    private javax.swing.table.DefaultTableModel tableModel = getDefaultTabelModel();
-//    private javax.swing.table.DefaultTableModel getDefaultTabelModel(){
-//        //        membuat judul header 
-//        return new javax.swing.table.DefaultTableModel (
-//            new Object[][] {},
-//            new String [] {
-//                "Banyak",
-//                "Daftar Menu",
-//                "Harga",
-//                "Jumlah"
-//            }
-//        )
-////                disable perubahan pada grid 
-//        { 
-//            boolean[] canEdit = new boolean[] {
-//                false,false
-//            };
-//            public boolean isCellEditable(int rowIndex, int columnIndex) {
-//                return canEdit[columnIndex];
-//            }
-//        };
-//    }
-    
-//    private void setcomboBoxMenu() {
-//        try {
-//            Class.forName(driver);
-//            Connection kon = DriverManager.getConnection(
-//                database,
-//                user,
-//                pass);
-//            Statement stt = kon.createStatement();
-//            String SQL = "SELECT * FROM daftar_menu";
-//            ResultSet res = stt.executeQuery(SQL);
-//            
-//            while(res.next()) {
-////                data[0] = res.getString("nama_mk");
-//                input_menu.addItem(res.getString("nama_menu"));
-//            }
-//            res.close();
-//            stt.close();
-//            kon.close();
-//        } catch (Exception ex) {
-//            System.err.println(ex.getMessage());
-//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
-//                    JOptionPane.INFORMATION_MESSAGE);
-//            System.exit(0);
-//        }
-//    }
-    
-    public void hitung_total()
-    {
-//        double jumlah_ceker = Integer.valueOf(qty_ceker.getText());
-//        double jumlah_usus = Integer.valueOf(qty_usus.getText());
-//        double jumlah_sayap = Integer.valueOf(qty_sayap.getText());
-//        double jumlah_kepala = Integer.valueOf(qty_kepala.getText());
-//        double jumlah_ayam = Integer.valueOf(qty_ayam.getText());
-//        double jumlah_mie_nelongso = Integer.valueOf(qty_mie_nelongso.getText());
-//        double jumlah_paket_nasi_ayam = Integer.valueOf(qty_paket_nasi_ayam.getText());
-//        double jumlah_paket_mie_ayam = Integer.valueOf(qty_paket_mie_ayam.getText());
-//        double jumlah_nasi = Integer.valueOf(qty_nasi.getText());
-//        double jumlah_mie_goreng = Integer.valueOf(qty_mie_goreng.getText());
-//        double jumlah_telor = Integer.valueOf(qty_telor.getText());
-//        double jumlah_air = Integer.valueOf(qty_air.getText());
-//        double jumlah_teh = Integer.valueOf(qty_teh.getText());           
-        
-//        total_ceker = (jumlah_ceker * 12000);
-//        total_usus = (jumlah_usus * 12000);
-//        total_sayap = (jumlah_sayap * 17500);
-//        total_kepala = (jumlah_kepala * 12000);
-//        total_ayam = (jumlah_ayam * 17500);
-//        total_mie_nelongso = (jumlah_mie_nelongso * 12000);
-//        total_paket_nasi = (jumlah_paket_nasi_ayam * 21500);
-//        total_paket_mie = (jumlah_paket_mie_ayam * 22500);
-//        total_nasi = (jumlah_nasi * 5000);
-//        total_mie = (jumlah_mie_goreng * 6000);
-//        total_telor = (jumlah_telor * 3000);
-        //total_air = (jumlah_air * 5000);
-        //total_teh = (jumlah_teh * 6000);
-        
-        totalharga = (total_ceker + total_usus);
-                //total_usus+total_sayap+total_kepala+total_ayam+
-                //total_mie_nelongso+total_paket_nasi+total_paket_mie+total_nasi+
-                //total_mie+total_telor+total_air+total_teh;
     }
     
     public void membersihkan_teks() {
@@ -236,7 +130,6 @@ public class form_transaksi extends javax.swing.JFrame {
         j_teh.setEnabled(false);
         j_telor.setEnabled(false);
         j_usus.setEnabled(false);
-        total_harga.setEnabled(false);
         air.setEnabled(false);
         ayam.setEnabled(false);
         ceker.setEnabled(false);
@@ -293,25 +186,6 @@ public class form_transaksi extends javax.swing.JFrame {
         telor.setEnabled(true);
         usus.setEnabled(true);
     }
-    
-//    public void menu(){
-////        String menu[] = null;
-////        String banyak[] = null;
-////        String jumlah[] = null;
-//        int i = 0;
-//        if (ceker.isSelected()){
-//            i += 1;
-//            menu[1] = ceker.getText();
-//            banyak[1] = qty_ceker.getText();
-//            jumlah[1] = j_ceker.getText();
-//        }
-//        else if(usus.isSelected()){
-//            i += 1;
-//            menu[i] = usus.getText();
-//            banyak[i] = qty_usus.getText();
-//            jumlah[i] = j_ceker.getText();
-//        }
-//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1262,8 +1136,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if (ceker.isSelected()){
             qty_ceker.setEnabled(true);
             j_ceker.setEnabled(true);
-            
-            makanan.add(ceker.getText());
         }
         else{
             qty_ceker.setEnabled(false);
@@ -1276,8 +1148,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if (usus.isSelected()){
             qty_usus.setEnabled(true);
             j_usus.setEnabled(true);
-            
-            makanan.add(usus.getText());
         }
         else{
             qty_usus.setEnabled(false);
@@ -1290,8 +1160,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if (sayap.isSelected()){
             qty_sayap.setEnabled(true);
             j_sayap.setEnabled(true);
-            
-            makanan.add(sayap.getText());
         }
         else{
             qty_sayap.setEnabled(false);
@@ -1304,8 +1172,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(kepala.isSelected()){
             qty_kepala.setEnabled(true);
             j_kepala.setEnabled(true);
-            
-            makanan.add(kepala.getText());
         }
         else{
             qty_kepala.setEnabled(false);
@@ -1318,8 +1184,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(ayam.isSelected()){
             qty_ayam.setEnabled(true);
             j_ayam.setEnabled(true);
-            
-            makanan.add(ayam.getText());
         }
         else{
             qty_ayam.setEnabled(false);
@@ -1332,8 +1196,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(mie_nelongso.isSelected()){
             qty_mie_nelongso.setEnabled(true);
             j_mie_nelongso.setEnabled(true);
-            
-            makanan.add(mie_nelongso.getText());
         }
         else{
             qty_mie_nelongso.setEnabled(false);
@@ -1346,8 +1208,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(paket_nasi_ayam.isSelected()){
             qty_paket_nasi_ayam.setEnabled(true);
             j_paket_nasi_ayam.setEnabled(true);
-            
-            makanan.add(paket_nasi_ayam.getText());
         }
         else{
             qty_paket_nasi_ayam.setEnabled(false);
@@ -1360,8 +1220,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(paket_mie_ayam.isSelected()){
             qty_paket_mie_ayam.setEnabled(true);
             j_paket_mie_ayam.setEnabled(true);
-            
-            makanan.add(paket_mie_ayam.getText());
         }
         else{
             qty_paket_mie_ayam.setEnabled(true);
@@ -1374,8 +1232,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(nasi.isSelected()){
             qty_nasi.setEnabled(true);
             j_nasi.setEnabled(true);
-            
-            makanan.add(nasi.getText());
         }
         else{
             qty_nasi.setEnabled(false);
@@ -1388,8 +1244,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(mie_goreng.isSelected()){
             qty_mie_goreng.setEnabled(true);
             j_mie_goreng.setEnabled(true);
-            
-            makanan.add(mie_goreng.getText());
         }
         else{
             qty_mie_goreng.setEnabled(false);
@@ -1402,8 +1256,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(telor.isSelected()){
             qty_telor.setEnabled(true);
             j_telor.setEnabled(true);
-            
-            makanan.add(telor.getText());
         }
         else{
             qty_telor.setEnabled(false);
@@ -1416,8 +1268,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(air.isSelected()){
             qty_air.setEnabled(true);
             j_air.setEnabled(true);
-            
-            makanan.add(air.getText());
         }
         else{
             qty_air.setEnabled(false);
@@ -1430,8 +1280,6 @@ public class form_transaksi extends javax.swing.JFrame {
         if(teh.isSelected()){
             qty_teh.setEnabled(true);
             j_teh.setEnabled(true);
-            
-            makanan.add(teh.getText());
         }
         else{
             qty_teh.setEnabled(false);
@@ -1455,6 +1303,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_ceker = kursIndonesia.format(total_ceker);
         banyak.add(qty_ceker.getText());
         jumlah.add(t_ceker);
+        makanan.add(ceker.getText());
     }//GEN-LAST:event_qty_cekerActionPerformed
 
     private void qty_ususActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ususActionPerformed
@@ -1473,6 +1322,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_usus = kursIndonesia.format(total_usus);
         banyak.add(qty_usus.getText());
         jumlah.add(t_usus);
+        makanan.add(usus.getText());
     }//GEN-LAST:event_qty_ususActionPerformed
 
     private void qty_sayapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_sayapActionPerformed
@@ -1491,6 +1341,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_sayap = kursIndonesia.format(total_sayap);
         banyak.add(qty_sayap.getText());
         jumlah.add(t_sayap);
+        makanan.add(sayap.getText());
     }//GEN-LAST:event_qty_sayapActionPerformed
 
     private void qty_kepalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_kepalaActionPerformed
@@ -1509,6 +1360,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_kepala = kursIndonesia.format(total_kepala);
         banyak.add(qty_kepala.getText());
         jumlah.add(t_kepala);
+        makanan.add(kepala.getText());
     }//GEN-LAST:event_qty_kepalaActionPerformed
 
     private void qty_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ayamActionPerformed
@@ -1527,6 +1379,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_ayam = kursIndonesia.format(total_ayam);
         banyak.add(qty_ayam.getText());
         jumlah.add(t_ayam);
+        makanan.add(ayam.getText());
     }//GEN-LAST:event_qty_ayamActionPerformed
 
     private void qty_mie_nelongsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_nelongsoActionPerformed
@@ -1545,6 +1398,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_mie_nelongso = kursIndonesia.format(total_mie_nelongso);
         banyak.add(qty_mie_nelongso.getText());
         jumlah.add(t_mie_nelongso);
+        makanan.add(mie_nelongso.getText());
     }//GEN-LAST:event_qty_mie_nelongsoActionPerformed
 
     private void qty_paket_nasi_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_nasi_ayamActionPerformed
@@ -1563,6 +1417,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_paket_nasi = kursIndonesia.format(total_paket_nasi);
         banyak.add(qty_paket_nasi_ayam.getText());
         jumlah.add(t_paket_nasi);
+        makanan.add(paket_nasi_ayam.getText());
     }//GEN-LAST:event_qty_paket_nasi_ayamActionPerformed
 
     private void qty_paket_mie_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_mie_ayamActionPerformed
@@ -1581,6 +1436,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_paket_mie = kursIndonesia.format(total_paket_mie);
         banyak.add(qty_paket_mie_ayam.getText());
         jumlah.add(t_paket_mie);
+        makanan.add(paket_mie_ayam.getText());
     }//GEN-LAST:event_qty_paket_mie_ayamActionPerformed
 
     private void qty_nasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_nasiActionPerformed
@@ -1599,6 +1455,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_nasi = kursIndonesia.format(total_nasi);
         banyak.add(qty_nasi.getText());
         jumlah.add(t_nasi);
+        makanan.add(nasi.getText());
     }//GEN-LAST:event_qty_nasiActionPerformed
 
     private void qty_mie_gorengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_gorengActionPerformed
@@ -1617,6 +1474,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_mie = kursIndonesia.format(total_mie);
         banyak.add(qty_mie_goreng.getText());
         jumlah.add(t_mie);
+        makanan.add(mie_goreng.getText());
     }//GEN-LAST:event_qty_mie_gorengActionPerformed
 
     private void qty_telorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_telorActionPerformed
@@ -1635,6 +1493,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_telur = kursIndonesia.format(total_telor);
         banyak.add(qty_telor.getText());
         jumlah.add(t_telur);
+        makanan.add(telor.getText());
     }//GEN-LAST:event_qty_telorActionPerformed
 
     private void qty_airActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_airActionPerformed
@@ -1653,6 +1512,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_air = kursIndonesia.format(total_air);
         banyak.add(qty_air.getText());
         jumlah.add(t_air);
+        makanan.add(air.getText());
     }//GEN-LAST:event_qty_airActionPerformed
 
     private void qty_tehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_tehActionPerformed
@@ -1671,6 +1531,7 @@ public class form_transaksi extends javax.swing.JFrame {
         String t_teh = kursIndonesia.format(total_teh);
         banyak.add(qty_teh.getText());
         jumlah.add(t_teh);
+        makanan.add(teh.getText());
     }//GEN-LAST:event_qty_tehActionPerformed
 
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
@@ -1703,6 +1564,7 @@ public class form_transaksi extends javax.swing.JFrame {
             tablemodel.addRow(row);
         }
         
+        nonaktif_teks();
     }//GEN-LAST:event_btn_pesanMouseClicked
 
     private void btn_downloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_downloadMouseClicked

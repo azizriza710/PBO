@@ -733,8 +733,8 @@ public class form_data_nilai extends javax.swing.JFrame {
 
         input_cari_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 83, 128)));
         input_cari_data.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                input_cari_dataKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                input_cari_dataKeyReleased(evt);
             }
         });
 
@@ -1527,7 +1527,17 @@ public class form_data_nilai extends javax.swing.JFrame {
 
     }//GEN-LAST:event_input_nimKeyPressed
 
-    private void input_cari_dataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_cari_dataKeyPressed
+    private void input_kehadiranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kehadiranKeyPressed
+        // TODO add your handling code here:
+        input_angkatan.setText("2022");
+    }//GEN-LAST:event_input_kehadiranKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        setExtendedState(JFrame.MAXIMIZED_BOTH);        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void input_cari_dataKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_cari_dataKeyReleased
         // TODO add your handling code here:
         tableModel.setRowCount(0);
         String SQL = "";
@@ -1675,17 +1685,7 @@ public class form_data_nilai extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
-    }//GEN-LAST:event_input_cari_dataKeyPressed
-
-    private void input_kehadiranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kehadiranKeyPressed
-        // TODO add your handling code here:
-        input_angkatan.setText("2022");
-    }//GEN-LAST:event_input_kehadiranKeyPressed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        setExtendedState(JFrame.MAXIMIZED_BOTH);        
-    }//GEN-LAST:event_formWindowOpened
+    }//GEN-LAST:event_input_cari_dataKeyReleased
 
     /**
      * @param args the command line arguments

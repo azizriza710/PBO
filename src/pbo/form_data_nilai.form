@@ -793,7 +793,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="input_cari_dataKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="input_cari_dataKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="input_nim">

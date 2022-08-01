@@ -5,14 +5,22 @@
  */
 package pbo;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import javax.swing.*;
 //Fungsi import yang digunakan untuk SQL 
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -522,7 +530,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mahasiswa1Layout.setVerticalGroup(
             data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -559,7 +567,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mata_kuliah1Layout.setVerticalGroup(
             data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -603,7 +611,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_nilai1Layout.setVerticalGroup(
             data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -676,7 +684,7 @@ public class form_transaksi extends javax.swing.JFrame {
         Simulasi_nilai_akhir3Layout.setVerticalGroup(
             Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -1045,6 +1053,11 @@ public class form_transaksi extends javax.swing.JFrame {
         btn_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_keluar.setMinimumSize(new java.awt.Dimension(84, 30));
         btn_keluar.setPreferredSize(new java.awt.Dimension(84, 30));
+        btn_keluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_keluarMouseClicked(evt);
+            }
+        });
         btn_keluar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1116,7 +1129,7 @@ public class form_transaksi extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Daftar Menu", "Banyak", "Jumlah"
             }
         ));
         jScrollPane2.setViewportView(nota);
@@ -1126,6 +1139,11 @@ public class form_transaksi extends javax.swing.JFrame {
         btn_download.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_download.setForeground(new java.awt.Color(65, 83, 128));
         btn_download.setText("CETAK");
+        btn_download.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_downloadMouseClicked(evt);
+            }
+        });
         panel_content.add(btn_download, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 360, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1686,6 +1704,56 @@ public class form_transaksi extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_pesanMouseClicked
+
+    private void btn_downloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_downloadMouseClicked
+        // TODO add your handling code here:
+        String path = "";
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
+
+        if (x==JFileChooser.APPROVE_OPTION)
+        {
+            path = j.getSelectedFile().getPath();
+        }
+
+        Document doc = new Document();
+
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path+"Bon Pembelian.pdf"));
+            doc.open();
+            PdfPTable tbl = new PdfPTable(3);
+            tbl.addCell("Daftar Menu");
+            tbl.addCell("Banyak");
+            tbl.addCell("Jumlah");
+            for (int i = 0; i<nota.getRowCount(); i++){
+                String makanan = nota.getValueAt(i, 0).toString();
+                String banyak = nota.getValueAt(i, 1).toString();
+                String jumlah = nota.getValueAt(i, 2).toString();
+
+                tbl.addCell(makanan);
+                tbl.addCell(banyak);
+                tbl.addCell(jumlah);
+            }
+
+            doc.add(tbl);
+            //        jLabel1.setVisible(false);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(form_transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(form_transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        doc.close();
+    }//GEN-LAST:event_btn_downloadMouseClicked
+
+    private void btn_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_keluarMouseClicked
+        // TODO add your handling code here:
+        login masuk = new login();
+        masuk.setVisible(true);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_keluarMouseClicked
 
     /**
      * @param args the command line arguments

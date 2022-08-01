@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 /**
@@ -28,6 +30,9 @@ public class form_transaksi extends javax.swing.JFrame {
             total_mie_nelongso = 0, total_paket_nasi = 0, total_paket_mie = 0,
             total_nasi = 0, total_mie = 0, total_telor = 0, total_air = 0, total_teh = 0, totalharga = 0;
     int total_bayar = 0;
+    ArrayList<String> makanan = new ArrayList<String>();
+    ArrayList<String> banyak = new ArrayList<String>();
+    ArrayList<String> jumlah = new ArrayList<String>();
 //    String menu[];
 //    String banyak[];
 //    String jumlah[];
@@ -44,6 +49,15 @@ public class form_transaksi extends javax.swing.JFrame {
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
         
+        // Set Center
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        nota.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+        
+        // Set Right
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
+        nota.getColumnModel().getColumn(2).setCellRenderer( rightRenderer );
 //        input_harga.setEnabled(false);
         
 //        dbsetting = new koneksi(); 
@@ -405,8 +419,9 @@ public class form_transaksi extends javax.swing.JFrame {
         j_telor = new javax.swing.JTextField();
         j_air = new javax.swing.JTextField();
         j_teh = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         nota = new javax.swing.JTable();
+        btn_download = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -507,7 +522,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mahasiswa1Layout.setVerticalGroup(
             data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon7)
                     .addComponent(jLabel15))
@@ -544,7 +559,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_mata_kuliah1Layout.setVerticalGroup(
             data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon8)
                     .addComponent(jLabel16))
@@ -588,7 +603,7 @@ public class form_transaksi extends javax.swing.JFrame {
         data_nilai1Layout.setVerticalGroup(
             data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon9)
                     .addComponent(jLabel18))
@@ -661,7 +676,7 @@ public class form_transaksi extends javax.swing.JFrame {
         Simulasi_nilai_akhir3Layout.setVerticalGroup(
             Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon11)
                     .addComponent(jLabel19))
@@ -703,7 +718,7 @@ public class form_transaksi extends javax.swing.JFrame {
                 .addComponent(Simulasi_nilai_akhir3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(Simulasi_nilai_akhir2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tentang_pembuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -1002,7 +1017,7 @@ public class form_transaksi extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/add_20px.png"))); // NOI18N
         btn_pesan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 96, 39));
+        panel_content.add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 100, 39));
 
         btn_cancel.setBackground(new java.awt.Color(255, 255, 255));
         btn_cancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1023,7 +1038,7 @@ public class form_transaksi extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/delete_20px.png"))); // NOI18N
         btn_cancel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 560, 96, 39));
+        panel_content.add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, 100, 39));
 
         btn_keluar.setBackground(new java.awt.Color(255, 255, 255));
         btn_keluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1039,7 +1054,7 @@ public class form_transaksi extends javax.swing.JFrame {
         pict.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/cancel_20px.png"))); // NOI18N
         btn_keluar.add(pict, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, 110, 39));
+        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 560, 100, 39));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "TOTAL HARGA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16), new java.awt.Color(65, 83, 128))); // NOI18N
@@ -1056,7 +1071,7 @@ public class form_transaksi extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1081,7 +1096,7 @@ public class form_transaksi extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel_content.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
+        panel_content.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, 350, -1));
         panel_content.add(j_ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 59, 110, -1));
         panel_content.add(j_usus, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 96, 110, -1));
         panel_content.add(j_sayap, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 133, 110, -1));
@@ -1098,19 +1113,20 @@ public class form_transaksi extends javax.swing.JFrame {
 
         nota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Menu", "Banyak", "Jumlah"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
-        nota.setPreferredSize(new java.awt.Dimension(10, 10));
-        jScrollPane1.setViewportView(nota);
+        jScrollPane2.setViewportView(nota);
 
-        panel_content.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 260, 250));
+        panel_content.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 360, 280));
+
+        btn_download.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btn_download.setForeground(new java.awt.Color(65, 83, 128));
+        btn_download.setText("CETAK");
+        panel_content.add(btn_download, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 360, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1120,7 +1136,7 @@ public class form_transaksi extends javax.swing.JFrame {
                 .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel_content, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
+                    .addComponent(panel_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -1129,7 +1145,7 @@ public class form_transaksi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(panel_content, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
+                .addComponent(panel_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1217,186 +1233,432 @@ public class form_transaksi extends javax.swing.JFrame {
         qty_telor.setEnabled(false);
         qty_usus.setEnabled(false);
         
+        jScrollPane2.setVisible(false);
+        btn_download.setVisible(false);
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);        
     }//GEN-LAST:event_formWindowOpened
 
     private void cekerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cekerMouseClicked
         // TODO add your handling code here:
-        qty_ceker.setEnabled(true);
-        j_ceker.setEnabled(true);
+        if (ceker.isSelected()){
+            qty_ceker.setEnabled(true);
+            j_ceker.setEnabled(true);
+            
+            makanan.add(ceker.getText());
+        }
+        else{
+            qty_ceker.setEnabled(false);
+            j_ceker.setEnabled(false);
+        }
     }//GEN-LAST:event_cekerMouseClicked
 
     private void ususMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ususMouseClicked
         // TODO add your handling code here:
-        qty_usus.setEnabled(true);
-        j_usus.setEnabled(true);
+        if (usus.isSelected()){
+            qty_usus.setEnabled(true);
+            j_usus.setEnabled(true);
+            
+            makanan.add(usus.getText());
+        }
+        else{
+            qty_usus.setEnabled(false);
+            j_usus.setEnabled(false);
+        }
     }//GEN-LAST:event_ususMouseClicked
 
     private void sayapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sayapMouseClicked
         // TODO add your handling code here:
-        qty_sayap.setEnabled(true);
-        j_sayap.setEnabled(true);
+        if (sayap.isSelected()){
+            qty_sayap.setEnabled(true);
+            j_sayap.setEnabled(true);
+            
+            makanan.add(sayap.getText());
+        }
+        else{
+            qty_sayap.setEnabled(false);
+            j_sayap.setEnabled(false);
+        }
     }//GEN-LAST:event_sayapMouseClicked
 
     private void kepalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kepalaMouseClicked
         // TODO add your handling code here:
-        qty_kepala.setEnabled(true);
-        j_kepala.setEnabled(true);
+        if(kepala.isSelected()){
+            qty_kepala.setEnabled(true);
+            j_kepala.setEnabled(true);
+            
+            makanan.add(kepala.getText());
+        }
+        else{
+            qty_kepala.setEnabled(false);
+            j_kepala.setEnabled(false);
+        }
     }//GEN-LAST:event_kepalaMouseClicked
 
     private void ayamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ayamMouseClicked
         // TODO add your handling code here:
-        qty_ayam.setEnabled(true);
-        j_ayam.setEnabled(true);
+        if(ayam.isSelected()){
+            qty_ayam.setEnabled(true);
+            j_ayam.setEnabled(true);
+            
+            makanan.add(ayam.getText());
+        }
+        else{
+            qty_ayam.setEnabled(false);
+            j_ayam.setEnabled(false);
+        }
     }//GEN-LAST:event_ayamMouseClicked
 
     private void mie_nelongsoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mie_nelongsoMouseClicked
         // TODO add your handling code here:
-        qty_mie_nelongso.setEnabled(true);
-        j_mie_nelongso.setEnabled(true);
+        if(mie_nelongso.isSelected()){
+            qty_mie_nelongso.setEnabled(true);
+            j_mie_nelongso.setEnabled(true);
+            
+            makanan.add(mie_nelongso.getText());
+        }
+        else{
+            qty_mie_nelongso.setEnabled(false);
+            j_mie_nelongso.setEnabled(false);
+        }
     }//GEN-LAST:event_mie_nelongsoMouseClicked
 
     private void paket_nasi_ayamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paket_nasi_ayamMouseClicked
         // TODO add your handling code here:
-        qty_paket_nasi_ayam.setEnabled(true);
-        j_paket_nasi_ayam.setEnabled(true);
+        if(paket_nasi_ayam.isSelected()){
+            qty_paket_nasi_ayam.setEnabled(true);
+            j_paket_nasi_ayam.setEnabled(true);
+            
+            makanan.add(paket_nasi_ayam.getText());
+        }
+        else{
+            qty_paket_nasi_ayam.setEnabled(false);
+            j_paket_nasi_ayam.setEnabled(false);
+        }
     }//GEN-LAST:event_paket_nasi_ayamMouseClicked
 
     private void paket_mie_ayamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paket_mie_ayamMouseClicked
         // TODO add your handling code here:
-        qty_paket_mie_ayam.setEnabled(true);
-        j_paket_mie_ayam.setEnabled(true);
+        if(paket_mie_ayam.isSelected()){
+            qty_paket_mie_ayam.setEnabled(true);
+            j_paket_mie_ayam.setEnabled(true);
+            
+            makanan.add(paket_mie_ayam.getText());
+        }
+        else{
+            qty_paket_mie_ayam.setEnabled(true);
+            j_paket_mie_ayam.setEnabled(true);
+        }
     }//GEN-LAST:event_paket_mie_ayamMouseClicked
 
     private void nasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasiMouseClicked
         // TODO add your handling code here:
-        qty_nasi.setEnabled(true);
-        j_nasi.setEnabled(true);
+        if(nasi.isSelected()){
+            qty_nasi.setEnabled(true);
+            j_nasi.setEnabled(true);
+            
+            makanan.add(nasi.getText());
+        }
+        else{
+            qty_nasi.setEnabled(false);
+            j_nasi.setEnabled(false);
+        }
     }//GEN-LAST:event_nasiMouseClicked
 
     private void mie_gorengMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mie_gorengMouseClicked
         // TODO add your handling code here:
-        qty_mie_goreng.setEnabled(true);
-        j_mie_goreng.setEnabled(true);
+        if(mie_goreng.isSelected()){
+            qty_mie_goreng.setEnabled(true);
+            j_mie_goreng.setEnabled(true);
+            
+            makanan.add(mie_goreng.getText());
+        }
+        else{
+            qty_mie_goreng.setEnabled(false);
+            j_mie_goreng.setEnabled(false);
+        }
     }//GEN-LAST:event_mie_gorengMouseClicked
 
     private void telorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_telorMouseClicked
         // TODO add your handling code here:
-        qty_telor.setEnabled(true);
-        j_telor.setEnabled(true);
+        if(telor.isSelected()){
+            qty_telor.setEnabled(true);
+            j_telor.setEnabled(true);
+            
+            makanan.add(telor.getText());
+        }
+        else{
+            qty_telor.setEnabled(false);
+            j_telor.setEnabled(false);
+        }
     }//GEN-LAST:event_telorMouseClicked
 
     private void airMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_airMouseClicked
         // TODO add your handling code here:
-        qty_air.setEnabled(true);
-        j_air.setEnabled(true);
+        if(air.isSelected()){
+            qty_air.setEnabled(true);
+            j_air.setEnabled(true);
+            
+            makanan.add(air.getText());
+        }
+        else{
+            qty_air.setEnabled(false);
+            j_air.setEnabled(false);
+        }
     }//GEN-LAST:event_airMouseClicked
 
     private void tehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tehMouseClicked
         // TODO add your handling code here:
-        qty_teh.setEnabled(true);
-        j_teh.setEnabled(true);
+        if(teh.isSelected()){
+            qty_teh.setEnabled(true);
+            j_teh.setEnabled(true);
+            
+            makanan.add(teh.getText());
+        }
+        else{
+            qty_teh.setEnabled(false);
+            j_teh.setEnabled(false);
+        }
     }//GEN-LAST:event_tehMouseClicked
 
     private void qty_cekerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_cekerActionPerformed
         // TODO add your handling code here:
-        DecimalFormat formatData = new DecimalFormat("#.##");
-
-//        n_absen = Float.valueOf(formatData.format(nilai_absen));
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_ceker = Integer.valueOf(qty_ceker.getText()) * 12000;
-        double total = Double.valueOf(formatData.format(total_ceker));
-//        String total = Double.toString(total_ceker);
-        j_ceker.setText(String.valueOf(total));
+        j_ceker.setText(String.valueOf(total_ceker));
+        
+        String t_ceker = kursIndonesia.format(total_ceker);
+        banyak.add(qty_ceker.getText());
+        jumlah.add(t_ceker);
     }//GEN-LAST:event_qty_cekerActionPerformed
 
     private void qty_ususActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ususActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_usus = Integer.valueOf(qty_usus.getText()) * 12000;
-        String total = Double.toString(total_usus);
-        j_usus.setText(total);
+        j_usus.setText(String.valueOf(total_usus));
+        
+        String t_usus = kursIndonesia.format(total_usus);
+        banyak.add(qty_usus.getText());
+        jumlah.add(t_usus);
     }//GEN-LAST:event_qty_ususActionPerformed
 
     private void qty_sayapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_sayapActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_sayap = Integer.valueOf(qty_sayap.getText()) * 17500;
-        String total = Double.toString(total_sayap);
-        j_sayap.setText(total);
+        j_sayap.setText(String.valueOf(total_sayap));
+        
+        String t_sayap = kursIndonesia.format(total_sayap);
+        banyak.add(qty_sayap.getText());
+        jumlah.add(t_sayap);
     }//GEN-LAST:event_qty_sayapActionPerformed
 
     private void qty_kepalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_kepalaActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_kepala = Integer.valueOf(qty_kepala.getText()) * 12000;
-        String total = Double.toString(total_kepala);
-        j_kepala.setText(total);
+        j_kepala.setText(String.valueOf(total_kepala));
+        
+        String t_kepala = kursIndonesia.format(total_kepala);
+        banyak.add(qty_kepala.getText());
+        jumlah.add(t_kepala);
     }//GEN-LAST:event_qty_kepalaActionPerformed
 
     private void qty_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ayamActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_ayam = Integer.valueOf(qty_ayam.getText()) * 17500;
-        String total = Double.toString(total_ayam);
-        j_ayam.setText(total);
+        j_ayam.setText(String.valueOf(total_ayam));
+        
+        String t_ayam = kursIndonesia.format(total_ayam);
+        banyak.add(qty_ayam.getText());
+        jumlah.add(t_ayam);
     }//GEN-LAST:event_qty_ayamActionPerformed
 
     private void qty_mie_nelongsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_nelongsoActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_mie_nelongso = Integer.valueOf(qty_mie_nelongso.getText()) * 12000;
-        String total = Double.toString(total_mie_nelongso);
-        j_mie_nelongso.setText(total);
+        j_mie_nelongso.setText(String.valueOf(total_mie_nelongso));
+        
+        String t_mie_nelongso = kursIndonesia.format(total_mie_nelongso);
+        banyak.add(qty_mie_nelongso.getText());
+        jumlah.add(t_mie_nelongso);
     }//GEN-LAST:event_qty_mie_nelongsoActionPerformed
 
     private void qty_paket_nasi_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_nasi_ayamActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_paket_nasi = Integer.valueOf(qty_paket_nasi_ayam.getText()) * 21500;
-        String total = Double.toString(total_paket_nasi);
-        j_paket_nasi_ayam.setText(total);
+        j_paket_nasi_ayam.setText(String.valueOf(total_paket_nasi));
+        
+        String t_paket_nasi = kursIndonesia.format(total_paket_nasi);
+        banyak.add(qty_paket_nasi_ayam.getText());
+        jumlah.add(t_paket_nasi);
     }//GEN-LAST:event_qty_paket_nasi_ayamActionPerformed
 
     private void qty_paket_mie_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_mie_ayamActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_paket_mie = Integer.valueOf(qty_paket_mie_ayam.getText()) * 22500;
-        String total = Double.toString(total_paket_mie);
-        j_paket_mie_ayam.setText(total);
+        j_paket_mie_ayam.setText(String.valueOf(total_paket_mie));
+        
+        String t_paket_mie = kursIndonesia.format(total_paket_mie);
+        banyak.add(qty_paket_mie_ayam.getText());
+        jumlah.add(t_paket_mie);
     }//GEN-LAST:event_qty_paket_mie_ayamActionPerformed
 
     private void qty_nasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_nasiActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_nasi = Integer.valueOf(qty_nasi.getText()) * 5000;
-        String total = Double.toString(total_nasi);
-        j_nasi.setText(total);
+        j_nasi.setText(String.valueOf(total_nasi));
+        
+        String t_nasi = kursIndonesia.format(total_nasi);
+        banyak.add(qty_nasi.getText());
+        jumlah.add(t_nasi);
     }//GEN-LAST:event_qty_nasiActionPerformed
 
     private void qty_mie_gorengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_gorengActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_mie = Integer.valueOf(qty_mie_goreng.getText()) * 6000;
-        String total = Double.toString(total_mie);
-        j_mie_goreng.setText(total);
+        j_mie_goreng.setText(String.valueOf(total_mie));
+        
+        String t_mie = kursIndonesia.format(total_mie);
+        banyak.add(qty_mie_goreng.getText());
+        jumlah.add(t_mie);
     }//GEN-LAST:event_qty_mie_gorengActionPerformed
 
     private void qty_telorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_telorActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_telor = Integer.valueOf(qty_telor.getText()) * 3000;
-        String total = Double.toString(total_telor);
-        j_telor.setText(total);
+        j_telor.setText(String.valueOf(total_telor));
+        
+        String t_telur = kursIndonesia.format(total_telor);
+        banyak.add(qty_telor.getText());
+        jumlah.add(t_telur);
     }//GEN-LAST:event_qty_telorActionPerformed
 
     private void qty_airActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_airActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_air = Integer.valueOf(qty_air.getText()) * 5000;
-        String total = Double.toString(total_air);
-        j_air.setText(total);
+        j_air.setText(String.valueOf(total_air));
+        
+        String t_air = kursIndonesia.format(total_air);
+        banyak.add(qty_air.getText());
+        jumlah.add(t_air);
     }//GEN-LAST:event_qty_airActionPerformed
 
     private void qty_tehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_tehActionPerformed
         // TODO add your handling code here:
+        DecimalFormat kursIndonesia = (DecimalFormat)
+        DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         total_teh = Integer.valueOf(qty_teh.getText()) * 6000;
-        String total = Double.toString(total_teh);
-        j_teh.setText(total);
+        j_teh.setText(String.valueOf(total_teh));
+        
+        String t_teh = kursIndonesia.format(total_teh);
+        banyak.add(qty_teh.getText());
+        jumlah.add(t_teh);
     }//GEN-LAST:event_qty_tehActionPerformed
 
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
         // TODO add your handling code here:
-        //hitung_total();
-//        total_harga.setText(String.valueOf(totalharga));
+        jScrollPane2.setVisible(true);
+        btn_download.setVisible(true);
         // FORMAT RUPIAH
         DecimalFormat kursIndonesia = (DecimalFormat)
         DecimalFormat.getCurrencyInstance();
@@ -1414,13 +1676,14 @@ public class form_transaksi extends javax.swing.JFrame {
         total_harga.setText(total);
         
         // ADD DATA TO TABLE
-//        menu();
-        DefaultTableModel model = (DefaultTableModel)nota.getModel();
-        model.addRow(new Object[] {});
-//        System.out.println(menu);
-//        System.out.println(banyak);
-//        System.out.println(jumlah);
-//        total_harga.setText(""+total_harga.toString());
+        DefaultTableModel tablemodel = (DefaultTableModel)nota.getModel();
+        Object row[] = new Object[3];
+        for(int i=0 ; i < makanan.size(); i++){
+            row[0] = makanan.get(i);
+            row[1] = banyak.get(i);
+            row[2] = jumlah.get(i);
+            tablemodel.addRow(row);
+        }
         
     }//GEN-LAST:event_btn_pesanMouseClicked
 
@@ -1465,6 +1728,7 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JCheckBox air;
     private javax.swing.JCheckBox ayam;
     private javax.swing.JPanel btn_cancel;
+    private javax.swing.JButton btn_download;
     private javax.swing.JPanel btn_keluar;
     private javax.swing.JPanel btn_pesan;
     private javax.swing.JCheckBox ceker;
@@ -1508,7 +1772,7 @@ public class form_transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;

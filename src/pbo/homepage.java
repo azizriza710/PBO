@@ -51,7 +51,7 @@ public class homepage extends javax.swing.JFrame {
         simulasi_kasus = new javax.swing.JPanel();
         icon10 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        content = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -60,6 +60,7 @@ public class homepage extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -308,7 +309,7 @@ public class homepage extends javax.swing.JFrame {
             .addGroup(sidebarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(data_nilai, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(data_nilai, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                     .addGroup(sidebarLayout.createSequentialGroup()
                         .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(data_mata_kuliah, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
@@ -318,7 +319,7 @@ public class homepage extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(0, 29, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addComponent(Simulasi_nilai_akhir, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(Simulasi_nilai_akhir, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidebarLayout.createSequentialGroup()
                         .addGap(0, 27, Short.MAX_VALUE)
                         .addComponent(tentang_pembuat, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,41 +350,56 @@ public class homepage extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setPreferredSize(new java.awt.Dimension(900, 500));
+        content.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/ghina2.png"))); // NOI18N
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+        content.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(65, 83, 128));
         jLabel9.setText("10121093 / GHINA NUR AZIZAH");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        content.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/aziz2.png"))); // NOI18N
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
+        content.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(65, 83, 128));
         jLabel12.setText("10121098 / MOHAMMAD AZIZ RIZA");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
+        content.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/salsa2.png"))); // NOI18N
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+        content.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(65, 83, 128));
         jLabel14.setText("10121099 / SALSABILA RAMADHAN");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        content.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/saffa2.png"))); // NOI18N
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, -1, -1));
+        content.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(65, 83, 128));
         jLabel16.setText("10121101 / SAFFANA HELMI NAFISAH");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, -1));
+        content.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+
+        content.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 460));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -392,7 +408,7 @@ public class homepage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -400,7 +416,7 @@ public class homepage extends javax.swing.JFrame {
             .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -408,7 +424,7 @@ public class homepage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,7 +453,7 @@ public class homepage extends javax.swing.JFrame {
 
     private void tentang_pembuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tentang_pembuatMouseClicked
         // TODO add your handling code here:
-        jPanel3.setVisible(true);
+        content.setVisible(true);
     }//GEN-LAST:event_tentang_pembuatMouseClicked
 
     private void data_nilaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data_nilaiMouseClicked
@@ -458,7 +474,8 @@ public class homepage extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        jPanel3.setVisible(false);
+        content.setVisible(false);
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);        
     }//GEN-LAST:event_formWindowOpened
 
@@ -508,6 +525,7 @@ public class homepage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Simulasi_nilai_akhir;
+    private javax.swing.JPanel content;
     private javax.swing.JPanel data_mahasiswa;
     private javax.swing.JPanel data_mata_kuliah;
     private javax.swing.JPanel data_nilai;
@@ -533,7 +551,7 @@ public class homepage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel sidebar;
     private javax.swing.JPanel simulasi_kasus;

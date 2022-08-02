@@ -50,6 +50,7 @@ public class form_transaksi extends javax.swing.JFrame {
     ArrayList<String> makanan = new ArrayList<String>();
     ArrayList<String> banyak = new ArrayList<String>();
     ArrayList<String> jumlah = new ArrayList<String>();
+    
     public form_transaksi() {
         initComponents();
         
@@ -210,27 +211,6 @@ public class form_transaksi extends javax.swing.JFrame {
 
         panel_title = new javax.swing.JPanel();
         label1 = new java.awt.Label();
-        sidebar = new javax.swing.JPanel();
-        tentang_pembuat1 = new javax.swing.JPanel();
-        icon6 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        data_mahasiswa1 = new javax.swing.JPanel();
-        icon7 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        data_mata_kuliah1 = new javax.swing.JPanel();
-        icon8 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
-        data_nilai1 = new javax.swing.JPanel();
-        icon9 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        Simulasi_nilai_akhir2 = new javax.swing.JPanel();
-        icon10 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        Simulasi_nilai_akhir3 = new javax.swing.JPanel();
-        icon11 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         panel_content = new javax.swing.JPanel();
         ceker = new javax.swing.JCheckBox();
         usus = new javax.swing.JCheckBox();
@@ -316,6 +296,27 @@ public class form_transaksi extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         nota = new javax.swing.JTable();
         btn_download = new javax.swing.JButton();
+        sidebar = new javax.swing.JPanel();
+        tentang_pembuat1 = new javax.swing.JPanel();
+        icon6 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        data_mahasiswa1 = new javax.swing.JPanel();
+        icon7 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        data_mata_kuliah1 = new javax.swing.JPanel();
+        icon8 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        data_nilai1 = new javax.swing.JPanel();
+        icon9 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        Simulasi_nilai_akhir2 = new javax.swing.JPanel();
+        icon10 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        Simulasi_nilai_akhir3 = new javax.swing.JPanel();
+        icon11 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -325,297 +326,12 @@ public class form_transaksi extends javax.swing.JFrame {
         });
 
         panel_title.setBackground(new java.awt.Color(255, 255, 255));
+        panel_title.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         label1.setForeground(new java.awt.Color(65, 83, 128));
         label1.setText("ORDER MENU");
-
-        javax.swing.GroupLayout panel_titleLayout = new javax.swing.GroupLayout(panel_title);
-        panel_title.setLayout(panel_titleLayout);
-        panel_titleLayout.setHorizontalGroup(
-            panel_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_titleLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(393, 393, 393))
-        );
-        panel_titleLayout.setVerticalGroup(
-            panel_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_titleLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        sidebar.setBackground(new java.awt.Color(65, 83, 128));
-
-        tentang_pembuat1.setBackground(new java.awt.Color(65, 83, 128));
-        tentang_pembuat1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tentang_pembuat1.setPreferredSize(new java.awt.Dimension(175, 43));
-        tentang_pembuat1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tentang_pembuat1MouseClicked(evt);
-            }
-        });
-
-        icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/people_20px.png"))); // NOI18N
-
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Tentang Pembuat");
-
-        javax.swing.GroupLayout tentang_pembuat1Layout = new javax.swing.GroupLayout(tentang_pembuat1);
-        tentang_pembuat1.setLayout(tentang_pembuat1Layout);
-        tentang_pembuat1Layout.setHorizontalGroup(
-            tentang_pembuat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tentang_pembuat1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(icon6)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel14)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        tentang_pembuat1Layout.setVerticalGroup(
-            tentang_pembuat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tentang_pembuat1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(tentang_pembuat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(icon6)
-                    .addComponent(jLabel14))
-                .addGap(16, 16, 16))
-        );
-
-        data_mahasiswa1.setBackground(new java.awt.Color(65, 83, 128));
-        data_mahasiswa1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        data_mahasiswa1.setPreferredSize(new java.awt.Dimension(175, 43));
-        data_mahasiswa1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                data_mahasiswa1MouseClicked(evt);
-            }
-        });
-
-        icon7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/student_male_20px.png"))); // NOI18N
-
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Data Mahasiswa");
-
-        javax.swing.GroupLayout data_mahasiswa1Layout = new javax.swing.GroupLayout(data_mahasiswa1);
-        data_mahasiswa1.setLayout(data_mahasiswa1Layout);
-        data_mahasiswa1Layout.setHorizontalGroup(
-            data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(data_mahasiswa1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(icon7)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel15)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-        data_mahasiswa1Layout.setVerticalGroup(
-            data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon7)
-                    .addComponent(jLabel15))
-                .addContainerGap())
-        );
-
-        data_mata_kuliah1.setBackground(new java.awt.Color(65, 83, 128));
-        data_mata_kuliah1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        data_mata_kuliah1.setPreferredSize(new java.awt.Dimension(175, 43));
-        data_mata_kuliah1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                data_mata_kuliah1MouseClicked(evt);
-            }
-        });
-
-        icon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/open_book_20px.png"))); // NOI18N
-
-        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Data Mata Kuliah");
-
-        javax.swing.GroupLayout data_mata_kuliah1Layout = new javax.swing.GroupLayout(data_mata_kuliah1);
-        data_mata_kuliah1.setLayout(data_mata_kuliah1Layout);
-        data_mata_kuliah1Layout.setHorizontalGroup(
-            data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(data_mata_kuliah1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(icon8)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel16)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        data_mata_kuliah1Layout.setVerticalGroup(
-            data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon8)
-                    .addComponent(jLabel16))
-                .addContainerGap())
-        );
-
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("APLIKASI KEMAHASISWAAN");
-
-        jSeparator4.setPreferredSize(new java.awt.Dimension(50, 30));
-
-        data_nilai1.setBackground(new java.awt.Color(65, 83, 128));
-        data_nilai1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        data_nilai1.setPreferredSize(new java.awt.Dimension(175, 43));
-        data_nilai1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                data_nilai1MouseClicked(evt);
-            }
-        });
-
-        icon9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/clipboard_list_20px.png"))); // NOI18N
-
-        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Data Nilai");
-
-        javax.swing.GroupLayout data_nilai1Layout = new javax.swing.GroupLayout(data_nilai1);
-        data_nilai1.setLayout(data_nilai1Layout);
-        data_nilai1Layout.setHorizontalGroup(
-            data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(data_nilai1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(icon9)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel18)
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-        data_nilai1Layout.setVerticalGroup(
-            data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon9)
-                    .addComponent(jLabel18))
-                .addContainerGap())
-        );
-
-        Simulasi_nilai_akhir2.setBackground(new java.awt.Color(65, 83, 128));
-        Simulasi_nilai_akhir2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Simulasi_nilai_akhir2.setPreferredSize(new java.awt.Dimension(175, 43));
-        Simulasi_nilai_akhir2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Simulasi_nilai_akhir2MouseClicked(evt);
-            }
-        });
-
-        icon10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/task_23px.png"))); // NOI18N
-
-        jLabel25.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("Simulasi Kasus");
-
-        javax.swing.GroupLayout Simulasi_nilai_akhir2Layout = new javax.swing.GroupLayout(Simulasi_nilai_akhir2);
-        Simulasi_nilai_akhir2.setLayout(Simulasi_nilai_akhir2Layout);
-        Simulasi_nilai_akhir2Layout.setHorizontalGroup(
-            Simulasi_nilai_akhir2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Simulasi_nilai_akhir2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(icon10)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel25)
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-        Simulasi_nilai_akhir2Layout.setVerticalGroup(
-            Simulasi_nilai_akhir2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Simulasi_nilai_akhir2Layout.createSequentialGroup()
-                .addGroup(Simulasi_nilai_akhir2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel25)
-                    .addComponent(icon10))
-                .addGap(77, 77, 77))
-        );
-
-        Simulasi_nilai_akhir3.setBackground(new java.awt.Color(65, 83, 128));
-        Simulasi_nilai_akhir3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Simulasi_nilai_akhir3.setPreferredSize(new java.awt.Dimension(175, 43));
-        Simulasi_nilai_akhir3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Simulasi_nilai_akhir3MouseClicked(evt);
-            }
-        });
-
-        icon11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/todo_list_20px.png"))); // NOI18N
-
-        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Simulasi Nilai Akhir");
-
-        javax.swing.GroupLayout Simulasi_nilai_akhir3Layout = new javax.swing.GroupLayout(Simulasi_nilai_akhir3);
-        Simulasi_nilai_akhir3.setLayout(Simulasi_nilai_akhir3Layout);
-        Simulasi_nilai_akhir3Layout.setHorizontalGroup(
-            Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(icon11)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel19)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        Simulasi_nilai_akhir3Layout.setVerticalGroup(
-            Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon11)
-                    .addComponent(jLabel19))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
-        sidebar.setLayout(sidebarLayout);
-        sidebarLayout.setHorizontalGroup(
-            sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sidebarLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(data_mahasiswa1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(data_mata_kuliah1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(data_nilai1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Simulasi_nilai_akhir3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Simulasi_nilai_akhir2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(sidebarLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(tentang_pembuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        sidebarLayout.setVerticalGroup(
-            sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sidebarLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel17)
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(data_mahasiswa1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(data_mata_kuliah1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(data_nilai1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(Simulasi_nilai_akhir3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(Simulasi_nilai_akhir2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tentang_pembuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
+        panel_title.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
 
         panel_content.setBackground(new java.awt.Color(255, 255, 255));
         panel_content.setForeground(new java.awt.Color(255, 255, 255));
@@ -976,7 +692,7 @@ public class form_transaksi extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/add_20px.png"))); // NOI18N
         btn_pesan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 100, 39));
+        panel_content.add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 100, 39));
 
         btn_cancel.setBackground(new java.awt.Color(255, 255, 255));
         btn_cancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -997,7 +713,7 @@ public class form_transaksi extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/delete_20px.png"))); // NOI18N
         btn_cancel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, 100, 39));
+        panel_content.add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 100, 39));
 
         btn_keluar.setBackground(new java.awt.Color(255, 255, 255));
         btn_keluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1018,7 +734,7 @@ public class form_transaksi extends javax.swing.JFrame {
         pict.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/cancel_20px.png"))); // NOI18N
         btn_keluar.add(pict, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 560, 100, 39));
+        panel_content.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 570, 100, 39));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "TOTAL HARGA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16), new java.awt.Color(65, 83, 128))); // NOI18N
@@ -1035,12 +751,12 @@ public class form_transaksi extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+            .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1060,7 +776,7 @@ public class form_transaksi extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel_content.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, 350, -1));
+        panel_content.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, 300, 110));
 
         j_ceker.setEditable(false);
         panel_content.add(j_ceker, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 59, 110, -1));
@@ -1111,7 +827,7 @@ public class form_transaksi extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(nota);
 
-        panel_content.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 360, 280));
+        panel_content.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 300, 320));
 
         btn_download.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_download.setForeground(new java.awt.Color(65, 83, 128));
@@ -1121,7 +837,279 @@ public class form_transaksi extends javax.swing.JFrame {
                 btn_downloadMouseClicked(evt);
             }
         });
-        panel_content.add(btn_download, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 360, 60));
+        panel_content.add(btn_download, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 300, 60));
+
+        panel_title.add(panel_content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 65, 1050, 717));
+
+        sidebar.setBackground(new java.awt.Color(65, 83, 128));
+
+        tentang_pembuat1.setBackground(new java.awt.Color(65, 83, 128));
+        tentang_pembuat1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tentang_pembuat1.setPreferredSize(new java.awt.Dimension(175, 43));
+        tentang_pembuat1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tentang_pembuat1MouseClicked(evt);
+            }
+        });
+
+        icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/people_20px.png"))); // NOI18N
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Tentang Pembuat");
+
+        javax.swing.GroupLayout tentang_pembuat1Layout = new javax.swing.GroupLayout(tentang_pembuat1);
+        tentang_pembuat1.setLayout(tentang_pembuat1Layout);
+        tentang_pembuat1Layout.setHorizontalGroup(
+            tentang_pembuat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tentang_pembuat1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(icon6)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        tentang_pembuat1Layout.setVerticalGroup(
+            tentang_pembuat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tentang_pembuat1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(tentang_pembuat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(icon6)
+                    .addComponent(jLabel14))
+                .addGap(16, 16, 16))
+        );
+
+        data_mahasiswa1.setBackground(new java.awt.Color(65, 83, 128));
+        data_mahasiswa1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        data_mahasiswa1.setPreferredSize(new java.awt.Dimension(175, 43));
+        data_mahasiswa1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                data_mahasiswa1MouseClicked(evt);
+            }
+        });
+
+        icon7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/student_male_20px.png"))); // NOI18N
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Data Mahasiswa");
+
+        javax.swing.GroupLayout data_mahasiswa1Layout = new javax.swing.GroupLayout(data_mahasiswa1);
+        data_mahasiswa1.setLayout(data_mahasiswa1Layout);
+        data_mahasiswa1Layout.setHorizontalGroup(
+            data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(data_mahasiswa1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(icon7)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel15)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+        data_mahasiswa1Layout.setVerticalGroup(
+            data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mahasiswa1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(data_mahasiswa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon7)
+                    .addComponent(jLabel15))
+                .addContainerGap())
+        );
+
+        data_mata_kuliah1.setBackground(new java.awt.Color(65, 83, 128));
+        data_mata_kuliah1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        data_mata_kuliah1.setPreferredSize(new java.awt.Dimension(175, 43));
+        data_mata_kuliah1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                data_mata_kuliah1MouseClicked(evt);
+            }
+        });
+
+        icon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/open_book_20px.png"))); // NOI18N
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Data Mata Kuliah");
+
+        javax.swing.GroupLayout data_mata_kuliah1Layout = new javax.swing.GroupLayout(data_mata_kuliah1);
+        data_mata_kuliah1.setLayout(data_mata_kuliah1Layout);
+        data_mata_kuliah1Layout.setHorizontalGroup(
+            data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(data_mata_kuliah1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(icon8)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel16)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        data_mata_kuliah1Layout.setVerticalGroup(
+            data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_mata_kuliah1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(data_mata_kuliah1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon8)
+                    .addComponent(jLabel16))
+                .addContainerGap())
+        );
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("APLIKASI KEMAHASISWAAN");
+
+        jSeparator4.setPreferredSize(new java.awt.Dimension(50, 30));
+
+        data_nilai1.setBackground(new java.awt.Color(65, 83, 128));
+        data_nilai1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        data_nilai1.setPreferredSize(new java.awt.Dimension(175, 43));
+        data_nilai1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                data_nilai1MouseClicked(evt);
+            }
+        });
+
+        icon9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/clipboard_list_20px.png"))); // NOI18N
+
+        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Data Nilai");
+
+        javax.swing.GroupLayout data_nilai1Layout = new javax.swing.GroupLayout(data_nilai1);
+        data_nilai1.setLayout(data_nilai1Layout);
+        data_nilai1Layout.setHorizontalGroup(
+            data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(data_nilai1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(icon9)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel18)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+        data_nilai1Layout.setVerticalGroup(
+            data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, data_nilai1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(data_nilai1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon9)
+                    .addComponent(jLabel18))
+                .addContainerGap())
+        );
+
+        Simulasi_nilai_akhir2.setBackground(new java.awt.Color(65, 83, 128));
+        Simulasi_nilai_akhir2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Simulasi_nilai_akhir2.setPreferredSize(new java.awt.Dimension(175, 43));
+        Simulasi_nilai_akhir2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Simulasi_nilai_akhir2MouseClicked(evt);
+            }
+        });
+
+        icon10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/task_23px.png"))); // NOI18N
+
+        jLabel25.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Simulasi Kasus");
+
+        javax.swing.GroupLayout Simulasi_nilai_akhir2Layout = new javax.swing.GroupLayout(Simulasi_nilai_akhir2);
+        Simulasi_nilai_akhir2.setLayout(Simulasi_nilai_akhir2Layout);
+        Simulasi_nilai_akhir2Layout.setHorizontalGroup(
+            Simulasi_nilai_akhir2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Simulasi_nilai_akhir2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(icon10)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel25)
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+        Simulasi_nilai_akhir2Layout.setVerticalGroup(
+            Simulasi_nilai_akhir2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Simulasi_nilai_akhir2Layout.createSequentialGroup()
+                .addGroup(Simulasi_nilai_akhir2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel25)
+                    .addComponent(icon10))
+                .addGap(77, 77, 77))
+        );
+
+        Simulasi_nilai_akhir3.setBackground(new java.awt.Color(65, 83, 128));
+        Simulasi_nilai_akhir3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Simulasi_nilai_akhir3.setPreferredSize(new java.awt.Dimension(175, 43));
+        Simulasi_nilai_akhir3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Simulasi_nilai_akhir3MouseClicked(evt);
+            }
+        });
+
+        icon11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/picture/todo_list_20px.png"))); // NOI18N
+
+        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Simulasi Nilai Akhir");
+
+        javax.swing.GroupLayout Simulasi_nilai_akhir3Layout = new javax.swing.GroupLayout(Simulasi_nilai_akhir3);
+        Simulasi_nilai_akhir3.setLayout(Simulasi_nilai_akhir3Layout);
+        Simulasi_nilai_akhir3Layout.setHorizontalGroup(
+            Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Simulasi_nilai_akhir3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(icon11)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel19)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        Simulasi_nilai_akhir3Layout.setVerticalGroup(
+            Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Simulasi_nilai_akhir3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Simulasi_nilai_akhir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon11)
+                    .addComponent(jLabel19))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
+        sidebar.setLayout(sidebarLayout);
+        sidebarLayout.setHorizontalGroup(
+            sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(data_mahasiswa1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(data_mata_kuliah1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(data_nilai1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Simulasi_nilai_akhir3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Simulasi_nilai_akhir2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(sidebarLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(tentang_pembuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        sidebarLayout.setVerticalGroup(
+            sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel17)
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(data_mahasiswa1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(data_mata_kuliah1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(data_nilai1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(Simulasi_nilai_akhir3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(Simulasi_nilai_akhir2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tentang_pembuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1130,17 +1118,14 @@ public class form_transaksi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(panel_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(panel_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -1700,6 +1685,10 @@ public class form_transaksi extends javax.swing.JFrame {
 
     private void btn_downloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_downloadMouseClicked
         // TODO add your handling code here:
+        nota.setVisible(false);
+        membersihkan_teks();
+
+               
         String path = "";
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

@@ -236,6 +236,7 @@ public class login extends javax.swing.JFrame {
                     homepage utama = new homepage();
                     utama.setVisible(true);
                     
+                    
                     this.setVisible(false);
                 }
                 res.close();

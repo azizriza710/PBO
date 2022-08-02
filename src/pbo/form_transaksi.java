@@ -5,12 +5,18 @@
  */
 package pbo;
 
+import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.Image;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import javax.swing.*;
@@ -19,9 +25,15 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Chunk;
+import java.io.IOException;
 /**
  *
  * @author SaIN
@@ -1704,10 +1716,58 @@ public class form_transaksi extends javax.swing.JFrame {
         try {
             PdfWriter.getInstance(doc, new FileOutputStream(path+"/Bon Pembelian.pdf"));
             doc.open();
+//            header 1 
+            Image img = Image.getInstance("Z:/PBO-main_6/PBO-main/picture/logo_pbo.png");
+            img.scalePercent(50);
+//            header 2 
             PdfPTable tbl = new PdfPTable(3);
-            tbl.addCell("Daftar Menu");
-            tbl.addCell("Banyak");
-            tbl.addCell("Jumlah");
+//            header 1 
+            PdfPCell cell = new PdfPCell();
+            cell.addElement(new Chunk(img, 5, -5));
+            cell.setBorder(Rectangle.NO_BORDER);
+            cell.setPaddingBottom(30);
+            cell.setPaddingLeft(-5);
+            
+            PdfPCell alamat = new PdfPCell(new Paragraph("Alamat\nSubang Selatan"));
+            alamat.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            alamat.setBorder(Rectangle.NO_BORDER);
+            alamat.setPaddingBottom(20);
+            alamat.setColspan(3);
+            
+            PdfPCell wa = new PdfPCell(new Paragraph("Whatsapp"));                     // Creating cell 1 
+            wa.setPaddingBottom(5);
+            
+            PdfPCell ig = new PdfPCell(new Paragraph("Instagram"));                     // Creating cell 1 
+            ig.setPaddingBottom(5);
+            
+            tbl.addCell(alamat);
+            tbl.addCell(cell);
+            tbl.addCell(wa);
+            tbl.addCell(ig);
+//            header 2 
+            PdfPCell cell1 = new PdfPCell(new Paragraph("No Nota"));
+            cell1.setBorder(Rectangle.NO_BORDER);
+            cell1.setPaddingBottom(10);
+            PdfPCell cell2 = new PdfPCell(new Paragraph("Tujuan")); 
+            cell2.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cell3 = new PdfPCell(new Paragraph("Tanggal")); 
+            cell3.setBorder(Rectangle.NO_BORDER);
+            tbl.addCell(cell1);
+            tbl.addCell(cell2);
+            tbl.addCell(cell3);
+//            masuk nota 
+            PdfPCell cell4 = new PdfPCell(new Paragraph("Daftar Menu"));                     // Creating cell 1 
+            cell4.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            cell4.setPaddingBottom(5);
+            PdfPCell cell5 = new PdfPCell(new Paragraph("Banyak"));                     // Creating cell 1 
+            cell5.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            cell5.setPaddingBottom(5);
+            PdfPCell cell6 = new PdfPCell(new Paragraph("Jumlah"));                     // Creating cell 1 
+            cell6.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            cell6.setPaddingBottom(5);
+            tbl.addCell(cell4);
+            tbl.addCell(cell5);
+            tbl.addCell(cell6);
             for (int i = 0; i<nota.getRowCount(); i++){
                 String makanan = nota.getValueAt(i, 0).toString();
                 String banyak = nota.getValueAt(i, 1).toString();
@@ -1717,12 +1777,13 @@ public class form_transaksi extends javax.swing.JFrame {
                 tbl.addCell(banyak);
                 tbl.addCell(jumlah);
             }
-
             doc.add(tbl);
             //        jLabel1.setVisible(false);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(form_transaksi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
+            Logger.getLogger(form_transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(form_transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
 

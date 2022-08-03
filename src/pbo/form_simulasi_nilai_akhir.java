@@ -1203,29 +1203,6 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
 
     private void input_mata_kuliahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_input_mata_kuliahMouseClicked
         // TODO add your handling code here:
-//        input_kode_mk.setText("");
-//        try {
-//            Class.forName(driver);
-//            Connection kon = DriverManager.getConnection(
-//                database,
-//                user,
-//                pass);
-//            Statement stt = kon.createStatement();
-//            String SQL = "SELECT * FROM mata_kuliah WHERE nama_mk='"+input_mata_kuliah.getSelectedItem()+"';";
-//            ResultSet res = stt.executeQuery(SQL);
-//            
-//            while(res.next()) {
-//                input_kode_mk.setText(res.getString("nomor_mk"));
-//            }
-//            res.close();
-//            stt.close();
-//            kon.close();
-//        } catch (Exception ex) {
-//            System.err.println(ex.getMessage());
-//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 
-//                    JOptionPane.INFORMATION_MESSAGE);
-//            System.exit(0);
-//        }
     }//GEN-LAST:event_input_mata_kuliahMouseClicked
 
     private void input_mata_kuliahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_mata_kuliahActionPerformed
@@ -1283,16 +1260,6 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
             input_persentase_absen.requestFocus();
         }
-//        if ((input_persentase_absen.getText().isEmpty()) || (input_persentase_tugas.getText().isEmpty())
-//                || (input_persentase_uts.getText().isEmpty()) || (input_persentase_uas.getText().isEmpty())
-//                || (input_kehadiran.getText().isEmpty()) || (input_tugas1.getText().isEmpty())
-//                || (input_tugas2.getText().isEmpty()) || (input_tugas3.getText().isEmpty())
-//                || (input_uts.getText().isEmpty()) || (input_uas.getText().isEmpty())
-//                || (input_kode_mk.getText().isEmpty()))
-//        {
-//            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan dilengkapi");
-//            input_persentase_absen.requestFocus();
-//        }
         else
         {
             try
@@ -1438,20 +1405,6 @@ public class form_simulasi_nilai_akhir extends javax.swing.JFrame {
                         + "`keterangan`='"+keterangan+"'"
                         + " WHERE "
                         + "`nama_mk`='"+tableModel.getValueAt(row, 0).toString()+"';";
-//                        "UPDATE `simulasi_nilai_akhir` "
-//                        + "SET `nama_mk`='"+nama_mk+"',"
-//                        + "`persentase_absen`='"+per_absen+"',"
-//                        + "`persentase_tugas`='"+per_tug+"',"
-//                        + "`persentase_uts`='"+per_uts+"',"
-//                        + "`persentase_uas`='"+per_uas+"',"
-//                        + "`absensi`='"+absen+"',"
-//                        + "`tugas_1`='"+tug1+"',"
-//                        + "`tugas_2`='"+tug2+"',"
-//                        + "`tugas_3`='"+tug3+"',"
-//                        + "`uts`='"+uts+"',"
-//                        + "`uas`='"+uas+"' "
-//                        + "WHERE "
-//                        + "`nama_mk`='"+tableModel.getValueAt(row, 0).toString()+"';";
                 stt.execute(SQL);
                 data[0] = nama_mk;
                 data[1] = per_absen;

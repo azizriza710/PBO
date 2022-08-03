@@ -25,8 +25,8 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
+//import javafx.scene.text.Text;
+//import javafx.scene.text.TextAlignment;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +34,8 @@ import javax.swing.table.TableCellRenderer;
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Chunk;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 /**
  *
  * @author SaIN
@@ -1401,249 +1403,54 @@ public class form_transaksi extends javax.swing.JFrame {
 
     private void qty_cekerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_cekerActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_ceker = Integer.valueOf(qty_ceker.getText()) * 12000;
-        j_ceker.setText(String.valueOf(total_ceker));
-        
-        String t_ceker = kursIndonesia.format(total_ceker);
-        banyak.add(qty_ceker.getText());
-        jumlah.add(t_ceker);
-        makanan.add(ceker.getText());
     }//GEN-LAST:event_qty_cekerActionPerformed
 
     private void qty_ususActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ususActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_usus = Integer.valueOf(qty_usus.getText()) * 12000;
-        j_usus.setText(String.valueOf(total_usus));
-        
-        String t_usus = kursIndonesia.format(total_usus);
-        banyak.add(qty_usus.getText());
-        jumlah.add(t_usus);
-        makanan.add(usus.getText());
     }//GEN-LAST:event_qty_ususActionPerformed
 
     private void qty_sayapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_sayapActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_sayap = Integer.valueOf(qty_sayap.getText()) * 17500;
-        j_sayap.setText(String.valueOf(total_sayap));
-        
-        String t_sayap = kursIndonesia.format(total_sayap);
-        banyak.add(qty_sayap.getText());
-        jumlah.add(t_sayap);
-        makanan.add(sayap.getText());
     }//GEN-LAST:event_qty_sayapActionPerformed
 
     private void qty_kepalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_kepalaActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_kepala = Integer.valueOf(qty_kepala.getText()) * 12000;
-        j_kepala.setText(String.valueOf(total_kepala));
-        
-        String t_kepala = kursIndonesia.format(total_kepala);
-        banyak.add(qty_kepala.getText());
-        jumlah.add(t_kepala);
-        makanan.add(kepala.getText());
     }//GEN-LAST:event_qty_kepalaActionPerformed
 
     private void qty_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_ayamActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_ayam = Integer.valueOf(qty_ayam.getText()) * 17500;
-        j_ayam.setText(String.valueOf(total_ayam));
-        
-        String t_ayam = kursIndonesia.format(total_ayam);
-        banyak.add(qty_ayam.getText());
-        jumlah.add(t_ayam);
-        makanan.add(ayam.getText());
     }//GEN-LAST:event_qty_ayamActionPerformed
 
     private void qty_mie_nelongsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_nelongsoActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_mie_nelongso = Integer.valueOf(qty_mie_nelongso.getText()) * 12000;
-        j_mie_nelongso.setText(String.valueOf(total_mie_nelongso));
-        
-        String t_mie_nelongso = kursIndonesia.format(total_mie_nelongso);
-        banyak.add(qty_mie_nelongso.getText());
-        jumlah.add(t_mie_nelongso);
-        makanan.add(mie_nelongso.getText());
     }//GEN-LAST:event_qty_mie_nelongsoActionPerformed
 
     private void qty_paket_nasi_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_nasi_ayamActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_paket_nasi = Integer.valueOf(qty_paket_nasi_ayam.getText()) * 21500;
-        j_paket_nasi_ayam.setText(String.valueOf(total_paket_nasi));
-        
-        String t_paket_nasi = kursIndonesia.format(total_paket_nasi);
-        banyak.add(qty_paket_nasi_ayam.getText());
-        jumlah.add(t_paket_nasi);
-        makanan.add(paket_nasi_ayam.getText());
     }//GEN-LAST:event_qty_paket_nasi_ayamActionPerformed
 
     private void qty_paket_mie_ayamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_paket_mie_ayamActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_paket_mie = Integer.valueOf(qty_paket_mie_ayam.getText()) * 22500;
-        j_paket_mie_ayam.setText(String.valueOf(total_paket_mie));
-        
-        String t_paket_mie = kursIndonesia.format(total_paket_mie);
-        banyak.add(qty_paket_mie_ayam.getText());
-        jumlah.add(t_paket_mie);
-        makanan.add(paket_mie_ayam.getText());
     }//GEN-LAST:event_qty_paket_mie_ayamActionPerformed
 
     private void qty_nasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_nasiActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_nasi = Integer.valueOf(qty_nasi.getText()) * 5000;
-        j_nasi.setText(String.valueOf(total_nasi));
-        
-        String t_nasi = kursIndonesia.format(total_nasi);
-        banyak.add(qty_nasi.getText());
-        jumlah.add(t_nasi);
-        makanan.add(nasi.getText());
     }//GEN-LAST:event_qty_nasiActionPerformed
 
     private void qty_mie_gorengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_mie_gorengActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_mie = Integer.valueOf(qty_mie_goreng.getText()) * 6000;
-        j_mie_goreng.setText(String.valueOf(total_mie));
-        
-        String t_mie = kursIndonesia.format(total_mie);
-        banyak.add(qty_mie_goreng.getText());
-        jumlah.add(t_mie);
-        makanan.add(mie_goreng.getText());
     }//GEN-LAST:event_qty_mie_gorengActionPerformed
 
     private void qty_telorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_telorActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_telor = Integer.valueOf(qty_telor.getText()) * 3000;
-        j_telor.setText(String.valueOf(total_telor));
-        
-        String t_telur = kursIndonesia.format(total_telor);
-        banyak.add(qty_telor.getText());
-        jumlah.add(t_telur);
-        makanan.add(telor.getText());
     }//GEN-LAST:event_qty_telorActionPerformed
 
     private void qty_airActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_airActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_air = Integer.valueOf(qty_air.getText()) * 5000;
-        j_air.setText(String.valueOf(total_air));
-        
-        String t_air = kursIndonesia.format(total_air);
-        banyak.add(qty_air.getText());
-        jumlah.add(t_air);
-        makanan.add(air.getText());
     }//GEN-LAST:event_qty_airActionPerformed
 
     private void qty_tehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qty_tehActionPerformed
         // TODO add your handling code here:
-        DecimalFormat kursIndonesia = (DecimalFormat)
-        DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        
-        total_teh = Integer.valueOf(qty_teh.getText()) * 6000;
-        j_teh.setText(String.valueOf(total_teh));
-        
-        String t_teh = kursIndonesia.format(total_teh);
-        banyak.add(qty_teh.getText());
-        jumlah.add(t_teh);
-        makanan.add(teh.getText());
     }//GEN-LAST:event_qty_tehActionPerformed
 
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
@@ -1686,6 +1493,7 @@ public class form_transaksi extends javax.swing.JFrame {
     private void btn_downloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_downloadMouseClicked
         // TODO add your handling code here:
         nota.setVisible(false);
+        String[] t_harga = {total_harga.getText()};
         membersihkan_teks();
 
                
@@ -1698,15 +1506,13 @@ public class form_transaksi extends javax.swing.JFrame {
         {
             path = j.getSelectedFile().getPath();
         }
-        System.out.println(path.getClass());
-        System.out.println(path);
         Document doc = new Document();
 
         try {
             PdfWriter.getInstance(doc, new FileOutputStream(path+"/Bon Pembelian.pdf"));
             doc.open();
 //            header 1 
-            Image img = Image.getInstance("Z:/PBO-main_6/PBO-main/picture/logo_pbo.png");
+            Image img = Image.getInstance("picture/logo_pbo.png");
             img.scalePercent(50);
 //            header 2 
             PdfPTable tbl = new PdfPTable(3);
@@ -1723,23 +1529,31 @@ public class form_transaksi extends javax.swing.JFrame {
             alamat.setPaddingBottom(20);
             alamat.setColspan(3);
             
-            PdfPCell wa = new PdfPCell(new Paragraph("Whatsapp"));                     // Creating cell 1 
+            PdfPCell wa = new PdfPCell(new Paragraph("Whatsapp\n\n083821099462"));                     // Creating cell 1 
             wa.setPaddingBottom(5);
             
-            PdfPCell ig = new PdfPCell(new Paragraph("Instagram"));                     // Creating cell 1 
+            PdfPCell ig = new PdfPCell(new Paragraph("Instagram\n\n@rumahmakan"));                     // Creating cell 1 
             ig.setPaddingBottom(5);
             
             tbl.addCell(alamat);
             tbl.addCell(cell);
             tbl.addCell(wa);
             tbl.addCell(ig);
+            
+            int min = 1;
+            int max = 45;
+            
+             //Getting current date
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            Calendar cal = Calendar.getInstance();
+            
 //            header 2 
-            PdfPCell cell1 = new PdfPCell(new Paragraph("No Nota"));
+            PdfPCell cell1 = new PdfPCell(new Paragraph("No Nota : 0"+Math.round(Math.random()*(max-min+1)+min)));
             cell1.setBorder(Rectangle.NO_BORDER);
             cell1.setPaddingBottom(10);
-            PdfPCell cell2 = new PdfPCell(new Paragraph("Tujuan")); 
+            PdfPCell cell2 = new PdfPCell(new Paragraph("Tujuan : "+Math.round(Math.random()*(max-min+1)+min)));  
             cell2.setBorder(Rectangle.NO_BORDER);
-            PdfPCell cell3 = new PdfPCell(new Paragraph("Tanggal")); 
+            PdfPCell cell3 = new PdfPCell(new Paragraph("Tanggal : "+sdf.format(cal.getTime()))); 
             cell3.setBorder(Rectangle.NO_BORDER);
             tbl.addCell(cell1);
             tbl.addCell(cell2);
@@ -1767,7 +1581,7 @@ public class form_transaksi extends javax.swing.JFrame {
                 tbl.addCell(jumlah);
             }
             doc.add(tbl);
-            //        jLabel1.setVisible(false);
+            doc.add(new Paragraph("\nTotal Bayar : "+t_harga[0]));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(form_transaksi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -1835,7 +1649,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_sayap = Integer.valueOf(qty_sayap.getText()) * 12000;
+        total_sayap = Integer.valueOf(qty_sayap.getText()) * 17500;
         j_sayap.setText(String.valueOf(total_sayap));
         
         String t_sayap = kursIndonesia.format(total_sayap);
@@ -1873,7 +1687,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_ayam = Integer.valueOf(qty_ayam.getText()) * 12000;
+        total_ayam = Integer.valueOf(qty_ayam.getText()) * 17500;
         j_ayam.setText(String.valueOf(total_ayam));
         
         String t_ayam = kursIndonesia.format(total_ayam);
@@ -1911,7 +1725,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_paket_nasi = Integer.valueOf(qty_paket_nasi_ayam.getText()) * 12000;
+        total_paket_nasi = Integer.valueOf(qty_paket_nasi_ayam.getText()) * 21500;
         j_paket_nasi_ayam.setText(String.valueOf(total_paket_nasi));
         
         String t_paket_nasi_ayam = kursIndonesia.format(total_paket_nasi);
@@ -1930,7 +1744,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_paket_mie = Integer.valueOf(qty_paket_mie_ayam.getText()) * 12000;
+        total_paket_mie = Integer.valueOf(qty_paket_mie_ayam.getText()) * 22500;
         j_paket_mie_ayam.setText(String.valueOf(total_paket_mie));
         
         String t_paket_mie_ayam = kursIndonesia.format(total_paket_mie);
@@ -1949,7 +1763,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_nasi = Integer.valueOf(qty_nasi.getText()) * 12000;
+        total_nasi = Integer.valueOf(qty_nasi.getText()) * 5000;
         j_nasi.setText(String.valueOf(total_nasi));
         
         String t_nasi = kursIndonesia.format(total_nasi);
@@ -1968,7 +1782,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_mie = Integer.valueOf(qty_mie_goreng.getText()) * 12000;
+        total_mie = Integer.valueOf(qty_mie_goreng.getText()) * 6000;
         j_mie_goreng.setText(String.valueOf(total_mie));
         
         String t_mie_goreng = kursIndonesia.format(total_mie);
@@ -1987,7 +1801,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_telor = Integer.valueOf(qty_telor.getText()) * 12000;
+        total_telor = Integer.valueOf(qty_telor.getText()) * 3000;
         j_telor.setText(String.valueOf(total_telor));
         
         String t_telor = kursIndonesia.format(total_telor);
@@ -2006,7 +1820,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_air = Integer.valueOf(qty_air.getText()) * 12000;
+        total_air = Integer.valueOf(qty_air.getText()) * 5000;
         j_air.setText(String.valueOf(total_air));
         
         String t_air = kursIndonesia.format(total_air);
@@ -2025,7 +1839,7 @@ public class form_transaksi extends javax.swing.JFrame {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
-        total_teh = Integer.valueOf(qty_teh.getText()) * 12000;
+        total_teh = Integer.valueOf(qty_teh.getText()) * 6000;
         j_teh.setText(String.valueOf(total_teh));
         
         String t_teh = kursIndonesia.format(total_teh);

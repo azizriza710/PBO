@@ -229,13 +229,14 @@ public class login extends javax.swing.JFrame {
                         JOptionPane.WARNING_MESSAGE);
                         System.exit(0);
                     }
-                    JOptionPane.showMessageDialog(null, "username atau password yang anda masukkan salah", "Alert", 
+                    JOptionPane.showMessageDialog(null, "Nama Pengguna dan Password Tidak Ditemukan Silahkan Daftar", "Alert", 
                         JOptionPane.WARNING_MESSAGE);
                     input_username.requestFocus();
                 } else if(hasil_cek == true) {
+                    JOptionPane.showMessageDialog(null, "Berhasil Masuk", "Alert", 
+                        JOptionPane.INFORMATION_MESSAGE);
                     homepage utama = new homepage();
                     utama.setVisible(true);
-                    
                     
                     this.setVisible(false);
                 }

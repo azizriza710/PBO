@@ -1529,10 +1529,12 @@ public class form_transaksi extends javax.swing.JFrame {
             alamat.setPaddingBottom(20);
             alamat.setColspan(3);
             
-            PdfPCell wa = new PdfPCell(new Paragraph("Whatsapp\n\n083821099462"));                     // Creating cell 1 
+            PdfPCell wa = new PdfPCell(new Paragraph("Whatsapp\n\n083821099462")); 
+            wa.setBorder(Rectangle.NO_BORDER);// Creating cell 1 
             wa.setPaddingBottom(5);
             
-            PdfPCell ig = new PdfPCell(new Paragraph("Instagram\n\n@rumahmakan"));                     // Creating cell 1 
+            PdfPCell ig = new PdfPCell(new Paragraph("Instagram\n\n@rumahmakan"));    
+            ig.setBorder(Rectangle.NO_BORDER);// Creating cell 1 
             ig.setPaddingBottom(5);
             
             tbl.addCell(alamat);

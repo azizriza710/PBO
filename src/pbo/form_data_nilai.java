@@ -1324,10 +1324,10 @@ public class form_data_nilai extends javax.swing.JFrame {
                     keterangan = "Tidak Lulus";
                 }
                 double tugas1 = Double.valueOf(input_tugas1.getText());
-                double tugas2 = Double.valueOf(input_tugas1.getText());
-                double tugas3 = Double.valueOf(input_tugas1.getText());
+                double tugas2 = Double.valueOf(input_tugas2.getText());
+                double tugas3 = Double.valueOf(input_tugas3.getText());
                 double getuts = Double.valueOf(input_uts.getText());
-                double getuas = Double.valueOf(input_tugas1.getText());
+                double getuas = Double.valueOf(input_uas.getText());
                 data[0] = nama;
                 data[1] = matkul;
                 data[2] = input_kehadiran.getText();
